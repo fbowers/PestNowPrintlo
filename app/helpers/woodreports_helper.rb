@@ -1,0 +1,2 @@
+module WoodreportsHelper
+end

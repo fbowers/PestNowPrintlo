@@ -1,0 +1,191 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/apikey.php'; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
+<head>
+  <title>jQuery busy indicator plugin</title>
+
+  
+ <%= javascript_include_tag "jquery.js", "rails.js", "jquery.busy.js"  %>
+
+ 
+  
+
+  <script type='text/javascript'>
+    //<![CDATA[
+    jQuery(function() {
+      jQuery().busy("preload");
+
+      jQuery().busy("defaults", { img : '/images/busy.gif' });
+
+      jQuery(window).resize(function() {
+        jQuery().busy("reposition");
+      });
+
+      jQuery('.example-default').click(function() {
+        var that = jQuery(this).busy();
+
+        setTimeout(function() {
+          that.busy("hide");
+        }, 2000);
+      });
+
+      jQuery('.example-position').click(function() {
+        var that = jQuery(this).busy({ position : 'right', hide : false });
+
+        setTimeout(function() {
+          that.busy("hide");
+        }, 2000);
+      });
+
+      jQuery(".example-reposition").busy();
+    });
+
+    //]]>
+  </script>
+</head>
+<body>
+  <div id='header'>
+    <h1><img src='/images/busy.gif' alt='jQuery-busy logo' title='jQuery-busy' /></h1>
+
+    
+  </div>
+
+  <div id='content'>
+    <p id='introduction'>jQuery-busy is a <a href='http://jquery.com/'>jQuery</a> plugin which allows to effortlessy show or hide animated activity / busyness indicator (call it spinner, loader or however you wish).</p>
+
+    <a name='features'></a>
+    <h2>Features</h2>
+    <div class='section features'>
+      <ul>
+        <li><span>very easy to use</span></li>
+        <li><span>tested with Firefox 2/3, Opera 10, IE 6/7/8, Safari 4/5</span></li>
+        <li><span>open source (dual licensed under MIT and GPL licenses)</span></li>
+      </ul>
+    </div>
+
+    <a name='usage'></a>
+    <h2>Examples and usage</h2>
+    <div class='section usage'>
+
+      <h3>Setup</h3>
+      <code>
+    &lt;script type="text/javascript" src="jquery.1.4.2.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="jquery.busy.js"&gt;&lt;/script&gt;
+      </code>
+
+      <h3>Default behaviour</h3>
+      <div>
+        <button class='example-default'>Click me!</button>
+        <button class='example-default'>Click me!</button>
+        <button class='example-default'>Click me!</button>
+      </div>
+      <code>
+    jQuery('.example-default').click(function() {
+      var that = jQuery(this).busy();
+
+      setTimeout(function() {
+        that.busy("hide");
+      }, 2000);
+    });
+      </code>
+
+      <h3>Positioning</h3>
+      <button class='example-position'>Click me!</button>
+      <code>
+    jQuery('.example-position').click(function() {
+      var that = jQuery(this).busy({ position : 'right', hide : false });
+
+      setTimeout(function() {
+        that.busy("hide");
+      }, 2000);
+    });
+      </code>
+
+      <h3>Repositioning</h3>
+      <p>
+      Since busy images are positioned absolutely changing page contents or dimensions when they are displayed may cause them to
+      land in inappropriate places. The workaround for this is repositioning of busy images on such events. You can try this by
+      changing the width of browser window. But still, animating content may be tricky...
+      </p>
+      <button class='example-reposition'>Click me!</button>
+      <code>
+    jQuery(window).resize(function() {
+      jQuery().busy("reposition");
+    });
+      </code>
+
+      <h3>Preloading the image (optional)</h3>
+      <p>Preloading the image will prevent delay before showing it for the first time (when it is not cached yet).</p>
+      <code>
+    jQuery().busy("preload");
+      </code>
+
+      <h3>Changing defaults</h3>
+      <code>
+    jQuery().busy("defaults", { offset : 0, hide : false });
+      </code>
+    </div>
+
+    <h2>Available options</h2>
+    <div class='section available-options'>
+      <ul>
+        <li>
+          <code>img</code>
+          <span class='type'>string</span>
+          <span>- path to busy image (default: <code>'busy.gif'</code>)</span>
+        </li>
+        <li>
+          <code>alt</code>
+          <span class='type'>string</span>
+          <span>- alternate text for busy image (default: <code>'Please wait...'</code>)</span>
+        </li>
+        <li>
+          <code>title</code>
+          <span class='type'>string</span>
+          <span>- title text for busy image (default: <code>'Please wait...'</code>)</span>
+        </li>
+        <li>
+          <code>hide</code>
+          <span class='type'>boolean</span>
+          <span>- whether to hide target element (default: <code>true</code>)</span>
+        </li>
+        <li>
+          <code>position</code>
+          <span class='type'>string</span>
+          <span>- one of <code>'center'</code>, <code>'left'</code> or <code>'right'</code> (default: <code>'center'</code>)</span>
+        </li>
+        <li>
+          <code>zIndex</code>
+          <span class='type'>integer</span>
+          <span>- z-index for busy image (default: <code>1001</code>)</span>
+        </li>
+        <li>
+          <code>width</code>
+          <span class='type'>integer</span>
+          <span>- allows to scale image horizontally (default: <code>null</code>)</span>
+        </li>
+        <li>
+          <code>height</code>
+          <span class='type'>integer</span>
+          <span>- allows to scale image vertically (default: <code>null</code>)</span>
+        </li>
+        <li>
+          <code>offset</code>
+          <span class='type'>integer</span>
+          <span>- when position is set to <code>'left'</code> or <code>'right'</code> this is offset in pixels from target element to busy image (default: <code>10</code>)</span>
+        </li>
+      </ul>
+    </div>
+
+
+<img src='/images/PestNowRails.png' title='jQuery-busy' />
+<img src="/images/PestNowRails.png" alt="Angry facec"  />
+<img src="/images/busy.gif" alt="Angry facec"  />
+
+  
+ 
+
+</body>
+</html>

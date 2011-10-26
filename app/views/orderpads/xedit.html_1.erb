@@ -1,0 +1,513 @@
+
+
+<style type="text/css">
+ 
+
+  #the_table {
+       FONT-SIZE: 10pt;
+       color: black;
+  text-align: center;
+  
+  }
+
+  #checklist {
+       FONT-SIZE: 10pt;
+       color: white;
+  text-align: right;
+  position:absolute;
+  left:450px;
+  top:0px;
+  height: 40px;
+  width: 190px;
+  }
+  #orderinfo {
+    FONT-SIZE: 10pt;
+    font-weight: bold;
+       color: white;
+  text-align: right;
+  position:absolute;
+  left:800px;
+  top:0px;
+  height: 40px;
+  width: 350px;
+    }
+  
+#hans {
+
+        position: absolute;
+        left: 725px;
+        top: 600px;
+        width: 300px;
+        padding: 0;
+}
+
+#spinner {
+  display:none;
+  position: absolute;
+        left: 50%;
+        top: 480px;
+        padding: 0;
+}
+  
+  
+ 
+ </style>
+
+
+ <script type="text/javascript">
+    
+  
+$(document).ready(function(){
+   $('.test_email').live('click', function() {
+      var quanfield = $(this).closest("tr").find(".quanclass");
+      var chemidfield =  $(this).closest("tr").find(".chemidclass");
+
+   
+   var ordidfield = $(this).closest("tr").find(".ordidclass");
+   
+   
+       data = "quan=" + quanfield.val() + "&oid=" + ordidfield.val();
+    
+      $.ajax({
+       type: 'post',
+    
+       url: '/orderpads/addchem/' + chemidfield.val() ,
+       dataType: 'script',
+       data: data
+     });
+     return false;});
+
+   $('#spinner')
+   .hide()  // hide it initially
+   .ajaxStart(function() {
+     $(this).show();    })
+   .ajaxStop(function() {
+     $(this).hide();
+   });
+$('#main_input').bind('ajax:beforeSend ', function(){
+  $("#all").hide();
+  //  $("#spinner").show();
+  //  window.location.replace("/coversheet");
+    // $('.actions').toggle('slow', function() {
+    //window.location.reload();
+   // window.location.href = "/coversheet";
+   // window.location.reload();
+    // Animation complete.
+
+    });
+ });
+
+
+ 
+
+
+//window.onscroll = function()
+//{
+//    if( window.XMLHttpRequest ) {
+//        if (document.documentElement.scrollTop > 175 || self.pageYOffset > 175) {
+//            $('#hans').css('position','fixed');
+//            $('#hans').css('top','0');
+//        } else if (document.documentElement.scrollTop < 175 || self.pageYOffset < 175) {
+//            $('#hans').css('position','absolute');
+//           $('#hans').css('top','275px');
+//        }
+//   }
+//}
+
+
+
+ $('#main_input').submit(function() {
+var $fields3 = $(this).find('input[name="checkstatus"]:checked');
+ if
+(!$fields3.length) {
+alert('You must check a Status!')
+  return false;
+  
+   }
+
+
+
+
+
+
+if ($('input[name="checkstatus"]:checked').val()== 1 || $('input[name="checkstatus"]:checked').val()== 5)  {
+var $fields8 = $(this).find('input[name="order[Checkcomment_ids][]"]:checked');
+var $fields = $(this).find('input[name="order[WeatherId]"]:checked');
+var $fields6 = $(this).find('input[name="order[WindId]"]:checked');
+var $fields7 = $(this).find('input[name="order[WindSpeedId]"]:checked');
+var $fields2 = $(this).find('input[name="order[Equipment_ids][]"]:checked');
+var $fields3 = $(this).find('input[name="order[Pest_ids][]"]:checked');
+var $fields4 = $(this).find('input[name="order[TemperatureId]"]:checked');
+var $fields5 = $(this).find('input[name="order[Areatreated_ids][]"]:checked');
+
+
+
+
+if
+(!$fields8.length) {
+alert('You must fill comments!');
+return false; // The form will *not* submit
+         }
+
+
+else if
+(!$fields5.length) {
+alert('You must fill area treated!');
+
+return false; // The form will *not* submit
+         }
+
+else if
+(!$fields4.length) {
+alert('You must fill area temperature!');
+return false; // The form will *not* submit
+         }
+
+
+else if (!$fields.length ) {
+alert('You must check Weather!');
+
+return false; // The form will *not* submit
+   }
+
+ else if (!$fields6.length ) {
+alert('You must check Wind Direction!');
+
+return false; // The form will *not* submit
+   }
+
+   else if (!$fields7.length ) {
+alert('You must check Wind Speed!');
+
+return false; // The form will *not* submit
+   }
+else if
+(!$fields2.length) {
+alert('You must check Equipmet!');
+
+return false; // The form will *not* submit
+         }
+
+         else if
+(!$fields3.length) {
+alert('You must check Target Pests!');
+return false; // The form will *not* submit
+       }
+
+ 
+    
+         
+         else if
+($('#hans').length == 0 ) {
+alert('You need to select chemical!');
+
+return false; // The form will *not* submit
+         }
+
+
+else
+ //$("#all").hide();
+   // $("#spinner").show();
+    // $('.actions').toggle('slow', function() {
+    //window.location.reload();
+   // window.location.href = "/coversheet";
+  return true;
+ 
+ 
+
+   }
+
+});
+//});
+
+
+</script>
+
+<td><img alt="spinner" id="spinner" src="/images/busy.gif"  /></td>
+
+
+
+<%= form_for(@orderpad) do |f| %>
+  <% if @orderpad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@orderpad.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @orderpad.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+
+   
+<div id="all">
+<div id="hans">  </div>
+<div id="map20" style="width: 50%; height: 250px; margin-left: auto; margin-right: auto;"></div>
+
+<div id="lat"></div>
+<div id="lon"> </div>
+<%= hidden_field_tag 't1' %>
+<%= hidden_field_tag 't2' %>
+ 
+
+
+<div id="orderinfo">
+ OrderId-<%=@orderpad.OrderId%>  PropertyId-<%=@orderpad.PropertyId%> Price-<%=  number_to_currency(@orderpad.Price)%>
+</div>
+
+
+<% if @orderpad.CheckInResultId.nil? %>
+<div id="my-link" >
+   <%= button_to "Arrive", { :controller => 'orderpads', :action => :add_arrive, :id => @orderpad.id }, :remote => true %>
+</div>
+
+
+
+
+<div id="afterarrive" style="display: none">
+
+ <% if @orderpad.CheckInResultId.nil? %>
+
+ 
+ <%else%>
+
+ <%end%>
+<table  id='the_table' >
+
+  <thead>
+    <tr>
+<th>QTY</th><th>Meas</th><th>Name</th><th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @chemicals.each do |ch| %>
+       <tr>
+<td> <%= text_field_tag 'quanfield',  nil, :class => "quanclass" %>       </td>
+<td><%= ch.Measurement      %></td>
+<td><%= ch.name %></td>
+ <td ><%= ch.Percentage %></td>
+         <td> <div><%= button_to "Add", {:action => :addchem, :id => ch}, :remote => true, :class => "test_email"  %> </div></td>
+   <td> <%= hidden_field_tag 'chemidfield', ch.id, :style => "width: 150px;", :class => "chemidclass" %></td>
+   <td><%= hidden_field_tag 'ordidfield', @orderpad.OrderId, :class => "ordidclass"%></td>
+
+          </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+  <%= semantic_form_for @orderpad, :id=> 'form' , :remote => true, :class=>:form, :html => {:id => 'main_input' } do |form| %>
+
+ 
+   
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Check In:</legend>
+         	<input type="radio" name="checkstatus" id="radio-choice-1" value="1"  />
+                <label for="radio-choice-1">Completed</label>
+
+         	<input type="radio" name="checkstatus" id="radio-choice-2" value="5"  />
+         	<label for="radio-choice-2">Completed Proposed</label>
+
+         	<input type="radio" name="checkstatus" id="radio-choice-3" value="3"  />
+         	<label for="radio-choice-3">Skipped</label>
+
+         	<input type="radio" name="checkstatus" id="radio-choice-4" value="2"  />
+         	<label for="radio-choice-4">Canceled</label>
+
+                <input type="radio" name="checkstatus" id="radio-choice-5" value="4"  />
+         	<label for="radio-choice-5">Could Not Complete</label>
+     </fieldset>
+</div>
+
+
+    
+   <%= form.input :CheckInNote, :label => "Check In Note" %>
+
+
+ 
+
+  <%= form.input :Checkcomments, :collection => @notes, :as => :check_boxes, :label => "Comments" %>
+
+
+
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Area Treated:</legend>
+         	<input type="checkbox" name="order[Areatreated_ids][]" id="at1" value="1"  />
+                <label for="at1">Exterior</label>
+
+         	<input type="checkbox" name="order[Areatreated_ids][]" id="at2" value="2"  />
+         	<label for="at2">Interior</label>
+  </fieldset>
+</div>
+
+
+  
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Temperature</legend>
+         	<input type="radio" name="order[TemperatureId]" id="zt1" value="1"  />
+                <label for="zt1">20</label>
+
+         	<input type="radio" name="order[TemperatureId]" id="zt2" value="2"  />
+         	<label for="zt2">30</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt3" value="3"  />
+         	<label for="zt3">40</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt4" value="4"  />
+         	<label for="zt4">50</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt5" value="5"  />
+         	<label for="zt5">60</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt6" value="6"  />
+         	<label for="zt6">70</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt7" value="7"  />
+         	<label for="zt7">80</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt8" value="8"  />
+         	<label for="zt8">90</label>
+
+                
+  </fieldset>
+</div>
+
+
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Weather:</legend>
+         	<input type="radio" name="order[WeatherId]" id="radio-choice-1" value="1"  />
+                <label for="radio-choice-1">Sun</label>
+
+         	<input type="radio" name="order[WeatherId]" id="radio-choice-2" value="2"  />
+         	<label for="radio-choice-2">Overcast</label>
+
+         	<input type="radio" name="order[WeatherId]" id="radio-choice-3" value="3"  />
+         	<label for="radio-choice-3">Rain</label>
+  </fieldset>
+</div>
+  <div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Wind:</legend>
+
+         	<input type="radio" name="order[WindId]" id="radio-choice-1" value="1"  />
+         	<label for="radio-choice-1">Wind North</label>
+
+                <input type="radio" name="order[WindId]" id="radio-choice-2" value="2"  />
+         	<label for="radio-choice-2">Wind East</label>
+
+                <input type="radio" name="order[WindId]" id="radio-choice-3" value="3"  />
+         	<label for="radio-choice-3">Wind South</label>
+
+                <input type="radio" name="order[WindId]" id="radio-choice-4" value="4"  />
+         	<label for="radio-choice-4">Wind West</label>
+ </fieldset>
+</div>
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Weather:</legend>
+                <input type="radio" name="order[WindSpeedId]" id="radio-choice-1" value="1"  />
+         	<label for="radio-choice-1">Speed 0-5</label>
+
+                <input type="radio" name="order[WindSpeedId]" id="radio-choice-2" value="2"  />
+         	<label for="radio-choice-2">Speed 5-10 </label>
+
+                <input type="radio" name="order[WindSpeedId]" id="radio-choice-3" value="3"  />
+         	<label for="radio-choice-3">Speed 10-15</label>
+                <input type="radio" name="order[WindSpeedId]" id="radio-choice-4" value="4"  />
+         	<label for="radio-choice-4">Speed Over 15 </label>
+    </fieldset>
+</div>
+
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Equipment:</legend>
+         	<input type="checkbox" name="order[Equipment_ids][]" id="cb1" value="1"  />
+                <label for="cb1">Spreader</label>
+
+                <input type="checkbox" name="order[Equipment_ids][]" id="cb2" value="2"  />
+                <label for="cb2">Power Sprayer</label>
+
+                <input type="checkbox" name="order[Equipment_ids][]" id="cb3" value="3"  />
+                <label for="cb3">Hand Sprayer</label>
+
+                <input type="checkbox" name="order[Equipment_ids][]" id="cb4" value="4"  />
+                <label for="cb4">Bait Gun</label>
+
+                <input type="checkbox" name="order[Equipment_ids][]" id="cb5" value="5"  />
+                <label for="cb5">Aerosol</label>
+
+                <input type="checkbox" name="order[Equipment_ids][]" id="cb6" value="6"  />
+                <label for="cb6">Dust Bulb</label>
+
+                <input type="checkbox" name="order[Equipment_ids][]" id="cb7" value="7"  />
+                <label for="cb7">Bait Station</label>
+
+                <input type="checkbox" name="order[Equipment_ids][]" id="cb8" value="8"  />
+                <label for="cb8">Web Buster</label>
+
+                <input type="checkbox" name="order[Equipment_ids][]" id="cb9" value="9"  />
+                <label for="cb9">Rodding/Injection Equipment</label>
+
+    </fieldset>
+</div>
+
+
+  <%= form.input :Pests, :as => :check_boxes, :collection => @pests, :label => "Pests" %>
+
+
+<%= form.input :WorkOrderNote, :label => "Work Order Note" %>
+   
+    <%= form.inputs :FirstName, :LastName, :Email, :for => :Customer, :name => "Customer" %>
+
+
+  
+ 
+ 
+
+
+
+    <% if @orderpad.CheckInResultId.nil? %>
+<div class="actions">
+  <%= form.buttons do %>
+    <%= form.commit_button "Check-In"%> 
+  <%end%>
+  </div>
+   <%else%>
+
+ <%end%>
+ 
+<%end%>
+
+
+  </div>
+
+  <%else%>
+<h1>Checked In!</h1>
+
+
+
+<%end%>
+
+
+<div id ="after" class="starthidden">
+
+    <div id="checklist">
+<% @orderpad.Orderchecklistitems.where(:Optional => false).each do |c| %>
+<%= c.Checklistitem.Description %> = <%= c.IsComplete %><br />
+<%end%>
+</div>
+  </div>
+</div>
+
+ 
+
+
+
+
+

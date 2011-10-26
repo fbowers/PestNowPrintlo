@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ContractTypeID: 1
+  Name: MyString
+
+two:
+  ContractTypeID: 1
+  Name: MyString

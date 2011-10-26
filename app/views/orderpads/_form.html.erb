@@ -1,0 +1,25 @@
+<%= form_for(@orderpad) do |f| %>
+  <% if @orderpad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@orderpad.errors.count, "error") %> prohibited this orderpad from being saved:</h2>
+
+      <ul>
+      <% @orderpad.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :OrderId %><br />
+    <%= f.text_field :OrderId %>
+  </div>
+  <div class="field">
+    <%= f.label :BranchId %><br />
+    <%= f.text_field :BranchId %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

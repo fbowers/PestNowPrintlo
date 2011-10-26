@@ -1,0 +1,90 @@
+<style type="text/css">
+
+
+  table, tr, th {
+    width: 800px;
+    border-collapse: collapse;
+      text-align: center
+
+}
+ </style>
+<script type="text/javascript">
+	<%#*$(function() {%>
+		<%#*$( "#startdate" ).datepicker();%>
+	<%#*});%>
+
+
+
+</script>
+
+<%= form_tag do %>
+  Form contents
+<% end %>
+
+  <% form_tag orders_path, :method => 'get' do  %>
+
+  
+
+<label for="searchorder_name">Date:</label>
+<%= text_field_tag :startdate, params[:startdate] %>
+
+<%= text_field_tag :branch, params[:branch] %>
+
+<p><h3>"branch"</h3></p>
+<p> <%=radio_button_tag :branch, params[:branch]= 1%> Sterling
+ <%=radio_button_tag :branch, params[:branch]= 3%> Ijamsville 
+ <%=radio_button_tag :branch, params[:branch]= 5%> Clinton</p>
+<p> <%=radio_button_tag :branch, params[:branch]= 6%> Prince William 
+ <%=radio_button_tag :branch, params[:branch]= 7%> Home Inspection
+ <%=radio_button_tag :branch, params[:branch]= 9%> Lawn</p>
+
+
+
+
+<h2> <%=  @counttotal %>  Total Orders for <%=  number_to_currency(@daytotal) %> <br /> You need <%=@greentotal%> green, <%=@redtotal%> red, <%=@bluetotal%> blue, <%=@purpletotal%> purple, and <%=@contracttotal%> contracts</h2>
+
+  <%= submit_tag "Search", :name => nil%>
+<% end %>
+    <table>
+  <th>Route name</th>
+  <th>Orders </th>
+  <th>Amount</th>
+  <th>Green</th>
+  <th>Red</th>
+  <th>Blue</th>
+  <th>Purple</th>
+  <th>Contract</th>
+  <th>CoverSheet</th>
+  <% @orders_today.each do |order_today| %>
+    <tr>
+   <td> <%= order_today[:Route].RouteName %>   </td>
+ <td> <%= order_today[:schedules].count %> </td>
+  <td><%= number_to_currency(order_today[:sum]) %>   </td>
+ <td>(<%= order_today[:greencount] %>)<%= link_to 'Green', :controller => "orders", :action => "fworkorder", :form => "71", :startdate => @start, :branch => @branch, :route => order_today[:Route].RouteId, :format => :pdf%></td>
+ <td>(<%= order_today[:redcount] %>)<%= link_to 'Red', :controller => "orders", :action => "fworkorder", :form => "85", :startdate => @start, :branch => @branch, :route => order_today[:Route].RouteId, :format => :pdf%></td>
+ <td>(<%= order_today[:bluecount] %>)<%= link_to 'Blue', :controller => "orders", :action => "fworkorder", :form => "73", :startdate => @start, :branch => @branch, :route => order_today[:Route].RouteId, :format => :pdf%></td>
+ <td>(<%= order_today[:purplecount] %>)<%= link_to 'Purple', :controller => "orders", :action => "fworkorder", :form => "77", :startdate => @start, :branch => @branch, :route => order_today[:Route].RouteId, :format => :pdf%></td>
+ <td>(<%= order_today[:contractcount] %>)<%= link_to 'Contract', :controller => "orders", :action => "contract", :startdate => @start, :branch => @branch, :route => order_today[:Route].RouteId, :format => :pdf%></td>
+
+ <td> <%= link_to 'Coversheet', :controller => "orders", :action => "index", :startdate => @start, :branch => @branch,  :route => order_today[:Route].RouteId, :format => :pdf %></td>
+ </tr>
+ <%end%>
+</table>
+
+
+
+<h2><%=  link_to'All CoverSheet', :controller => "orders", :action => "index", :startdate => @start, :branch => @branch, :format => :pdf %></h2>
+<h2><%=  link_to'All Green Workorder', :controller => "orders", :action => "fworkorder", :startdate => @start, :branch => @branch, :form => "71", :format => :pdf %></h2>
+<h2><%=  link_to'All Red Workorder', :controller => "orders", :action => "fworkorder", :startdate => @start, :branch => @branch,  :form => "85", :format => :pdf %></h2>
+<h2><%=  link_to'All Blue Workorder', :controller => "orders", :action => "fworkorder", :startdate => @start, :branch => @branch,  :form => "73", :format => :pdf %></h2>
+<h2><%=  link_to'All Purple Workorder', :controller => "orders", :action => "fworkorder", :startdate => @start, :branch => @branch,  :form => "77", :format => :pdf %></h2>
+<h2><%=  link_to'All Contract', :controller => "orders", :action => "contract", :startdate => @start, :branch => @branch, :format => :pdf %></h2>
+
+
+
+
+  
+
+
+
+

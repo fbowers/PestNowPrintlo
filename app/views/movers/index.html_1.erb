@@ -1,0 +1,20 @@
+<h1>Listing movers</h1>
+
+<table>
+  <tr>
+    <th>Moverid</th>
+  </tr>
+
+<% @movers.each do |mover| %>
+  <tr>
+    <td><%=h mover.MoverId %></td>
+    <td><%= link_to 'Show', mover %></td>
+    <td><%= link_to 'Edit', edit_mover_path(mover) %></td>
+    <td><%= link_to 'Destroy', mover, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New mover', new_mover_path %>

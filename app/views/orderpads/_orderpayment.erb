@@ -1,0 +1,95 @@
+
+<div id="dautopay" style="display: none">
+<button id="autopay" >Apply AutoPay</button>
+
+</div>
+<div id="notautopay">
+<div id="dpaytype">
+<div data-role="fieldcontain">
+	<label for="paytype" class="select">Type:</label>
+	<select name="paytype" id="paytype">
+          <option data-placeholder="true">Select Payment Type</option>
+		<option value="Check" >Check</option>
+	        <option value="CreditCard" >Creditcard</option>
+                <option value="Cash" >Cash</option>
+                 <option value="nopayment" >No Payment</option>
+
+	</select>
+</div>
+  </div>
+
+<input id="orderprice" name="orderprice" type="text" style="display: none" value= <%= @orderpad.Price%> />
+<div data-role="fieldcontain">
+    <label for="amount">Amount:</label>
+    <input type="text" name="amount" id="amount" value=""  />
+</div>
+
+
+<div id="dcheck" style="display: none">
+<div data-role="fieldcontain">
+    <label for="check">Check Number:</label>
+    <input type="text" name="check" id="check" value=""  />
+</div>
+<button id="checkpayment">Enter Check/Cash</button>
+</div>
+
+<div id="dcc" style="display: none">
+<div data-role="fieldcontain">
+	<label for="cardtype" class="select">Card Type:</label>
+	<select name="cardtype" id="cardtype">
+          <option data-placeholder="true">Select Card</option>
+		<option value="VISA" >Visa</option>
+	        <option value="MASTERCARD" >MasterCard</option>
+
+	</select>
+</div>
+
+
+
+<div data-role="fieldcontain">
+    <label for="ccnumber">Number:</label>
+    <input type="text" name="ccnumber" id="ccnumber" value=""  />
+</div>
+
+
+  <div data-role="fieldcontain">
+	<label for="expmonth" class="select">Exp Month:</label>
+	<select name="expmonth" id="expmonth">
+          <option data-placeholder="true">Select Expire Month</option>
+		<option value="1" >Jan</option>
+	        <option value="2" >Feb</option>
+	        <option value="3" >Mar</option>
+                <option value="4" >Apr</option>
+	        <option value="5" >May</option>
+	        <option value="6" >Jun</option>
+                <option value="7" >Jul</option>
+	        <option value="8" >Aug</option>
+	        <option value="9" >Sep</option>
+                <option value="10" >Oct</option>
+	        <option value="11" >Nov</option>
+	        <option value="12" >Dec</option>
+	</select>
+</div>
+  <div data-role="fieldcontain">
+	<label for="expyear" class="select">Exp Year:</label>
+	<select name="expyear" id="expyear">
+          <option data-placeholder="true">Select Expire Year</option>
+		<option value="2011" >2011</option>
+	        <option value="2012" >2012</option>
+	        <option value="2013" >2013</option>
+                <option value="2014" >2014</option>
+	        <option value="2015" >2015</option>
+	        <option value="2016" >2016</option>
+                <option value="2017" >2017</option>
+	        <option value="2018" >2018</option>
+	        <option value="2019" >2019</option>
+                <option value="2020" >2020</option>
+	        <option value="2021" >2021</option>
+	        <option value="2022" >2022</option>
+	</select>
+</div>
+
+<button id="ccpayment">Charge Card</button>
+</div>
+
+</div>

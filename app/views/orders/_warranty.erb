@@ -1,0 +1,4 @@
+<tr><td><%=h w.Warrantytype.name%></td>
+<td><%=h w.StartDate.strftime("%m/%d/%y")%></td>
+<td><%=h w.EndDate.strftime("%m/%d/%y")%></td>
+<td><%= number_to_currency(w.Price) %></td></tr>

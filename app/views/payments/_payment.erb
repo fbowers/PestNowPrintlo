@@ -1,0 +1,20 @@
+
+
+<%= form_for :sim_transaction, :url => AuthorizeNet::SIM::Transaction::Gateway::TEST do |f| %>
+  <%= sim_fields(@sim_transaction) %>
+ <%= label_tag 'x_amount', "Total: #{number_to_currency(@amount)}" %>
+  <%= label_tag 'x_card_num', 'Credit Card Number'%>
+  <%= text_field_tag 'x_card_num' %>
+  <%= label_tag 'x_exp_date', 'Expiration Date (MMYY)'%>
+  <%= text_field_tag 'x_exp_date' %>
+<%= hidden_field_tag 'x_invoice_num', @id %>
+<%= hidden_field_tag 'x_address', @order.Property.Address.StreetNumber + @order.Property.Address.Street  %>
+<%= hidden_field_tag 'x_city', @order.Property.Address.City  %>
+<%= hidden_field_tag 'x_state', @order.Property.Address.StateId %>
+<%= hidden_field_tag 'x_zip', @order.Property.Address.ZipCodeId %>
+
+  <br />
+
+
+  <%= f.submit 'Purchase'%>
+<% end %>

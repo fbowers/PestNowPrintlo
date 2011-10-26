@@ -1,0 +1,283 @@
+<style type="text/css">
+#wc {
+  width: 50%;
+  FONT-SIZE: 9pt;
+       color: black;
+  text-align: center;
+
+  }
+
+   </style>
+
+  <table id="wc">
+   <thead>
+  <td>P-ID</td>
+    <td>O-ID</td>
+    <td>AT</td>
+    <td>EX</td>
+    <td>In Time</td>
+    <td>Out Time</td>
+    <td>Code</td>
+    <td>Price</td>
+    <td>Tax</td>
+    <td>Tax Rate</td>
+    <td>SoldBy</td>
+     <td>SoldById</td>
+    <td>SoldByRate</td>
+   </thead>
+     <td><%=@Frank.PropertyId %></td>
+     <td><%= @Frank.OrderId %></td>
+     <td><%= "AT"  if @sched.Anytime == true %></td>
+     <td><%= "Exact" if @sched.Exact == true %></td>
+     <td><%=h @sched.StartTime.strftime("%I:%M %p") if @sched.Anytime == false %></td>
+     <td><%=h @sched.EndTime.strftime("%I:%M %p") if@sched.Anytime == false %></td>
+     <td><%= @Frank.Servicecode.Code %></td>
+     <td><%= number_to_currency(@Frank.Price) %></td>
+     <td><%= number_to_currency(@tax) %></td>
+     <td><%= number_to_percentage(@taxrate) %></td>
+    <td> <%if @Frank.Usercommissionrate.nil? %> <%="NA"%> <%else%> <%=@Frank.Usercommissionrate.User.Username %> <%end%></td>
+    <td> <%if @Frank.Usercommissionrate.nil? %> <%="NA"%> <%else%> <%=@Frank.Usercommissionrate.User.UserId %> <%end%></td>
+    <td> <%if @Frank.Usercommissionrate.nil? %> <%="NA"%> <%else%> <%=@Frank.Usercommissionrate.Rate %> <%end%></td>
+      
+  </table>
+
+
+<h3>Instructions</h3>
+<%= @Frank.SpecialInstructions %> 
+
+
+
+  <h3>Service Address</h3>
+<%= render :partial => 'propaddress', :object => @sched.Order,  :as => :o%> 
+<div id = wobilladd>
+ <h3>Billing Address</h3>
+<% if @Frank.BillBillingCustomer == true %>
+<%= render :partial => 'propbilladdress', :object => @sched.Order, :as => :ba%>
+<%elsif @Frank.BillSettlementCompany == true%>
+<%= render :partial => 'propsettleaddress', :object => @sched.Order, :as => :set%>
+<%elsif @Frank.BillAgent == true%>
+<%= render :partial => 'propagentaddress', :object => @sched.Order, :as => :agn%>
+<%else%>
+<%= render :partial => 'propaddress', :object => @sched.Order, :as => :o%>
+<% end %></div>
+
+
+  <h3>Agent</h3>
+<% if @Frank.Ragent.nil?%>
+<%= "No Agent" %>
+<%else%>
+<%= render :partial => 'propagentaddress', :object => @sched.Order, :as => :agn%>
+<%end%>
+
+
+  <h3>Settlement</h3>
+<% if @Frank.Rsettlement.nil?%>
+<%= "No Settle" %>
+<%else%>
+<%= render :partial => 'propsettleaddress', :object => @sched.Order, :as => :set%>
+<%end%>
+
+
+
+
+
+<h3>warranty</h3>
+<table id="wc">
+   <thead>
+  <td>Type</td>
+  <td>Start</td>
+  <td>End</td>
+  <td>Price</td>
+
+   </thead>
+      <% @war.each do |w|%>
+       <tr><td><%=h w.Warrantytype.name%></td>
+<td><%=h w.StartDate.strftime("%m/%d/%y")%></td>
+<td><%=h w.EndDate.strftime("%m/%d/%y")%></td>
+<td><%= number_to_currency(w.Price) %></td></tr>
+       <%end%>
+  </table>
+
+
+    
+<h3>contract</h3>
+<table id="wc">
+
+   <thead>
+  <td>Type</td>
+  <td>Start</td>
+  <td>End</td>
+  <td>Price</td>
+  <td>Proposed</td>
+  <td>Active</td>
+  <td>Frequency</td>
+  <td>Recurring Price</td>
+  <td>Last Date</td>
+
+   </thead>
+<% @con.each do |c|%>
+   <tr><td> <%=h c.Contracttype.name %> </td>
+  <% if c.StartDate.nil? %>
+  <%"Empty" %>
+  <%else%>
+<td><%=h c.StartDate.strftime("%m/%d/%y")%></td>
+<% end %>
+ <% if c.EndDate.nil? %>
+  <%"Empty" %>
+  <%else%>
+<td><%=h c.EndDate.strftime("%m/%d/%y")%></td>
+<% end %>
+<td><%= number_to_currency(c.RecurringPrice) %></td>
+<td><%=h c.Proposed%></td>
+   <td><%=h c.Active%></td>
+    <td><%=h c.FrequencyId%></td>
+    <td><%=h c.RecurringPrice%></td>
+    <td><%=h c.ServiceDate%></td>
+   </tr>
+   <%end%>
+
+  </table>
+
+
+
+  <h3>History</h3>
+<table id="wc">
+ <thead>
+  <td>Prop Id</td>
+  <td>Order Id</td>
+  <td>Date</td>
+  <td>In</td>
+  <td>Out</td>
+  <td>Code</td>
+  <td>Price</td>
+  <td>Status</td>
+  <td>Route</td>
+  </thead>
+      
+  <% @his.each do |h|%>
+    
+    <tr>
+<td> <%=h h.PropertyId %> </td>
+<td> <%=h h.OrderId %> </td>
+<td><%if h.Schedule.StartTime.nil?%> <%="empty"%> <%else%> <%=h h.Schedule.StartTime.strftime("%m/%d/%y")%> <%end%></td>
+
+<td> <%= "AT"  if h.Schedule.Anytime == true %> <%= "Exact" if h.Schedule.Exact == true %><%=h h.Schedule.StartTime.strftime("%I:%M %p") if h.Schedule.Anytime == false %></td>
+<td><%=h h.Schedule.EndTime.strftime("%I:%M %p") if h.Schedule.Anytime == false %></td>
+<td> <%=h h.Servicecode.Code %> </td>
+<td> <%=h number_to_currency(h.Price) %> </td>
+<td> <%=h h.Orderstatus.Description %> </td>
+<%  h.Schedule.Routes.each do |r| %>
+<td><%=  r.RouteName %> </td>
+<%end%>
+
+
+    </tr>
+
+<%end%>
+</table>
+
+
+
+
+
+
+<h3>Routes</h3>
+<table id="wc">
+<tr>
+  <td>User</td>
+  <td>Single Rate</td>
+  <td>Actual Rate</td>
+  <td>Divide</td>
+  <td>Money</td>
+</tr>
+  <%  @rou.each do |r| %>
+ <tr>
+ <td><%= r.RouteId %> </td>
+ <td><%= r.RouteName %> </td>
+ </tr>
+ <% end %>
+ </table>
+  
+
+<h3>Routes</h3>
+<table id="wc">
+<tr>
+
+     <td>RouteID</td>
+  <td>Active</td>
+  <td>StartTime</td>
+  <td>EndTime</td>
+  <td>UserName</td>
+  <td>UserId</td>
+  <td>RouteName</td>
+
+</tr>
+        <%  @ur.each do |ur| %>
+
+   <tr>
+     <td><%= ur.UserRouteId %> </td>
+    <td><%= ur.Active %> </td>
+    <td><%= ur.StartTime %> </td>
+    <td><%= ur.EndTime %> </td>
+    <td><%= ur.User.Username %> </td>
+    <td><%= ur.User.UserId %> </td>
+     <td><%= ur.Route.RouteName %> </td>  </tr>
+<% end %>
+
+   </table>
+
+
+<h3>User Ledgers</h3>
+<table id="wc">
+<tr>
+
+     <td>User ID</td>
+  <td>Name</td>
+   <td>EntryDate</td>
+  <td>Charge</td>
+  <td>Active</td>
+
+
+</tr>
+        <%  @ul.each do |ul| %>
+
+   <tr>
+     <td><%= ul.UserId %> </td>
+     <td><%= ul.User.Username %> </td>
+     <td><%= ul.EntryDate.strftime("%m/%d/%y") %> </td>
+     <td> <%=h number_to_currency(ul.Charge) %> </td>
+     <td><%= ul.Active %> </td>
+
+
+   </tr>
+<% end %>
+
+   </table>
+
+<h3>Customer Ledgers</h3>
+<table id="wc">
+<tr>
+
+   
+  <td>Charge</td>
+   <td>TaxCharge</td>
+   <td>Active</td>
+
+
+</tr>
+        <%  @cl.each do |cl| %>
+
+   <tr>
+        <td> <%=h number_to_currency(cl.Charge) %> </td>
+        <td> <%=h number_to_currency(cl.TaxCharge) %> </td>
+       <td><%= cl.Customerledger.Active %> </td>
+
+
+
+
+   </tr>
+<% end %>
+
+   </table>
+
+

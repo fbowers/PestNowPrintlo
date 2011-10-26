@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Retrieving location on the iPhone</title>
+<script src="http://maps.google.com/maps?file=api&v=2&sensor=false&key=ABQIAAAArEY8Snz_XI0In9WomM5B5BRgvgAZna9PSW0IAgWHhbpply-ubxQZnD46LJWIDUtip_dtPeh242UxjA"
+  type="text/javascript"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("jquery", "1.3.2");
+</script>
+<script type="text/javascript">
+
+  function displayCoordinates(location) {
+
+    var location = document.getElementById("loc");
+
+    location.innerHTML+="<p>Longitude: " + location.coords.longitude + "</p>";
+    location.innerHTML+="<p>Latitude: " + location.coords.latitude + "</p>";
+    location.innerHTML+="<p>Accuracy: " + location.coords.accuracy + "</p>";
+
+  }
+
+  navigator.geolocatinnerHTMLion.getCurrentPosition(displayCoordinates);
+
+</script>
+
+<script type="text/javascript">
+  google.setOnLoadCallback(function() {
+
+    $(function() {
+
+      navigator.geolocation.getCurrentPosition(displayCoordinates);
+
+      function displayCoordinates(location) {
+
+        var map = new GMap2(document.getElementById("location"));
+        map.setCenter(new GLatLng(location.coords.latitude, location.coords.longitude), 12);
+        map.setUIToDefault();
+        var point = new GLatLng(location.coords.latitude, location.coords.longitude);
+        var marker = new GMarker(point);
+        map.addOverlay(marker);
+
+      }
+    })
+  });
+</script>
+</head>
+<body>
+<div id="location" style="width: 300px; height: 300px; border: 1px solid black;"></div>
+<div id="message" </div>
+
+<div id="loc">Could not determine location</div>
+</body>
+</html>

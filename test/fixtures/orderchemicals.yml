@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  OrderId: 
+  chemical_id: 
+  quantity: 
+  cart_id: 
+
+two:
+  OrderId: 
+  chemical_id: 
+  quantity: 
+  cart_id: 

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Contracttypeid:</b>
+  <%= @contracttype.ContractTypeId %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @contracttype.Name %>
+</p>
+
+
+<%= link_to 'Edit', edit_contracttype_path(@contracttype) %> |
+<%= link_to 'Back', contracttypes_path %>

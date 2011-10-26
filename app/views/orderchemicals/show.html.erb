@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Orderid:</b>
+  <%= @orderchemical.OrderId %>
+</p>
+
+<p>
+  <b>Chemical:</b>
+  <%= @orderchemical.ChemId %>
+</p>
+
+<p>
+  <b>Chemical:</b>
+  <%= @orderchemical.Chemical.name%>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%= @orderchemical.Quantity %>
+</p>
+
+<p>
+  <b>Cart:</b>
+  <%= @orderchemical.CartId %>
+</p>
+
+
+<%= link_to 'Edit', edit_orderchemical_path(@orderchemical) %> |
+<%= link_to 'Back', orderchemicals_path %>

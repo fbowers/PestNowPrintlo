@@ -1,0 +1,32 @@
+<script type="text/javascript">
+	$(function() {
+		$( 'input.ui-datepicker' ).datepicker();
+	});
+
+
+$(document).ready(function(){ $('input.ui-date-picker').datepicker(); });
+
+
+
+
+</script>
+
+<% semantic_form_for @warranty do |form| %>
+<% form.inputs :name => "Warranty Information" do %>
+<%= form.input :WarrantyTypeId, :as => :select, :collection => Warrantytype.find(:all ), :required => true, %>
+<%= form.input :Price, :input_html => { :value => 88 } %>
+<%= form.input :PropertyId, :as => :hidden ,:input_html => {:value => params[:PropertyId] }  %>
+<%= form.input :OriginatingOrderId, :as => :hidden , :input_html => { :value => params[:OrderId] }  %>
+<%end %>
+
+
+<% form.buttons do %>
+<%= form.commit_button %>
+<%end %>
+<%end %>
+
+<td class ="solid"><%= link_to 'back to check-in', edit_orderpad_path(params[:OrderId]) %></td>
+
+
+
+ 

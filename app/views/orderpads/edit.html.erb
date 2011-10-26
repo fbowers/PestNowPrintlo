@@ -1,0 +1,1011 @@
+
+
+<style type="text/css">
+ 
+
+  #the_table {
+       FONT-SIZE: 10pt;
+       color: black;
+  text-align: center;
+  
+  }
+
+  #checklist {
+  FONT-SIZE: 8pt;
+  color: white;
+  text-align: right;
+  position:absolute;
+  left:10%;
+  top:0px;
+  
+  }
+  #orderinfo {
+       FONT-SIZE: 10pt;
+        top:15%;
+         position:absolute;
+     left:75%;
+  
+
+    }
+  
+#hans {
+
+        position: absolute;
+        left: 650px;
+        top: 200px;
+        width: 300px;
+        padding: 0;
+}
+
+#spinner {
+  display:none;
+  position: absolute;
+        left: 50%;
+        top: 520px;
+        padding: 0;
+}
+
+#hide {
+  display:none;
+  position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 50%;
+        padding: 0;
+        background-color: black;
+}
+
+#color{
+   color: white;
+}
+#flash_notice{
+font-size:20px;
+text-align:center;
+color: red;
+background:yellow;
+}
+
+
+ </style>
+
+
+
+ <script type="text/javascript">
+    
+  
+$(document).ready(function(){
+  
+var rangeDemoConv = new AnyTime.Converter();
+ $('#tin').AnyTime_picker();
+
+$("#rangeDemoToday").click( function(e) {
+      $("#tin").val(rangeDemoConv.format(new Date())).change(); } );
+
+
+ $("#dpaytype").change(function () {
+         var type = $("#paytype").val();
+            if (type== 'CreditCard'){
+  //    alert(type);
+       //$('#dcc').hide();
+      $('#dcheck').hide();
+      $('#dcc').slideDown("slow");
+        $('#slide').hide();
+
+}
+  else if
+   (type== 'Check'){
+ //  alert(type);
+    $('#dcc').hide();
+      $('#dcheck').slideDown("slow");
+        $('#slide').hide();
+  }
+  else if
+   (type== 'Cash'){
+  // alert(type);
+    $('#dcc').hide();
+      $('#dcheck').slideDown("slow");
+      $('#slide').hide();
+  }
+  else if
+   (type== 'nopayment'){
+  // alert('nopayment');
+  //   disablePopup2();
+  // centerPopup();
+  // loadPopup();
+  $('#dcc').hide();
+  $('#dcheck').hide();
+   $('#slide').slideDown("slow");
+
+    <%#*$('#dcc').hide();%>
+      <%#*$('#dcheck').slideDown("slow");%>
+  }
+          
+              });
+    
+ 
+     
+$('#autopay').click(function(){
+  // alert('No AutoPay');
+   var AP = $('#AP').text();
+ //  var CustId = $('#CustId').text();
+   var custid = $('#CustId').text();
+   var amount = $('#amount').val();
+   var cardtype = $('#atype').text();
+   var ccnumber = $('#anumber').text();
+   var expmonth = $('#amonth').text();
+   var expyear = $('#ayear').text();
+//  if(AP == 'true '){
+   
+//alert(amount);
+
+   jQuery.ajax({
+    type: "post",
+            url: '/orderpads/apcard/'+ <%= @orderpad.OrderId%> ,
+ data: {'custid':custid,'amount':amount,'cardtype':cardtype,'ccnumber':ccnumber,'expmonth':expmonth, 'expyear':expyear},
+ DataType: 'script'
+
+           })
+
+           <%#*$('#spinner')%>
+   <%#*.hide()  // hide it initially%>
+   <%#*.ajaxStart(function() {%>
+     <%#*$(this).show();    })%>
+   <%#*.ajaxStop(function() {%>
+     <%#*$(this).hide();%>
+           $('#bautopay').hide();
+           <%#*disablePopup2();%>
+<%#*centerPopup();%>
+   <%#*loadPopup();%>
+$('#slide').slideDown("slow");
+  
+   //$("#spinner2").show(1200);
+ //disablePopup2();
+ //    centerPopup();
+ //  loadPopup();
+
+
+//else{
+ // alert('No AutoPay');
+//}
+ });
+
+<%#*$("#continue").click(function(){%>
+<%#*disablePopup2();%>
+<%#*centerPopup();%>
+   <%#*loadPopup();%>
+
+
+<%#*});%>
+
+$('#ccpayment').click(function(){
+
+
+   var custid = $('#CustId').text();
+   var amount = $('#amount').val();
+   var cardtype = $('#cardtype').val();
+   var ccnumber = $('#ccnumber').val();
+   var expmonth = $('#expmonth').val();
+   var expyear = $('#expyear').val();
+var amount = $('#amount').val();
+if (amount == ""){
+   alert('You need an amount paid' );
+   return false;
+}
+else if (ccnumber == ""){
+   alert('You need a card number' );
+return false;
+}
+else if (cardtype == 'Select Card'){
+   alert('You need a card type' );
+return false;
+}
+else if (expmonth == 'Select Expire Month'){
+   alert('You need expire month' );
+return false;
+}
+else if (expyear == 'Select Expire Year'){
+   alert('You need expire year' );
+return false;
+}
+else
+    
+ jQuery.ajax({
+    type: "post",
+              url: '/orderpads/apcard/'+ <%= @orderpad.OrderId%> ,
+ data: {'custid':custid,'amount':amount,'cardtype':cardtype,'ccnumber':ccnumber,'expmonth':expmonth, 'expyear':expyear},
+ DataType: 'script'
+//complete: alert('Success')
+           });
+             $("#spinner2").show();
+   //      disablePopup2();
+   //  centerPopup();
+  // loadPopup();
+         
+   });
+
+
+
+   $('#checkpayment').click(function(){
+//alert('Check');
+ var amount = $('#amount').val();
+   var check = $('#check').val();
+   var CustId = $('#CustId').text();
+    if (amount == ""){
+    alert('You need an amount paid' );
+  return false;
+  }
+   else if  (check == ""){
+      alert('You need a check number or if cash put "Cash" in as the check number');
+ return false;
+ }
+    else
+   jQuery.ajax({
+    type: "post",
+              url: '/orderpads/checkpayment/'+ <%= @orderpad.OrderId%> ,
+ data: {'Custid':CustId, 'amount':amount, 'check':check},
+ DataType: 'script',
+ success: $('#dcheck').slideUp()
+
+           });
+           $("#spinner2").show();
+ //        disablePopup2();
+ //  centerPopup();
+ //  loadPopup();
+   
+  //    $('#dcheck').slideUp();
+   });
+
+ $("#continue").click(function(){
+ disablePopup();
+   centerPopup2();
+   loadPopup2();
+ });  
+
+$("#sub2").click(function(){
+
+  $('#slide').slideUp();
+//printing/card?amount=87.0"
+$("#spinner2").show();
+
+
+ <%#*var AP = $('#AP').text();%>
+   <%#*var CustId = $('#CustId').text();%>
+  <%#*if(AP == 'true '){%>
+
+<%#*alert(AP +CustId);%>
+
+   <%#*jQuery.ajax({%>
+    <%#*type: "post",%>
+              
+ <%#*data: {'Custid':CustId},%>
+ <%#*success: $("#spinner2").hide(),%>
+ <%#*DataType: 'script'%>
+<%#*//.success(function() { alert("second success"); })%>
+           <%#*});%>
+
+   <%#*}%>
+<%#*else{%>
+  <%#*alert('No AutoPay');%>
+<%#*}%>
+      <%#*window.location.href = "/coversheet";%>
+ });
+
+
+
+<%#*$("#myButton").click(function(){%>
+<%#*alert("test")%>
+<%#*});%>
+
+ $("#Push").click(function(){
+
+ 
+
+ 
+     var $fields3 = $('input[name="checkstatus"]:checked');
+
+ if
+(!$fields3.length) {
+alert('You must select a status!');
+  return false;
+   }
+var $fields9 = $('input[name="order[WeatherId]"]:checked');
+var $fields6 = $('input[name="order[WindId]"]:checked');
+var $fields7 = $('input[name="order[WindSpeedId]"]:checked');
+//var $fields2 = $('input[name="order[Equipment_ids][]"]:checked');
+var $fields1 = $('input[name="order[Checkcomment_ids][]"]:checked');
+var $fields2 = $('input[name="order[Equipment_ids][]"]:checked');
+//var $fields2 = $('#order_Equipment_ids option:selected');
+var $fields8 = $('input[name="order[Pest_ids][]"]:checked');
+//var $fields1 = $('#order_Checkcomment_ids option:selected');
+//var $fields1 = $('input[name="order_Checkcomments_input"]:checked');
+var $fields4 = $('input[name="order[TemperatureId]"]:checked');
+var $fields5 = $('input[name="order[Areatreated_ids][]"]:checked');
+
+var $TimeIn = $('#tin').val();
+
+
+
+   if ($('input[name="checkstatus"]:checked').val()== 2 || $('input[name="checkstatus"]:checked').val()== 3 || $('input[name="checkstatus"]:checked').val()== 4){
+ $( 'html, body' ).animate( { scrollTop: 0 }, 0 );
+ $("input#amount").val($("input#orderprice").val());
+ centerPopup();
+loadPopup();
+ 
+  return false; // The form will *not* submit
+         }
+else if
+(!$TimeIn.length) {
+alert('You must fill Time In!');
+return false; // The form will *not* submit
+         }
+else if
+(!$fields5.length) {
+alert('You must fill area treated!');
+return false; // The form will *not* submit
+         }
+
+  else if
+(!$fields1.length) {
+alert('You must fill comments!');
+return false; // The form will *not* submit
+         }
+         else if
+(!$fields4.length) {
+alert('You must fill area temperature!');
+return false; // The form will *not* submit
+         }
+
+
+else if (!$fields9.length ) {
+alert('You must check Weather!');
+
+return false; // The form will *not* submit
+   }
+
+ else if (!$fields6.length ) {
+alert('You must check Wind Direction!');
+
+return false; // The form will *not* submit
+   }
+
+   else if (!$fields7.length ) {
+alert('You must check Wind Speed!');
+
+return false; // The form will *not* submit
+   }
+else if
+(!$fields2.length) {
+alert('You must check Equipmet!');
+
+return false; // The form will *not* submit
+         }
+
+         else if
+(!$fields8.length) {
+alert('You must check Target Pests!');
+return false; // The form will *not* submit
+       }
+
+<%#*else if%>
+<%#*($('#hans tr').length <= 0) {%>
+<%#*alert('You need to select chemical!');%>
+
+<%#*return false; // The form will *not* submit%>
+
+
+         <%#*}%>
+
+  else
+    
+    $( 'html, body' ).animate( { scrollTop: 0 }, 0 );
+
+ $("input#amount").val($("input#orderprice").val());
+          centerPopup();
+
+loadPopup();
+//loadPopup();
+
+var AP = $('#AP').text();
+
+  if(AP == 'true '){
+  //  alert('true')
+
+ $('#notautopay').hide();
+ $('#dautopay').show();
+  }
+  else{
+     //alert('false')
+
+ // $('#notautopay').show();
+ //$('#autopay').hide();
+
+  }
+ 
+});
+
+
+ <%#*function openpop() {%>
+       <%#*var $fields3 = $('input[name="checkstatus"]:checked');%>
+    <%#*if%>
+<%#*(!$fields3.length) {%>
+<%#*alert('You must select a status!');%>
+  <%#*return false;%>
+   <%#*}%>
+<%#*var $fields9 = $('input[name="order[WeatherId]"]:checked');%>
+<%#*var $fields6 = $('input[name="order[WindId]"]:checked');%>
+<%#*var $fields7 = $('input[name="order[WindSpeedId]"]:checked');%>
+<%#*var $fields1 = $('input[name="order[Checkcomment_ids][]"]:checked');%>
+<%#*var $fields2 = $('input[name="order[Equipment_ids][]"]:checked');%>
+<%#*var $fields8 = $('input[name="order[Pest_ids][]"]:checked');%>
+<%#*var $fields4 = $('input[name="order[TemperatureId]"]:checked');%>
+<%#*var $fields5 = $('input[name="order[Areatreated_ids][]"]:checked');%>
+
+   <%#*if ($('input[name="checkstatus"]:checked').val()== 2 || $('input[name="checkstatus"]:checked').val()== 3 || $('input[name="checkstatus"]:checked').val()== 4){%>
+ <%#*$( 'html, body' ).animate( { scrollTop: 0 }, 0 );%>
+ <%#*centerPopup();%>
+
+<%#*loadPopup();%>
+  <%#*return false; // The form will *not* submit%>
+         <%#*}%>
+<%#*else if%>
+<%#*(!$fields5.length) {%>
+<%#*alert('You must fill area treated!');%>
+<%#*return false; // The form will *not* submit%>
+         <%#*}%>
+  <%#*else if%>
+<%#*(!$fields1.length) {%>
+<%#*alert('You must fill comments!');%>
+<%#*return false; // The form will *not* submit%>
+         <%#*}%>
+         <%#*else if%>
+<%#*(!$fields4.length) {%>
+<%#*alert('You must fill area temperature!');%>
+<%#*return false; // The form will *not* submit%>
+         <%#*}%>
+<%#*else if (!$fields9.length ) {%>
+<%#*alert('You must check Weather!');%>
+
+<%#*return false; // The form will *not* submit%>
+   <%#*}%>
+
+ <%#*else if (!$fields6.length ) {%>
+<%#*alert('You must check Wind Direction!');%>
+
+<%#*return false; // The form will *not* submit%>
+   <%#*}%>
+
+   <%#*else if (!$fields7.length ) {%>
+<%#*alert('You must check Wind Speed!');%>
+
+<%#*return false; // The form will *not* submit%>
+   <%#*}%>
+<%#*else if%>
+<%#*(!$fields2.length) {%>
+<%#*alert('You must check Equipmet!');%>
+
+<%#*return false; // The form will *not* submit%>
+         <%#*}%>
+         <%#*else if%>
+<%#*(!$fields8.length) {%>
+<%#*alert('You must check Target Pests!');%>
+<%#*return false; // The form will *not* submit%>
+       <%#*}%>
+<%#*else if%>
+<%#*($('#hans tr').length <= 0) {%>
+<%#*alert('You need to select chemical!');%>
+<%#*return false; // The form will *not* submit%>
+         <%#*}%>
+  <%#*else%>
+    <%#*$( 'html, body' ).animate( { scrollTop: 0 }, 0 );%>
+          <%#*centerPopup();%>
+<%#*loadPopup();%>
+     <%#*}%>
+    
+
+       //CLOSING POPUP
+//Click the x event!
+
+$("#popupContactClose2").click(function(){
+disablePopup2();
+$(".remote-delete").css({
+    display: "block"
+
+});
+$("#popupContactClose").click(function(){
+disablePopup();
+$(".remote-delete").css({
+    display: "block"
+
+});
+});
+
+});
+$("#backgroundPopup2").click(function(){
+disablePopup2();
+$(".remote-delete").css({
+    display: "block"
+
+});
+});
+
+//Click out event!
+$("#backgroundPopup").click(function(){
+disablePopup();
+disablePopup2();
+$(".remote-delete").css({
+    display: "block"
+
+});
+});
+
+   function displayVals() {
+
+    
+$(".remote-delete").css({
+    display: "none"
+    
+});
+
+
+   //   window.location.reload()
+      var status = $('input[name="checkstatus"]:checked +label').text();
+      var TimeIn = $('#tin').val();
+      
+//var comments = $('#order_Checkcomment_ids option:selected').text();
+//var pests = $('#order_Pest_ids option:selected').text();
+//var $fields1 = $('input[name="order[Checkcomment_ids]"]:checked');
+//var comments = [];
+    // $('#order_Checkcomment_ids[]:selected').each(function(i, selected){
+      //  $('#order_Checkcomment_ids option:selected').each(function(i, selected){
+
+      var comments =  [];
+      $('input[name="order[Checkcomment_ids][]"]:checked +label').each(function(i, selected){
+      //$('#order_Checkcomment_ids option:selected').each(function(i, selected){
+      //   $('#order[Checkcomment_ids]').each(function(i, selected){
+       
+        comments[i] = $(selected).text();
+        });
+
+//var comments = $('input[name="order_Checkcomments_input"]:checked +label').text();
+
+ var pests = [];
+ $('input[name="order[Pest_ids][]"]:checked +label').each(function(i, selected){
+    //  $('#order_Pest_ids option:selected').each(function(i, selected){
+        pests[i] = $(selected).text();
+        });
+
+//var note = $('#order_CheckInNote').attr('text');
+//var note = $('#order_CheckInNote').text();
+      var note = $('#order_CheckInNote').val();
+      var areatreated = [];
+      $('input[name="order[Areatreated_ids][]"]:checked +label').each(function(i, selected){
+        areatreated[i] = $(selected).text();
+});
+      var temperature = $('input[name="order[TemperatureId]"]:checked +label').text();
+      var weather = $('input[name="order[WeatherId]"]:checked +label').text();
+      var wind = $('input[name="order[WindId]"]:checked +label').text();
+      var speed = $('input[name="order[WindSpeedId]"]:checked +label').text();
+      var equipment = [];
+      $('input[name="order[Equipment_ids][]"]:checked +label').each(function(i, selected){
+        equipment[i] = $(selected).text();
+});
+
+      var wocomments = $('#order_WorkOrderNote').val();
+      var chem = $('#hans').html()
+     // var ct = $('#pop').html()
+      $("#details").html(
+                  "<br /> Order Status:<b> " +
+                  status +
+                 
+                 "<br /> Time In:<b> " +
+                 TimeIn +
+
+                 "<br /> <br /> Areas treated:<b> " +
+                  areatreated +
+                  " <br />  Temperature: <b>" +
+                  temperature +
+                  " <br />  Weather: <b>" +
+                  weather +
+                  " <br />  Wind: <b>" +
+                  wind +
+                   " <br /> Speed: <b>" +
+                  speed +
+                  "<br /> Equipment:<b> " +
+                  equipment +
+                  " <br /> Pests: <b>" +
+                  pests +
+                   "<br /> <br /> Comments: <b> " +
+                  comments +
+                  "<br /> Work Order Note:<b> " +
+                  wocomments +
+                 "<br /> <br /> Private/Checkin note: <b> " +
+                  note +
+                "<br /> <br />Chemical:<b> " +
+                  chem 
+                     
+                  );
+    }
+
+    $("select").change(displayVals);
+         displayVals();
+  
+
+$("#sub1").click(displayVals);
+  displayVals();
+
+  $("#Push").click(displayVals);
+  displayVals();
+
+ // window.location.reload()
+ //$(self).checkboxradio('refresh', true);
+ // $("input[type='radio']").checkboxradio("refresh", true);
+ // });
+ 
+   $('.test_email').live('click', function() {
+      var quanfield = $(this).closest("tr").find(".quanclass");
+      var chemidfield =  $(this).closest("tr").find(".chemidclass");
+
+   
+   var ordidfield = $(this).closest("tr").find(".ordidclass");
+   
+   
+       data = "quan=" + quanfield.val() + "&oid=" + ordidfield.val();
+    
+      $.ajax({
+       type: 'post',
+    
+       url: '/orderpads/addchem/' + chemidfield.val() ,
+       dataType: 'script',
+       data: data
+     });
+     return false;});
+
+   $('#spinner')
+   .hide()  // hide it initially
+   .ajaxStart(function() {
+     $(this).show();    })
+   .ajaxStop(function() {
+     $(this).hide();
+
+
+   });
+
+
+
+});
+
+
+</script>
+
+
+<td><img alt="spinner" id="spinner" src="/images/busy.gif"  /></td>
+
+
+
+<%= form_for(@orderpad) do |f| %>
+  <% if @orderpad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@orderpad.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @orderpad.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+
+   
+
+
+
+
+
+
+<div id="orderinfo">
+ OrderId-<%=@orderpad.OrderId%>  PropertyId-<%=@orderpad.PropertyId%> <div id ="Pri"> Price<%=  number_to_currency(@orderpad.Price)%> </div>
+ Street-<%=@orderpad.Property.Address.Street%> <div id ="AP" style="display: none" ><%=@orderpad.Property.Customer.AutoPay%> </div>
+<div id ="CustId" style="display: none"   ><%= @orderpad.Property.CustomerId %></div>
+<div id ="anumber" style="display: none" ><%= @orderpad.Property.Customer.CCNumber %></div>
+<div id ="atype" style="display: none" ><%= @orderpad.Property.Customer.CCType %></div>
+<div id ="amonth" style="display: none" ><%= @orderpad.Property.Customer.CCExpirationDate.strftime("%m") if @orderpad.Property.Customer.CCExpirationDate != nil%></div>
+<div id ="ayear" style="display: none" ><%= @orderpad.Property.Customer.CCExpirationDate.strftime("%Y")  if @orderpad.Property.Customer.CCExpirationDate != nil %></div>
+<div id="orderbalance"> Balance:<%= number_to_currency(@balance)%></div>
+</div>
+
+
+<% if @orderpad.CheckInResultId.nil? %>
+<div id="my-link" >
+   <%#= button_to "Arrive", { :controller => 'orderpads', :action => :add_arrive, :id => @orderpad.id }, :remote => true %>
+  <%#*<div id="map20" style="width: 75%; height: 400px"></div>%>
+
+<div id="lat"></div>
+<div id="lon"> </div>
+
+</div>
+
+
+
+
+
+
+
+<div id="hans">  </div>
+
+
+
+<table  id='the_table' >
+
+  <thead>
+    <tr>
+<th>QTY</th><th>Meas</th><th>Name</th><th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @chemicals.each do |ch| %>
+       <tr>
+<td> <%= text_field_tag 'quanfield',  nil, :class => "quanclass" %>       </td>
+<td><%= ch.Measurement      %></td>
+<td><%= ch.name %></td>
+ <td ><%= ch.Percentage %></td>
+         <td> <div><%= button_to "Add", {:action => :addchem, :id => ch}, :remote => true, :class => "test_email"  %> </div></td>
+   <td> <%= hidden_field_tag 'chemidfield', ch.id, :style => "width: 150px;", :class => "chemidclass" %></td>
+   <td><%= hidden_field_tag 'ordidfield', @orderpad.OrderId, :class => "ordidclass"%></td>
+
+          </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+  <%= semantic_form_for @orderpad, :id=> 'form', :remote => true, :class=>:form, :html => {:id => 'main_input' } do |form| %>
+<legend>Time In:</legend>
+<%= text_field_tag 'tin' %> <input type="button" id="rangeDemoToday" value="Time In Now" />
+ <%#= form.inputs :Email, :for => :Customer, :name => "Customer" %>
+<%#= form.inputs :Chemicals %>
+ <%#= form.inputs :name => "Author", :for => :OrderChemical do |af| %>
+      <%#= af.input :Quantity %>
+      
+    <%# end %>
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal" >
+    	<legend>Check In:</legend>
+         	<input type="radio" name="checkstatus" class="select" id="radio-choice-1" value="1"  />
+                <label for="radio-choice-1">Completed</label>
+
+         	<input type="radio" name="checkstatus" class="select" id="radio-choice-2" value="5"  />
+         	<label for="radio-choice-2">Completed Proposed</label>
+
+         	<input type="radio" name="checkstatus" class="select" id="radio-choice-3" value="3"  />
+         	<label for="radio-choice-3">Skipped</label>
+
+         	<input type="radio" name="checkstatus" class="select" id="radio-choice-4" value="2"  />
+         	<label for="radio-choice-4">Canceled</label>
+
+                <input type="radio" name="checkstatus" class="select" id="radio-choice-5" value="4"  />
+         	<label for="radio-choice-5">Could Not Complete</label>
+     </fieldset>
+</div>
+  
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Area Treated:</legend>
+         	<input type="checkbox" name="order[Areatreated_ids][]" id="at1" value="1"  />
+                <label for="at1">Exterior</label>
+
+         	<input type="checkbox" name="order[Areatreated_ids][]" id="at2" value="2"  />
+         	<label for="at2">Interior</label>
+  </fieldset>
+</div>
+  
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Temperature</legend>
+         	<input type="radio" name="order[TemperatureId]" id="zt1" value="1"  />
+                <label for="zt1">20</label>
+
+         	<input type="radio" name="order[TemperatureId]" id="zt2" value="2"  />
+         	<label for="zt2">30</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt3" value="3"  />
+         	<label for="zt3">40</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt4" value="4"  />
+         	<label for="zt4">50</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt5" value="5"  />
+         	<label for="zt5">60</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt6" value="6"  />
+         	<label for="zt6">70</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt7" value="7"  />
+         	<label for="zt7">80</label>
+
+                <input type="radio" name="order[TemperatureId]" id="zt8" value="8"  />
+         	<label for="zt8">90</label>
+
+                
+  </fieldset>
+</div>
+
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Weather:</legend>
+         	<input type="radio" name="order[WeatherId]" id="radio-choice-1" value="1"  />
+                <label for="radio-choice-1">Sun</label>
+
+         	<input type="radio" name="order[WeatherId]" id="radio-choice-2" value="2"  />
+         	<label for="radio-choice-2">Overcast</label>
+
+         	<input type="radio" name="order[WeatherId]" id="radio-choice-3" value="3"  />
+         	<label for="radio-choice-3">Rain</label>
+  </fieldset>
+</div>
+  <div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Wind:</legend>
+
+         	<input type="radio" name="order[WindId]" id="radio-choice-1" value="1"  />
+         	<label for="radio-choice-1">Wind North</label>
+
+                <input type="radio" name="order[WindId]" id="radio-choice-2" value="2"  />
+         	<label for="radio-choice-2">Wind East</label>
+
+                <input type="radio" name="order[WindId]" id="radio-choice-3" value="3"  />
+         	<label for="radio-choice-3">Wind South</label>
+
+                <input type="radio" name="order[WindId]" id="radio-choice-4" value="4"  />
+         	<label for="radio-choice-4">Wind West</label>
+ </fieldset>
+</div>
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+    	<legend>Weather:</legend>
+                <input type="radio" name="order[WindSpeedId]" id="radio-choice-1" value="1"  />
+         	<label for="radio-choice-1">Speed 0-5</label>
+
+                <input type="radio" name="order[WindSpeedId]" id="radio-choice-2" value="2"  />
+         	<label for="radio-choice-2">Speed 5-10 </label>
+
+                <input type="radio" name="order[WindSpeedId]" id="radio-choice-3" value="3"  />
+         	<label for="radio-choice-3">Speed 10-15</label>
+                <input type="radio" name="order[WindSpeedId]" id="radio-choice-4" value="4"  />
+         	<label for="radio-choice-4">Speed Over 15 </label>
+    </fieldset>
+</div>
+
+<%#= form.collection_select(:Checkcomment_ids, @notes, :id, :name,{:prompt => 'Work Order Comments'}, {:multiple => true}) %>
+<%#= form.collection_select(:Equipment_ids, @equip, :id, :name,{:prompt => 'Select Equipment'}, {:multiple => true}) %>
+<%#= form.collection_select(:Pest_ids, @pests, :id, :name,{:prompt => 'Select Pests'}, {:multiple => true}) %>
+
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+      <legend>Select Equipment:</legend>
+ <%# for equip in Equipment.find(@equip) %>
+       <%  @equip.each do |equip| %>
+
+      <%= check_box_tag "order[Equipment_ids][]", equip.id, false, :id => equip.id  %>
+      <label for="<%= equip.id %>"><%= equip.name %></label>
+    
+
+<% end %>
+    </fieldset>
+</div>
+
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+      <legend>Select Pests:</legend>
+ <%# for pest in Pest.find(@pests) %>
+       <%  @pests.each do |pest| %>
+   
+      <%= check_box_tag "order[Pest_ids][]", pest.id, false, :id => pest.id  %>
+      <label for="<%= pest.id %>"><%= pest.name %></label>
+        
+<% end %>
+    </fieldset>
+</div>
+
+<%# for category in Category.find(:all) %>
+    <%#*<div>%>
+      <%#= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
+      <%#= category.name %>
+    <%#*</div>%>
+<%# end %>
+
+<div data-role="fieldcontain">
+    <fieldset data-role="controlgroup">
+      <legend>Work Order Comments:</legend>
+<%#= form.input 'order[Checkcomment_ids]', :as => :check_boxes, :collection => @notes, :input_html => {  :class => 'select' }%>
+      <%# for note in Checkcomment.find(@notes) %>
+      <%  @notes.each do |note| %>
+
+      <%= check_box_tag "order[Checkcomment_ids][]", note.id, false, :id => note.id  %>
+      <label for="<%= note.id %>"><%= note.name %></label>
+
+
+<% end %>
+
+
+    </fieldset>
+</div>
+
+    <%= form.input :WorkOrderNote, :label => "Work Order Note (Public)" %>
+  <%= form.input :CheckInNote, :label => "Check In Note (Private)" %>
+    <%= form.inputs :Email, :for => :Customer, :name => "Customer" %>
+ 
+<div class=Override>
+<div id="popupContact2" style="display: none">
+  <div id="flash_notice" >  </div>
+   <a id="popupContactClose2">x</a>
+
+
+
+ <%= render "orderpayment" %>
+<td><img alt="spinner2" id="spinner2" src="/images/busy.gif" style="display: none"  /></td>
+    <%#= render "charges" %>
+
+ <div id="slide" style="display: none"><button id="sub2">Check-In</button></div>
+  
+</div>
+
+<%end%>
+<%else%>
+<h1>Checked In!</h1>
+
+<%end%>
+
+
+
+</div>
+
+	<div id="backgroundPopup"></div>
+        <div id="backgroundPopup2"></div>
+
+
+
+  
+
+
+ <input type="button" id="Push" value="Payment/Continue" />
+<div id ="after" class="starthidden">
+
+
+    <div id="checklist" style="display: none">
+<% @orderpad.Orderchecklistitems.where(:Optional => false).each do |c| %>
+<%= c.Checklistitem.Description %> = <%= c.IsComplete %><br />
+<%end%>
+</div>
+ 
+  </div>
+
+
+
+
+
+  <div id="popupContact">
+  <div id="flash_notice" >  </div>
+  <a id="popupContactClose">x</a>
+
+<div id="details"> </div>
+
+<div id="continue"><input type="button" id="continue" value="Payment/Check-In" /></div>
+<td><img alt="spinner2" id="spinner2" src="/images/busy.gif" style="display: none"  /></td>
+
+</div>
+   
+   
+  
+
+
+
+
+
+
+ 
+
+
+
+
+

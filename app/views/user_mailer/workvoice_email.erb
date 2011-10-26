@@ -1,0 +1,220 @@
+<style type="text/css">
+  
+  #invtophead{
+    FONT-SIZE: 18pt;
+    font-weight: bold;
+ 
+  
+  
+}
+#invpaymentaddress{
+  FONT-SIZE: 10pt;
+    font-weight: bold;
+ 
+}
+  
+  #invtopinfo{
+    FONT-SIZE: 10pt;
+ 
+}
+
+
+#invaccountinformation{
+
+  FONT-SIZE: 10pt;
+  table-layout: fixed;
+  text-align: left;
+  
+  
+}
+
+
+#invtransactions{FONT-SIZE: 10pt;
+ 
+   }
+
+
+
+ 
+
+#chem {
+   FONT-SIZE: 8pt;
+ 
+
+  
+}
+
+#woheading{
+  FONT-SIZE: 18pt;
+  FONT-weight: bold;
+  
+}
+
+
+
+
+#wohead{
+  color: red;
+  
+}
+
+#worknote{
+ FONT-SIZE: 12pt;
+ 
+  
+
+}
+
+#closingcomments{
+  FONT-SIZE: 12pt;
+  font-style: italic;
+  FONT-weight: bold;
+  
+}
+#pdflink{
+  FONT-SIZE: 20pt;
+  font-style: italic;
+  FONT-weight: bold;
+ 
+}
+p.ex {color:red;}
+
+</style>
+
+
+
+<%=  link_to 'print this workorder', :controller => "printing", :action => "workvoice", :host => "205.232.183.148:443", :id => @order,  :format => :pdf %>
+
+
+<div id="paylink"><%=  link_to'Pay This Bill', :controller => "payments", :action => "payment", :host => "205.232.183.148:443", :amount => @balance, :id =>@order%></div>
+
+<div id="invtophead"> Workorder/Invoice</div>
+
+
+<div id = invtoplogo><img src="http://www.agentorder.com/images/raillogo.png" width="210" /></div>
+
+<div id=invpaymentaddress>
+  Send Payments to: <br />
+  PestNow<br />
+  Superior Pest Management<br />
+  PO Box 2210<br />
+  Ashburn, VA 20146
+</div>
+
+<div id=invtopinfo>
+<table>
+  <tr><td>Date</td><td><%= @order.Schedule.StartTime.strftime("%m/%d/%y") %></td></tr>
+  <tr><td>Account Number</td><td><%= @order.PropertyId %></td></tr>
+   <tr><td>Invoice Number</td><td><%= @order.OrderId %></td></tr>
+    <tr><td>Amount Due</td><td><%=number_to_currency(@balance)%></td></tr>
+  
+</table>
+</div>
+
+
+
+<div id=invaccountinformation>
+  <table>
+    <th>Account Information</th>
+    <tr><td width="150"> Account Number </td><td><%= @inv.PropertyId %> </td></tr>
+    <tr><td> Service Property </td><td><b><%= render :partial => 'orders/propaddress', :object => @inv, :as => :o%></b> </td></tr>
+    <tr><td> Customer Service </td><td>877.284.2466 </td></tr>
+    <tr><td> Hours of Operation </td><td>M-F 7:30-6 Sat 8-2 </td></tr>
+    <tr><td> Website Address </td><td>www.pestnow.com </td></tr>
+    
+    
+  </table>
+</div>
+
+
+
+
+
+<div id=invtransactions>
+  <table>
+    <th>Transactions</th>
+    <tr><td width="150"> Date </td><td> Invoice </td><td> Description </td><td> amount </td></tr>
+   
+   <% @sub.each do |x| %>
+     <tr> <td> <%= x.Order.Schedule.StartTime.strftime("%m/%d/%y") %>   </td>
+       <td> <%= x.Order.OrderId %>   </td>
+       <td> <%= x.Order.Servicecode.Description %>   </td>
+       <td> <%= number_to_currency(x.Charge)%>   pd<%= number_to_currency(x.Deposit)%> </td></tr>
+  
+  <%end%>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="woheading" >Work Order Details</div>
+<div id="at"> <span style="color:green">Area Treated:</span>
+<% @inv.Areatreateds.each do |at| %>
+  <%=  at.name %>,
+  <%end%>
+      </div>
+
+
+   
+
+
+
+ <div id="temperature"><span style="color:green"> Temperature:</span> <%= @inv.Temperature.name %></div>
+ <div id="timein"><span style="color:green"> Time In:</span> <%= @inv.TimeIn.strftime("%I:%M %p") %> </div>
+ <div id="weather"><span style="color:green">Weather:</span> <%= @inv.Weather.name %> </div>
+ <div id="wind"><span style="color:green">Wind:</span> <%= @inv.Wind.name %> </div>
+ <div id="windspeed"><span style="color:green">Wind Speed:</span> <%= @inv.Windspeed.name %> </div>
+
+ <div id="equipment"><span style="color:green">Application Equipment:</span>
+  <% @inv.Equipments.each do |e| %>
+  <%=  e.name %>,
+  <%end%> </div>
+   <div id="targetpest"><span style="color:green">Target Pests:</span>
+  <% @inv.Pests.each do |p| %>
+  <%=  p.name %>,
+  <%end%></div>
+ 
+ 
+
+
+<div id="chem">
+<h3>Chemicals Used</h3>
+<table class="wc">
+
+   <thead style="color:green">
+     <tr> <td>Product Name</td>
+  <td>%</td>
+  <td>EPA #</td>
+  <td>Qty</td></tr>
+
+   </thead>
+   <% @inv.Orderchemicals.each do |c| %>
+   <tr><td> <%=  c.Chemical.name %> </td>
+  <td><%=  c.Chemical.Percentage%></td>
+ <td><%=  c.Chemical.EPANumber%></td>
+<td><%= c.Quantity%> <%= c.Chemical.Measurement%></td></tr>
+  <%end%>
+
+  </table>
+
+
+</div>
+<div id="worknote"><span style="color:green">Work Order Note:</span> <%= @inv.WorkOrderNote%> </div>
+  
+
+    <div id="closingcomments"> Thanks for your business. It was a pleasure servicing you.
+      <% @inv.Checkcomments.each do |cc| %>
+     <%=  cc.name %>.
+     <%end%>
+      <% @inv.Userledgers.each do |u| %>
+      <%=  u.User.FirstName%>
+       <%=  u.User.CertificationNumber%>
+<%end%>
+    </div>

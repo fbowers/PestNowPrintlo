@@ -1,0 +1,21 @@
+<%= form_for(@warrantytype) do |f| %>
+  <% if @warrantytype.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@warrantytype.errors.count, "error") %> prohibited this warrantytype from being saved:</h2>
+
+      <ul>
+      <% @warrantytype.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :WarrantyTypeId %><br />
+    <%= f.text_field :WarrantyTypeId %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

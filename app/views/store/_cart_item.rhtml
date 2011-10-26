@@ -1,0 +1,14 @@
+<table>
+
+
+<% if cart_item == @current_item %>
+  <tr id="current_item">
+<% else %>
+  <tr>
+<% end %>
+  <td><%= cart_item.quantity %> <%= cart_item.meas %></td>
+  <td><%= h(cart_item.title) %></td>
+ 
+</tr>
+
+</table>

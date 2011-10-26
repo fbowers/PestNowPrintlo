@@ -1,0 +1,29 @@
+<%= form_for(@woodreport) do |f| %>
+  <% if @woodreport.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@woodreport.errors.count, "error") %> prohibited this woodreport from being saved:</h2>
+
+      <ul>
+      <% @woodreport.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :WDIId %><br />
+    <%= f.text_field :WDIId %>
+  </div>
+  <div class="field">
+    <%= f.label :StructureType %><br />
+    <%= f.text_field :StructureType %>
+  </div>
+  <div class="field">
+    <%= f.label :NoVisible %><br />
+    <%= f.text_field :NoVisible %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

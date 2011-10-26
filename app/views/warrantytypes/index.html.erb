@@ -1,0 +1,23 @@
+<h1>Listing warrantytypes</h1>
+
+<table>
+  <tr>
+    <th>Warrantytypeid</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @warrantytypes.each do |warrantytype| %>
+  <tr>
+    <td><%= warrantytype.WarrantyTypeId %></td>
+    <td><%= link_to 'Show', warrantytype %></td>
+    <td><%= link_to 'Edit', edit_warrantytype_path(warrantytype) %></td>
+    <td><%= link_to 'Destroy', warrantytype, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Warrantytype', new_warrantytype_path %>

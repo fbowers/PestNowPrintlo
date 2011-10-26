@@ -1,0 +1,17 @@
+<h1>Editing order</h1>
+<% semantic_form_for @order do |form| %>
+    <%= form.inputs :OrderId %>
+    <% form.semantic_fields_for :Address do |author| %>
+      <%= author.inputs :StreetNumber, :Street, :City, :StateId, :ZipCodeId, :name => "Address" %>
+    <% end %>
+ <% form.semantic_fields_for :Customer do |customer| %>
+      <%= customer.inputs :CustomerId, :FirstName, :LastName, :Email, :name => "Customer" %>
+    <% end %>
+ <% form.semantic_fields_for :Owner do |owner| %>
+      <%= owner.inputs :CustomerId, :FirstName, :LastName, :Email, :name => "Owner" %>
+    <% end %>
+    <%= form.buttons %>
+  <% end %>
+<%= link_to 'Show', @order %> |
+<%= link_to 'Back', orders_path %>
+

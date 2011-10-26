@@ -1,0 +1,2 @@
+module WdireportsHelper
+end

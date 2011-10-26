@@ -1,0 +1,36 @@
+
+<% semantic_form_for @contract do |form| %>
+
+<% form.inputs :name => "Contract Information" do %>
+<%= form.input :ContractId,:as => :hidden  %>
+<%= form.input :PropertyId, :as => :hidden ,:input_html => {:value => params[:PropertyId] }  %>
+
+<%= form.input :OriginatingOrderId, :as => :hidden , :input_html => { :value => params[:OrderId] }  %>
+<%= form.input :ContractTypeId, :as => :select, :collection => Contracttype.find(:all ), :required => true%>
+
+
+
+
+<%= form.input :Pests, :as => :check_boxes %>
+<%end%>
+
+
+<% form.inputs :name => "Schedule of Fees" do %>
+<%= form.input :OneTimePrice%>
+<%= form.input :RecurringPrice %>
+
+<% end %>
+<% form.inputs :name => "Notes" do %>
+
+<%= form.input :InitialComments, :input_html => {:size => 60, :rows => 10} %>
+<%= form.input :RecurringComments, :input_html => {:size => 60, :rows => 10} %>
+<%= form.input :InsideNotes, :input_html => {:size => 60, :rows => 10} %>
+<% end %>
+<% form.buttons do %>
+<%= form.commit_button %>
+<% end %>
+
+<% end %>
+
+
+<td class ="solid"><%= link_to 'back to check-in', edit_orderpad_path(params[:OrderId]) %></td>

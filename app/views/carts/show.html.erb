@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <b>CartId:</b>
+  <%= @cart.CartId %>
+</p>
+
+<%  @cart.orderchemicals.each do |item| %>
+   <%= item.ChemId%> <%= item.Quantity %> <%= item.Chemical.ChemicalName%>
+<% end %>
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>

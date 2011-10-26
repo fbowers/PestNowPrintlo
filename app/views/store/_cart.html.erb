@@ -1,0 +1,11 @@
+<h2>Your Pragmatic Cart</h2>
+<ul>
+<% for item in @cart.orderchemicals %>
+  <li> <%= item.Quantity %> <%= item.Chemical.Measurement %> <%= item.Chemical.name %></li>
+<% end %>
+</ul>
+
+
+
+<%= button_to 'Empty cart', @cart, :method => :delete,
+:confirm => 'Are you sure?' %>

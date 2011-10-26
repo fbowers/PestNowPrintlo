@@ -1,0 +1,20 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/apikey.php'; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAArEY8Snz_XI0In9WomM5B5BRgvgAZna9PSW0IAgWHhbpply-ubxQZnD46LJWIDUtip_dtPeh242UxjA"
+      type="text/javascript"></script>
+    <%=javascript_include_tag 'application'%>
+   
+  </head>
+  <body>
+    <div id="map" style="width: 800px; height: 500px"></div>
+
+
+
+    <div id="messagey">Location unknown</div>
+  </body>
+</html>

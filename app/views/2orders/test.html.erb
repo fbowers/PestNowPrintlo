@@ -1,0 +1,55 @@
+
+<h1> Schedule Coversheet</h1>
+
+
+
+<table id="grid" class="data-grid">
+			<thead>
+				<tr>
+   <th>P-ID</th>
+    <th>O-ID</th>
+    <th>In</th>
+    <th>Out</th>
+    <th>Address</th>
+    <th>Price</th>
+    <th>Cust Last</th>
+    <th>C</th>
+    <th>P</th>
+    <th>X</th>
+    <th>S</th>
+
+    <th>Checked</th>
+                                </tr>
+			</thead>
+                        <tbody>
+     <% @sch2.each do |order| %>
+  <tr>
+    <td><%=h order.PropertyId %></td>
+    <td><%=h order.OrderId %></td>
+    
+    <td><%=h order.StartTime.strftime("%m/%d/%Y") %></td>
+    <td><%=h order.EndTime.strftime("%m/%d/%Y") %></td>
+    <td><%=h order.Order.Property.Address.StreetNumber%>
+    <%=h order.Order.Property.Address.Direction %>
+    <%=h order.Order.Property.Address.Street %>
+    <%=h order.Order.Property.Address.UnitNumber %>
+    <%=h order.Order.Property.Address.City %>
+    <%=h order.Order.Property.Address.StateId %>
+    <%=h order.Order.Property.Address.ZipCodeId %></td>
+    <td><%=h order.Order.ServiceCode.Code %></td>
+    <td><%= number_to_currency(order.Price) %></td>
+    <td><% %></td>
+    <td><% %></td>
+    <td><% %></td>
+    <td><% %></td>
+    <td><%=h order.SpecialInstructions %></td>
+     <td><%=h order.RouteName%></td>
+    
+    
+
+
+   </tr>
+    <% end %>
+  </tbody>
+
+		</table>

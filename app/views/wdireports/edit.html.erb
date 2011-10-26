@@ -1,0 +1,26 @@
+<h1>Editing wdireport fr</h1>
+
+
+<% semantic_form_for @wdireport do |form| %>
+
+    <% form.inputs :name => "Wdi Report" do %>
+      <%= form.input :StructureType %>
+ <%= form.input :NoVisible %>
+<%= form.input :VisibleLive %>
+      <%= form.input :VisibleLiveNotes %>
+      <%= form.input :VisibleDead %>
+
+      <%= form.input :VisibleDeadNotes, :label => "Visible Dead Notes" %>
+    <% end %>
+<% form.buttons do %>
+      <%= form.commit_button %>
+    <% end %>
+
+  <% end %>
+
+
+
+
+
+<%= link_to 'Show', @wdireport %> |
+<%= link_to 'Back', wdireports_path %>

@@ -1,0 +1,35 @@
+<p>
+<%=h @property.Address.StreetNumber%>
+    <%=h @property.Address.Direction %>
+    <%=h @property.Address.Street %>
+    <%=h @property.Address.UnitNumber %>
+    <%=h @property.Address.City %>
+    <%=h @property.Address.StateId %>
+    <%=h @property.Address.ZipCodeId %>
+
+</p>
+
+<% semantic_form_for @property do |form| %>
+<% form.inputs do %>
+<%= form.input :NameCheck, :as => :radio, :collection => ["Yes!", "No"] %>
+  <% end %>
+       <% form.semantic_fields_for :Customer do |customer| %>
+      <% customer.inputs do %>
+<%= customer.input :FirstName %>
+<%= customer.input :LastName %>
+<%= customer.input :Email %>
+<%= customer.input :Phone1 %>
+<%= customer.input :CustomerId, :input_html => { :disabled => true } %>
+ <% end %>
+ <% end %>
+ <% form.semantic_fields_for :Owner do |owner| %>
+      <% owner.inputs do %>
+<%= owner.input :CustomerId, :label => "OwnerID", :input_html => { :disabled => true }%>
+    <% end %>
+<% end %>
+    <%= form.buttons %>
+  <% end %>
+
+
+
+

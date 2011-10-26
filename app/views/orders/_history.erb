@@ -1,0 +1,21 @@
+   <tbody>
+    <tr>
+<td> <%=h h.PropertyId %> </td>
+<td> <%=h h.OrderId %> </td>
+<td><%=h h.Schedule.StartTime.strftime("%m/%d/%y")%></td>
+<td> <%= "AT"  if h.Schedule.Anytime == true %> <%= "Exact" if h.Schedule.Exact == true %><%=h h.Schedule.StartTime.strftime("%I:%M %p") if h.Schedule.Anytime == false %></td>
+<td><%=h h.Schedule.EndTime.strftime("%I:%M %p") if h.Schedule.Anytime == false %></td>
+<td> <%=h h.Servicecode.Code %> </td>
+<td> <%=h number_to_currency(h.Price) %> </td>
+<td> <%=h h.Orderstatus.Description %> </td>
+<%  h.Schedule.Routes.each do |r| %>
+<td><%=  r.RouteName %> </td>
+<%end%>
+
+  
+    </tr>
+  </tbody>
+
+
+
+

@@ -1,0 +1,9 @@
+root {
+    display: block;
+}
+
+@page { size: US-Letter landscape }
+  @page { margin: 0px }
+  @page { border: none }
+  @page { padding: 0px }
+  

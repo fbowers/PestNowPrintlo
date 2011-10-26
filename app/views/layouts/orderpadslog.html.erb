@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+      
+	
+	 <%= javascript_include_tag "jquery.js", "rails.js", "custom-scripting.js" %>
+        
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.js"></script>
+        
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a3/jquery.mobile-1.0a3.min.css" />
+
+          <%= csrf_meta_tag %>
+</head>
+
+
+
+<body>
+
+  <div data-role="page">
+
+<div data-role="header">
+		<h1>Log-In</h1>
+
+
+	</div><!-- /header -->
+
+ 
+
+
+<p style="color: red"><%= notice %></p>
+
+<%= yield %>
+
+ 
+
+
+
+	
+
+ </div><!-- /page -->
+ </body>
+</html>

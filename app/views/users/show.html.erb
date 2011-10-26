@@ -1,0 +1,23 @@
+
+
+<b> test </b>
+<p id="notice"><%= notice %></p>
+<div id="login-area" >
+<p>
+  <b>Userid:</b>
+  <%= @user.UserId %>
+</p>
+
+<p>
+  <b>Login:</b>
+  <%= @user.login %>
+</p>
+
+<p>
+  <b>Crypted password:</b>
+  <%= @user.crypted_password %>
+</p>
+</div>
+
+<%= link_to 'Edit', edit_ruser_path(@ruser) %> |
+<%= link_to 'Back', users_path %>

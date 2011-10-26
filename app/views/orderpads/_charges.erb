@@ -1,0 +1,19 @@
+<h3>Charges</h3>
+<table class="wc">
+   <thead>
+  <td width="30" >Order</td>
+  <td width="30">Date</td>
+  <td width="30">Charge</td>
+  <td width="30">Tax</td>
+   <td width="30">Payment</td>
+   </thead>
+       <% @orderpad.Customerledgerorders.each do |d| %>
+<tr> <td><%=h d.OrderId %></td>
+  <td><%=h d.Customerledger.EntryDate.strftime("%m/%d/%y")%></td>
+  <td><%= number_to_currency(d.Charge) %></td>
+  <td><%= number_to_currency(d.TaxCharge) %></td>
+  <td><%= number_to_currency(d.Deposit) %></td>
+
+</tr>
+<%end%>
+</table>

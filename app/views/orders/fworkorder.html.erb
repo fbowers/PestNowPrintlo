@@ -1,0 +1,55 @@
+<style type="text/css">
+#wobarcode {
+ font: 24px IDAutomationHC39M;
+  position:absolute;
+  left:10px;
+  top:460px;
+  
+}
+
+  </style>
+
+<%=  link_to'Workorder PDF', :controller => "orders", :action => "fworkorder", :startdate => @start, :branch => @branch,  :route => @route, :format => :pdf %>
+
+
+  <% form_tag :action => 'fworkorder', :method => 'get' do  %>
+<label for="searchorder_name">Date:</label>
+<%= text_field_tag :startdate, params[:startdate]|| "2/1/2011" %>
+<label>"branch"</label>
+<%=select_tag :branch, options_from_collection_for_select(@bactive, "BranchId", "BranchName"),:multiple => true, :include_blank => false, :size => 10%>
+<%=select_tag :route, options_from_collection_for_select(@ractive, "RouteId", "RouteName"), :multiple => true, :include_blank => true, :size => 20  %>
+    <%= submit_tag "Search", :name => nil %> 
+<% end %>
+
+
+<% @Frank.each do |rt| %>
+  <%= rt.RouteName %>
+<%= rt[:Schedules].count %>
+
+
+<%sc.Orders.each do |oc|%>
+<%= oc[:Price] %>
+<%end%>
+<%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+

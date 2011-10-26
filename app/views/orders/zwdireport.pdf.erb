@@ -1,0 +1,176 @@
+<div id = wdisignature><img src=<%=h @wdi.User.SignatureImagePath%>/></div>
+
+<div id="wdiheadingleft"><b>Wood Destroying Insect Inspection Report Notice:</b> Please read important consumer information at bottom of page</div>
+
+
+  <div id="tablegeneralinfo">
+    <table>
+      <tr>Section 1.General Information (Inspection Company, Address and Phone:) </tr>
+
+      <div id="wdifont105"><tr> <b>Superior Pest Management LLC <br /> 22395 Powers Court <br /> Sterling, VA 20166 <br />703.404.1921 </b></tr></div>
+
+    </table>
+    </div>
+    <div id="tablewdi1">  
+      <table>
+        <tr> 
+          <th >Company's Businesss Lic. No:</th>
+          <th>Date of Inspection</th> </tr>
+  <tr>  <td width="200" height="20"> <%=h @wdi.Order.Branch.LicenseNumber %> </td>  <td width="200"> <%=h @wdi.Order.Schedule.StartTime.strftime("%m/%d/%y")%></td></tr>
+  <tr></tr>
+   <tr> <th colspan ="2" border-top ="1px solid black">Address of Property Inspected: </th> </tr>
+   <tr > <td colspan ="2" height="37"><b><%=h @wdi.Order.Property.Address.StreetNumber%>
+    <%=h @wdi.Order.Property.Address.Direction %>
+    <%=h @wdi.Order.Property.Address.Street %>
+    <%=h @wdi.Order.Property.Address.UnitNumber %><br />
+    <%=h @wdi.Order.Property.Address.City %>,
+    <%=h @wdi.Order.Property.Address.StateId %>
+    <%=h @wdi.Order.Property.Address.ZipCodeId %></b>
+    </td>
+    </tr>
+     </table>
+
+  </div>
+
+<div id="tablewdi2">
+<table>
+  <tr>
+  <th>Inspector or Authorized Signature</th>
+  <th>Inspector's Name</th>
+  <th>Certificate #</th>
+  <th>Structure(s) Inspected</th>
+  </tr>
+  <td width="250"> <%=h @wdi.User.SignatureImagePath%>  </td>
+   <td width="250"  height="26"> <%=h @wdi.User.FirstName%> <%=h @wdi.User.LastName%> </td>
+   <td width="150"> <%=h @wdi.User.CertificationNumber%></td>
+   <td width="175" > <%=h @wdi.StructureType%></td>
+   
+
+     </table>
+
+  </div>
+
+<div id="tablewdifindings">
+<table>
+       <tr><th colspan="4" width="800">Section II. Inspection Findings <div id="font6"> This report is indicative of the condition of the subject structure(s) on the date of the inspection only and is Not to be construed as an express or implied warranty or guarantee against latent, concealed, or future infestation or defects.
+Based on a careful visual inspection of the readily accessible areas of the structure(s) inspected:</div>
+</th></tr>
+
+       <tr>  <td width="15"><%=  check_box "wdi", "NoVisible" %> </td>
+ <td width="300"colspan="3"> A. No visible evidence of wood destroying insects was observed.</td></tr>
+       <tr>  <td><%=  check_box "wdi", "VisibleLive"  %></td><td colspan="3">B. Visible evidence of wood destroying insects was observed as follows: (See attached diagram)</td></tr>
+  <tr>  <td></td><td> <%=  check_box "wdi", "VisibleLive" %></td> <td>Live insects (description and location):<u> <%=h @wdi.VisibleLiveNotes%></u></td></tr>
+  <tr>  <td></td><td> <%=  check_box "wdi", "VisibleDead" %></td> <td>Dead insects, parts, frass, shelter tubes, exit holes, or staining(description and location) <u><%=h @wdi.VisibleDeadNotes%></u></td></tr>
+  <tr></tr>
+  <tr>  <td></td><td> <%=  check_box "wdi", "VisibleDamage" %></td> <td>Visible damage from wood destroying insects was noted as follows(description and location)<u> <%=h @wdi.VisibleDamageNotes%></u></td></tr>
+  <tr></tr>
+  <tr><th colspan="4"><div id="font6">NOTE: This is not a structural damage report. If box B above is checked, It should be understood that some degree of damage, including hidden damage, may be present.
+    If any questions arise regarding damage indicated by this report, It is recommended that the buyer or any interested parties contact a qualified structural professional to determine
+    the extent of damage and the need for repairs. State regulations require the inspector indicate, if known, whether the damage indicated by this report has, or will be, corrected or further evaluated. Unless disclosed in Section V.
+    below, The inspector does not know the disposition of the listed damage</div></th></tr>
+       </table>
+    </div>
+
+<div id="wdiprevtreat" width="800"><%=  check_box "wdi", "PreviousTreatment"  %> Yes
+<% if @wdi.PreviousTreatment == true%> <%=  check_box_tag "active", 1, false  %> <%else%> <%=  check_box_tag "active", 1, true  %> <%end%>No It appears that the structure(s) or a portion may have been previously treated. <br />
+Evidence of possible treatment: <u><%=h @wdi.PreviousTreatmentNotes%></u></div>
+<div id="wdinoassurance" width="800"> The inspecting company can give no assurances with regard to work done by other companies. The company that performed the treatment should be contacted
+  for information on treatment and any warranty or service agreement which may be in place </div>
+
+<div id="wditablerecommendations">
+<table>
+       <tr>  <th width="800" colspan="3">Section III. Recommendations/Treatment</th></tr>
+       <tr>  <td width="15"><%=  check_box "wdi", "NoVisible" %> </td> <td width="785"colspan="3"> No treatment recommended: (Explain if Box B in Section II is checked)</td></tr>
+       <tr>  <td><%=  check_box "wdi", "VisibleLive"  %></td><td>Recommend treatment for the control of:<u><%=h @wdi.RecommendationNotes%></u></td></tr>
+       <tr>  <td> <%=  check_box "wdi", "VisibleLive" %></td> <td>Proper control measures were performed by this inspection company for insect evidence listed in II. B., above.</td> </tr>
+  </table>
+  </div>
+
+<div id="tablewdiobstructions">
+<table>
+
+
+      <tr><th colspan="4">The inspector may write out obstructions or use the following key:</th></tr>
+  
+  <tr>  <td width="30">1.</td> <td width="120"> Fixed ceiling</td><td width="30"> 13.</td><td width="120"> Only visual access</td></tr>
+  <tr>  <td>2.</td> <td>Suspended ceiling</td> <td> 14.</td><td> Cluttered condition</td></tr>
+  <tr>  <td>3.</td> <td>fixed wall covering</td> <td> 15.</td><td> Standing water</td></tr>
+  <tr>  <td>4.</td> <td>Floor covering</td> <td> 16.</td><td> Dense vegetation</td></tr>
+  <tr>  <td>5.</td> <td>Insulations</td> <td> 17.</td><td> Exterior Coverings</td></tr>
+  <tr>  <td>6.</td> <td>Cabinets or shelving</td> <td> 18.</td><td> Window well covers</td></tr>
+  <tr>  <td>7.</td> <td>Stored items</td> <td> 19.</td><td> Wood pile</td></tr>
+  <tr>  <td>8.</td> <td>Furnishings</td> <td> 20.</td><td> Snow</td></tr>
+  <tr>  <td>9.</td> <td>Appliances</td> <td> 21.</td><td> Unsafe conditions</td></tr>
+  <tr>  <td>10.</td> <td>No access or entry</td> <td> 22.</td><td> Rigid foam board</td></tr>
+  <tr>  <td>11.</td> <td>Limited access</td> <td> 23.</td><td> Synthetic stucco</td></tr>
+  <tr>  <td>12.</td> <td>No access beneath</td> <td> 24.</td><td> Duct work, plumbing, and/or wiring</td></tr>
+
+       </table>
+    </div>
+  <div id="tablewdiareas">
+<table>
+
+
+
+  <tr><th colspan="4">Section IV. Obstructions and Inaccessible Areas <br /> The following areas of the structure(s) inspected were obstructed or inaccessible:</th></tr>
+  
+  <tr>  <td width="20"><%  if @wdi.AreaBasementNotes == nil%> <%=  check_box_tag "active", 1, false  %> <%else%> <%=  check_box_tag "active", 1, true  %> <%end%></td> <td width="60">Basement</td><td width="320" style="border-bottom: 1px solid black"> <%=h @wdi.AreaBasementNotes%></td></tr>
+  <tr>  <td><% if @wdi.AreaCrawlspaceNotes == nil%> <%=  check_box_tag "active", 1, false  %> <%else%> <%=  check_box_tag "active", 1, true  %> <%end%></td> <td>Crawlspace</td> <td style="border-bottom: 1px solid black"> <%=h @wdi.AreaCrawlspaceNotes%></td></tr>
+  <tr>  <td><%  if @wdi.AreaMainLevelNotes == nil%> <%=  check_box_tag "active", 1, false  %> <%else%> <%=  check_box_tag "active", 1, true  %> <%end%></td> <td>Main Level</td> <td style="border-bottom: 1px solid black"> <%=h @wdi.AreaMainLevelNotes%></td></tr>
+  <tr>  <td><%  if @wdi.AreaAtticNotes == nil%> <%=  check_box_tag "active", 1, false  %> <%else%> <%=  check_box_tag "active", 1, true  %> <%end%></td> <td>Attic</td> <td style="border-bottom: 1px solid black"> <%=h @wdi.AreaAtticNotes%></td></tr>
+  <tr>  <td><%  if @wdi.AreaGarageNotes == nil%> <%=  check_box_tag "active", 1, false  %> <%else%> <%=  check_box_tag "active", 1, true  %> <%end%></td> <td>Garage</td> <td style="border-bottom: 1px solid black"><%=h @wdi.AreaGarageNotes%></td></tr>
+  <tr>  <td><%  if @wdi.AreaExteriorNotes == nil%> <%=  check_box_tag "active", 1, false  %> <%else%> <%=  check_box_tag "active", 1, true  %> <%end%></td> <td>Exterior</td> <td style="border-bottom: 1px solid black"><%=h @wdi.AreaExteriorNotes%></td></tr>
+  <tr>  <td><%  if @wdi.AreaPorchNotes == nil%> <%=  check_box_tag "active", 1, false  %> <%else%> <%=  check_box_tag "active", 1, true  %> <%end%></td> <td>Porch</td> <td style="border-bottom: 1px solid black"><%=h @wdi.AreaPorchNotes%></td></tr>
+  <tr>  <td><%  if @wdi.AreaAdditionNotes == nil%> <%=  check_box_tag "active", 1, false  %> <%else%> <%=  check_box_tag "active", 1, true  %> <%end%></td> <td>Addition</td> <td style="border-bottom: 1px solid black"><%=h @wdi.AreaAdditionNotes%></td></tr>
+  <tr>  <td><%  if @wdi.AreaOtherNotes == nil%> <%=  check_box_tag "active", 1, false  %> <%else%> <%=  check_box_tag "active", 1, true  %> <%end%></td> <td>Other</td> <td style="border-bottom: 1px solid black"><%=h @wdi.AreaOtherNotes%></td></tr>
+    </table>
+  </div>
+
+
+ <div id="tablesection5">
+<table>
+  <tr>Section V. Additional Comments and Attachments (these are an integral part of the report) </tr>
+  <div id="wdifont95b"><tr><td><%= "Treatment Date"  if @wdi.TreatmentDate != nil%>  <%= @wdi.TreatmentDate.strftime("%m/%d/%y") if @wdi.TreatmentDate != nil%>  </td></tr>
+  <td Width="600"><%= @wdi.AdditionalComments %> </td>
+
+  <tr> <td><%= "Warranty Expires on" if @wdi.WarrantyExpireDate != nil%> <%= @wdi.WarrantyExpireDate.strftime("%m/%d/%y") if @wdi.WarrantyExpireDate != nil %> </td>
+   <td width="400"><%= "No Warranty Given"  if @wdi.Order.WarrantyId == nil%> <%= "No Warranty Given"  if @wdi.Order.WarrantyId == 5 %> <%= "No Warranty Given"  if @wdi.Order.WarrantyId == 6 %> </td></tr></div>
+
+    </table>
+  </div>
+<div id="wdiprice">
+  <b>Charges <br />
+<%= number_to_currency(@wdi.Price) %> </b><br /> Important: This form is invalid unless signed by seller and purchaser and unless payment is made or funds escrowed.  </div>
+
+<div id="wdibottom">
+  <b>Important Consumer Information Regarding the Scope and Limitations of the Inspection</b><br />
+Please read this entire page as it is part of this report. This report is not a guarantee or warranty as to the absence of wood destroying insects nor is it a structural integrity report. The inspector’s training and experience do not qualify the inspector in damage evaluation or any other building construction technology and/or repair.
+<br /><br /><b>1. About the Inspection: </b> A visual inspection was conducted in the readily accessible areas of the structure(s) indicated (see Page 1) including attics and crawlspaces which permitted entry during the inspection. The inspection included probing and/or sounding of unobstructed and accessible areas to determine the presence or absence of visual evidence of wood destroying insects. The WDI Inspection firm is not responsible to repair any damage or treat any infestation at the structure(s) inspected, except as may be provided by separate contract. Also, wood destroying insect infestation and/or damage may exist in concealed or inaccessible areas. The inspection firm cannot guarantee that any wood destroying insect infestation and/or damage disclosed by this inspection represents all of the wood destroying insect infestation and/or damage which may exist as of the date of the inspection. <b>For purposes of this inspection, wood destroying insects include: termites, carpenter ants, carpenter bees, and reinfesting wood boring beetles. This inspection does not include mold, mildew or non-insect wood destroying organisms. This report shall be considered invalid for purposes of securing a mortgage and/or settlement of property transfer if not used within ninety (90) days from the date of inspection. This shall not be construed as a 90-day warranty.  There is no warranty, express or implied, related to this report unless a written warranty or service agreement is attached.</b>
+
+<br /><br /><b>2. Treatment Recommendation Guidelines Regarding Subterranean Termites: </b>FHA and VA require treatment when any active infestation of subterranean termites is found. If signs of subterranean termites-but no activity-are found in a structure that shows no evidence of having been treated for subterranean termites in the past, then a treatment may be recommended. A treatment may also be recommended for a previously treated structure showing evidence of subterranean termites-but no activity- if there is no documentation of a liquid treatment by a licensed pest control company within the previous five years unless the structure is presently under warranty or covered by a service agreement with a licensed pest control company.
+
+<br /><br /><b>3. Obstructions and Inaccessible Areas: </b> No inspection was made in areas which required the breaking apart or into, dismantling, removal of any object, including but not limited to: moldings, floor coverings, wall coverings, siding, ceilings, insulation, furniture, appliances, and/or personal possessions; nor were areas inspected which were obstructed or inaccessible for physical access on the date of inspection. Your inspector may write out inaccessible areas or use the key in Section IV. Crawl spaces, attics, and/or other areas may be deemed inaccessible if the opening to the area is not large enough to provide physical access for the inspector or if a ladder was required for access. Crawl spaces (or portions thereof) may also be deemed inaccessible if there is inadequate clearance from the bottom of the floor joists to the surface below. If inaccessible, reasons will be noted in Section IV of this report. If any area which has been reported as inaccessible is made accessible, the inspection company may be contacted for another inspection. An additional fee may apply.
+
+<br /><br /><b>4. Consumer Maintenance Advisory Regarding Integrated Pest Management for Prevention of Wood Destroying Insects. Any structure can be attacked by wood destroying insects. </b>Homeowners should be aware of and try to eliminate conditions which promote insect infestation in and around their structure(s). Factors which may lead to wood destroying insect infestation include: earth to wood contact, foam insulation at foundation in contact with soil, faulty grade, improper drainage, firewood against structure(s), insufficient ventilation, moisture, wood debris in crawl space, wood mulch or ground cover in contact with the structure, tree branches touching structure(s), landscape timbers and wood decay. Should these or other conditions exist, corrective measures should be taken in order to reduce the chances of infestation of wood destroying insects and the need for treatment.
+
+<br /><br /><b>5. Neither the inspecting company nor the inspector has had, presently has, or contemplates having any interest in the property inspected.</b>
+</div>
+
+<div id="wdisigseller" >
+Signature of Seller(s) or Owner(s) if refinancing. Seller acknowledges that all information regarding W.D.I. infestation, damage, repair, and treatment
+history has been disclosed to the buyer.
+</div>
+<div id="wdisigbuyer">
+Signature of Buyer. The undersigned hereby acknowledges receipt of a copy of the report and understands the information reported.
+</div>
+<div id="wdixbuyer">X </div>
+<div id="wdixseller">X </div>
+
+
+<div style="page-break-after: always" > </div>
+
+<%= render :partial => 'invoice', :locals => { :invoice => @wdi }%>
+
+<div style="page-break-after: always" > </div>
+
+

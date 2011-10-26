@@ -1,0 +1,33 @@
+<%= form_for(@orderchemical) do |f| %>
+  <% if @orderchemical.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@orderchemical.errors.count, "error") %> prohibited this orderchemical from being saved:</h2>
+
+      <ul>
+      <% @orderchemical.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :OrderId %><br />
+    <%= f.text_field :OrderId %>
+  </div>
+  <div class="field">
+    <%= f.label :Chemical_id %><br />
+    <%= f.text_field :Chemical_id %>
+  </div>
+  <div class="field">
+    <%= f.label :Quantity %><br />
+    <%= f.text_field :Quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :CartId %><br />
+    <%= f.text_field :CartId %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ContractId: 1
+  ContractTypeId: 1
+  StartDate: MyString
+
+two:
+  ContractId: 1
+  ContractTypeId: 1
+  StartDate: MyString

@@ -1,0 +1,114 @@
+<style type="text/css">
+ 
+  h5{
+    FONT-SIZE: 10pt;
+    COLOR: black;
+    FONT-FAMILY: Arial;
+    padding: 0px;
+      margin: 0px
+}
+    body, p {
+    FONT-SIZE: 8pt;
+    COLOR: black;
+    FONT-FAMILY: Arial;
+
+       }
+     table {
+            table-layout: fixed;
+   
+    border-collapse: collapse
+
+
+
+}
+td { border: solid 0px black }
+td.solid { border: solid 1px black }
+
+  </style>
+
+
+ <script type="text/javascript">
+$(document).ready(function (){
+  $("tr:contains('not check')").css('background', 'rgb(255,220,200)');
+
+
+
+});
+
+
+
+</script>
+
+
+
+  <table>
+
+
+ Logged In User: <%=current_user.login%>
+
+    <tr> <td COLSPAN=13 ALIGN=right> <h5>Schedule Cover Sheet </h5></td></tr>
+
+    <tr> <td  COLSPAN=4  ALIGN=left> <h5><%= @hope.RouteName %> </h5></td> </tr>
+  
+<tr> <td  COLSPAN=7 ALIGN=left> <h5><%= @count %> Orders Today for <%= number_to_currency(@sum) %> <br />
+    
+    </h5> </td></tr>
+
+   
+ 
+ <tr>
+   <td >P-ID</td>
+    <td>O-ID</td>
+    <td>AT</td>
+    <td>EX</td>
+    <td>In Time</td>
+    <td>Out Time</td>
+    <td id= "Address">Address</td>
+    <td>Code</td>
+    <td>Price</td>
+    <td>Notes</td>
+    <td>Status</td>
+    <td>Result</td>
+    
+    
+ </tr>
+
+		 <%  @sched.each do |b| %>
+   <tr>
+  <%  b.Orders.each do |os| %>
+
+  <td class ="solid"><%=h os.PropertyId %></td>
+ <td class ="solid"><%=h os.OrderId %></td>
+ <td class ="solid"><%= "AT"  if b.Anytime == true %></td>
+ <td class ="solid"><%= "Exact" if b.Exact == true %></td>
+ <td class ="solid"><%=h b.StartTime.strftime("%I:%M %p") if b.Anytime == false %></td>
+ <td class ="solid"><%=h b.EndTime.strftime("%I:%M %p") if b.Anytime == false %></td>
+ <td class ="solid"><%=h os.Property.Address.StreetNumber%>
+    <%=h os.Property.Address.Direction %>
+    <%=h os.Property.Address.Street %>
+    <%=h os.Property.Address.UnitNumber %>
+    <%=h os.Property.Address.City %>,
+    <%=h os.Property.Address.StateId %>
+    <%=h os.Property.Address.ZipCodeId %></td>
+ <td class ="solid"><%=h os.Servicecode.Code %></td>
+ <td class ="solid"><%= number_to_currency(os.Price) %></td>
+ <td class ="solid"><%=h os.SpecialInstructions %></td>
+ <td class ="solid"><%=h os.Orderstatus.Description %></td>
+ <td class ="solid"> <%if os.CheckInResultId.nil? %> <%="not check"%> <%else%> <%=h os.Checkinresult.name %> <%end%></td>
+  <td class ="solid"><%if os.CheckInResultId.nil? %> <%= link_to 'check', edit_orderpad_path(os), "data-role" => "button" %> <%else%> <%=  button_to'WorkOrder', :controller => "printing", :action => "workvoice", :id =>os %><%end%></td>
+ <td class ="solid"><%= link_to "History", order_path(os), "data-role" => "button" %></td>
+    
+    
+    
+
+
+
+
+ </tr>
+
+<%end%>
+  <%end%>
+     </table>
+
+
+

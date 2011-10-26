@@ -1,0 +1,21 @@
+<%= form_for(@wdireport) do |f| %>
+  <% if @wdireport.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wdireport.errors.count, "error") %> prohibited this wdireport from being saved:</h2>
+
+      <ul>
+      <% @wdireport.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :WdiReportId %><br />
+    <%= f.text_field :WDIId %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

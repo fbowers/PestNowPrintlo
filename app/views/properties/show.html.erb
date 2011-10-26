@@ -1,0 +1,58 @@
+<p>
+  <b>Propertyid:</b>
+  <%=h @property.PropertyId %>
+</p>
+
+<p>
+  <b>Addressid:</b>
+  <%=h @property.AddressId %>
+</p>
+
+<p>
+  <b>Addressid:</b>
+  <%=h @property.Address.Street %>
+</p>
+
+<table>
+ <thead>
+<tr>
+
+
+     
+     
+     <th>Order Id</th>
+      <th>Branch Id</th>
+      </tr>
+          </thead>
+          <% @property.Orders.each do |b| %>
+          <tbody>
+     <td><%= b.OrderId %></td>
+     <td><%= b.Price %></td>
+     <td><%= b.Branch.BranchName %></td>
+     <td><%= b.ServiceCode.Code %></td>
+     <td><%= b.Schedule.StartTime %></td>
+     <td><%= b.Schedule.Scheduleroutes%></td>
+    
+     
+
+      <td> <%=h b.Property.Address.StreetNumber %> </td>
+       <td> <%=h b.Property.Address.Street %> </td>
+       <td> <%=h b.Property.Address.City %> </td>
+        <td> <%=h b.Property.Address.StateId %> </td>
+         
+        
+    
+  </tbody>
+
+      
+    <%end%>
+
+
+
+  </table>
+
+
+
+
+<%= link_to 'Edit', edit_property_path(@property) %> |
+<%= link_to 'Back', properties_path %>

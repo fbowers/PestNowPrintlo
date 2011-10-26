@@ -1,0 +1,25 @@
+<h1>Listing contracttypes</h1>
+
+<table>
+  <tr>
+    <th>Contracttypeid</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contracttypes.each do |contracttype| %>
+  <tr>
+    <td><%= contracttype.ContractTypeId %></td>
+    <td><%= contracttype.Name %></td>
+    <td><%= link_to 'Show', contracttype %></td>
+    <td><%= link_to 'Edit', edit_contracttype_path(contracttype) %></td>
+    <td><%= link_to 'Destroy', contracttype, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Contracttype', new_contracttype_path %>

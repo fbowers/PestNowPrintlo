@@ -1,0 +1,40 @@
+<h1>Listing movers</h1>
+<script>
+  jQuery(document).ready(function(){
+jQuery('#the_table').dataTable( {
+  "iDisplayLength": 50,
+  "aLengthMenu": [[50, 60, 70, -1], [50, 60, 70, "All"]]
+});
+});
+</script>
+
+<h1> franchise chemical balance.</h1>
+<table  id='the_table' >
+
+<thead>
+<tr>
+<th>MoverId</th>
+<th>Firstname</th>
+<th>Lastname</th>
+<th>Address</th>
+<th>City</th>
+<th>State</th>
+<th>Zip</th>
+</tr>
+</thead>
+<tbody>
+<% @movers.each do |m| %>
+<tr>
+<td><%= m.MoverId %></td>
+<td><%= m.Firstname %></td>
+<td><%= m.Lastname %></td>
+<td><%= m.Address %></td>
+<td><%= m.City %></td>
+<td><%= m.State %></td>
+<td><%= m.Zip5 %></td>
+     </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

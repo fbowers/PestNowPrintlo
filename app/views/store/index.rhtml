@@ -1,0 +1,23 @@
+<h1>Chemicals</h1>
+
+<table  id='the_table' >
+
+  <thead>
+    <tr>
+       <th>Add</th><th>Sub</th><th>Name</th><th>Measurement</th><th>Percentage</th><th>EPA</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @chemicals.each do |ch| %>
+       <tr>
+     <td> <%= button_to "Add", {:action => :add_to_cart, :id => ch}, :remote => true %> </td>
+     <td> <%= button_to "Subtract", {:action => :sub_to_cart, :id => ch}, :remote => true %> </td>
+     <td><%= ch.ChemicalName %></td>
+     <td><%= ch.Measurement %></td>
+     <td><%= ch.Percentage %></td>
+     <td><%= ch.EPANumber %></td>
+     
+          </tr>
+    <% end %>
+  </tbody>
+</table>

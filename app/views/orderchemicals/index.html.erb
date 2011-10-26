@@ -1,0 +1,29 @@
+<h1>Listing orderchemicals</h1>
+
+<table>
+  <tr>
+    <th>Orderid</th>
+    <th>Chemical</th>
+    <th>Quantity</th>
+    <th>Cart</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orderchemicals.each do |orderchemical| %>
+  <tr>
+    <td><%= orderchemical.OrderId %></td>
+    <td><%= orderchemical.ChemId %></td>
+    <td><%= orderchemical.Quantity %></td>
+    <td><%= orderchemical.CartId %></td>
+    <td><%= link_to 'Show', orderchemical %></td>
+    <td><%= link_to 'Edit', edit_orderchemical_path(orderchemical) %></td>
+    <td><%= link_to 'Destroy', orderchemical, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Orderchemical', new_orderchemical_path %>

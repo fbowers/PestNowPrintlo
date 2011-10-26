@@ -1,0 +1,14 @@
+<tr><td> <%=h c.Contracttype.name %> </td>
+  <% if c.StartDate.nil? %>
+  <%"Empty" %>
+  <%else%>
+<td><%=h c.StartDate.strftime("%m/%d/%y")%></td>
+<% end %>
+ <% if c.EndDate.nil? %>
+  <%"Empty" %>
+  <%else%>
+<td><%=h c.EndDate.strftime("%m/%d/%y")%></td>
+<% end %>
+<td><%= number_to_currency(c.RecurringPrice) %></td>
+<td><%=h c.Proposed%></td></tr>
+

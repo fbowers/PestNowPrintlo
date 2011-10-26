@@ -1,0 +1,13 @@
+<p>
+  <b>Addressid:</b>
+  <%=h @address.AddressId %>
+</p>
+
+<p>
+  <b>Streetnumber:</b>
+  <%=h @address.StreetNumber %>
+</p>
+
+
+<%= link_to 'Edit', edit_address_path(@address) %> |
+<%= link_to 'Back', addresses_path %>

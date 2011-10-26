@@ -1,0 +1,44 @@
+<h1>Todays Stops</h1>
+
+<table>
+  <tr>
+    <th>Orderid</th>
+    <th>Time</th>
+    <th>Address</th>
+    <th>Code</th>
+    <th>Price</th>
+    <th>Instructions</th>
+  </tr>
+
+<% @orderpads.each do |op| %>
+  <tr>
+    <td><%= op.OrderId %></td>
+    <td><%= "AT"  if op.Schedule.Anytime == true %>
+ <%= "Exact" if op.Schedule.Exact == true %>
+ <%=h op.Schedule.StartTime.strftime("%I:%M %p") if op.Schedule.Anytime == false %>
+ <%=h op.Schedule.EndTime.strftime("%I:%M %p") if op.Schedule.Anytime == false %></td>
+  <td><%=h op.Property.Address.StreetNumber%>
+    <%=h op.Property.Address.Direction %>
+    <%=h op.Property.Address.Street %>
+    <%=h op.Property.Address.UnitNumber %>
+    <%=h op.Property.Address.City %>,
+    <%=h op.Property.Address.StateId %>
+    <%=h op.Property.Address.ZipCodeId %></td>
+  <td><%=h op.Servicecode.Code %></td>
+ <td><%= number_to_currency(op.Price) %></td>
+  <td><%=h op.SpecialInstructions %></td>
+    <td><%= link_to 'checkin', edit_orderpad_path(op) %></td>
+    <td><%= link_to "details", orderpad_path(op) %> </td>
+
+   
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+
+
+ 
+ 

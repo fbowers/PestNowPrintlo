@@ -1,0 +1,3 @@
+module PropertiesHelper
+	end
+

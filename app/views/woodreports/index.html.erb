@@ -1,0 +1,27 @@
+<h1>Listing woodreports</h1>
+
+<table>
+  <tr>
+    <th>Wdiid</th>
+    <th>Structuretype</th>
+    <th>Novisible</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @woodreports.each do |woodreport| %>
+  <tr>
+    <td><%= woodreport.WDIId %></td>
+    <td><%= woodreport.StructureType %></td>
+    <td><%= woodreport.NoVisible %></td>
+    <td><%= link_to 'Show', woodreport %></td>
+    <td><%= link_to 'Edit', edit_woodreport_path(woodreport) %></td>
+    <td><%= link_to 'Destroy', woodreport, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Woodreport', new_woodreport_path %>

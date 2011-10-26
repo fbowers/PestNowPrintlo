@@ -1,0 +1,46 @@
+//alert('You have Started your Job!');
+ $(".spinner").show();
+$('#my-link').bind('ajax:success', function(){
+     $(".spinner").hide();
+ });
+
+    $('#my-link').toggle('slow', function() {
+    // Animation complete.
+
+    });
+
+
+    $('#afterarrive').toggle('slow', function() {
+    // Animation complete.
+
+    });
+     $('#afterarrive2').toggle('slow', function() {
+    // Animation complete.
+
+    });
+
+  
+
+ 
+//var fb = $('#fb').val();
+var lat = $('#t1').val();
+var long = $('#t2').val();
+//jQuery(document).ready(function($)
+//{   alert ("Latitude is = " + lat);
+//alert ("Longitude is = " + long);});
+
+
+jQuery.ajax({
+    type: "post",
+              url: '/orderpads/add_arrive/'+ <%= @orderpad.OrderId%> ,
+           
+    
+
+          
+            data: {'t1': lat, 't2':long},
+           
+            DataType: 'script',
+       
+            });
+
+           

@@ -1,0 +1,90 @@
+<style type="text/css">
+#tablewdiobstructions {FONT-SIZE: 8pt;
+  table-layout: fixed;
+  text-align: left;
+  position:absolute;
+  left:500px;
+ top:500px;
+    width: 300px;
+    height:250px;
+  border-collapse: collapse;
+      border: 1px solid black;
+}
+
+
+</style>
+<h1>Edit WDI Report</h1>
+
+<% semantic_form_for @woodreport do |form| %>
+
+    <% form.inputs :name => "Wdi Information" do %>
+      <%= form.input :StructureType %>
+<%end%>
+ <% form.inputs :name => "Inspection Findings" do %>
+ <%= form.input :NoVisible %>
+<%= form.input :VisibleLive %> 
+      <%= form.input :VisibleLiveNotes, :input_html => {:size => 60} %>
+      <%= form.input :VisibleDead %>
+      <%= form.input :VisibleDeadNotes, :label => "Visible Dead Notes",:input_html => {:size => 60} %>
+ <%= form.input :VisibleDamage %>
+ <%= form.input :VisibleDamageNotes, :input_html => {:size => 60} %>
+ <%= form.input :PreviousTreatment %>
+ <%= form.input :PreviousTreatmentNotes, :input_html => {:size => 60} %>
+ <%= form.input :RecommendTreatment %>
+ <%= form.input :NoTreatment %>
+ <%= form.input :RecommendationNotes, :input_html => {:size => 60} %>
+
+<%end%>
+<% form.inputs :name => "Obstructions & Inaccessible Areas" do %>
+<%= form.input :AreaBasementNotes %>
+<%= form.input :AreaCrawlspaceNotes %>
+<%= form.input :AreaMainLevelNotes %>
+<%= form.input :AreaAtticNotes %>
+<%= form.input :AreaGarageNotes %>
+<%= form.input :AreaExteriorNotes %>
+<%= form.input :AreaPorchNotes %>
+<%= form.input :AreaAdditionNotes %>
+<%= form.input :AreaOtherNotes %>
+ <% end %>
+<% form.inputs :name => "Additional Information" do %>
+
+<%= form.input :AdditionalComments, :input_html => {:size => 60, :rows => 10} %>
+<%= form.input :TreatmentDate, :as => :string, :input_html => {:disabled => true} %>
+<%= form.input :Price %>
+
+
+    <% end %>
+<% form.buttons do %>
+      <%= form.commit_button %>
+    <% end %>
+
+  <% end %>
+
+<div id="tablewdiobstructions">
+<table>
+
+
+      <tr><th colspan="4">The inspector may write out obstructions or use the following key:</th></tr>
+
+  <tr>  <td width="30">1.</td> <td width="120"> Fixed ceiling</td><td width="30"> 13.</td><td width="120"> Only visual access</td></tr>
+  <tr>  <td>2.</td> <td>Suspended ceiling</td> <td> 14.</td><td> Cluttered condition</td></tr>
+  <tr>  <td>3.</td> <td>fixed wall covering</td> <td> 15.</td><td> Standing water</td></tr>
+  <tr>  <td>4.</td> <td>Floor covering</td> <td> 16.</td><td> Dense vegetation</td></tr>
+  <tr>  <td>5.</td> <td>Insulations</td> <td> 17.</td><td> Exterior Coverings</td></tr>
+  <tr>  <td>6.</td> <td>Cabinets or shelving</td> <td> 18.</td><td> Window well covers</td></tr>
+  <tr>  <td>7.</td> <td>Stored items</td> <td> 19.</td><td> Wood pile</td></tr>
+  <tr>  <td>8.</td> <td>Furnishings</td> <td> 20.</td><td> Snow</td></tr>
+  <tr>  <td>9.</td> <td>Appliances</td> <td> 21.</td><td> Unsafe conditions</td></tr>
+  <tr>  <td>10.</td> <td>No access or entry</td> <td> 22.</td><td> Rigid foam board</td></tr>
+  <tr>  <td>11.</td> <td>Limited access</td> <td> 23.</td><td> Synthetic stucco</td></tr>
+  <tr>  <td>12.</td> <td>No access beneath</td> <td> 24.</td><td> Duct work, plumbing, and/or wiring</td></tr>
+
+       </table>
+    </div>
+  <div id="tablewdiareas">
+<table>
+
+
+
+<%= link_to 'Show', @woodreport %> |
+<%= link_to 'Back', woodreports_path %>

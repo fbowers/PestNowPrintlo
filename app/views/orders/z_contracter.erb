@@ -1,0 +1,334 @@
+<style type="text/css">
+ 
+
+@page {size: US-letter;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left:25px;
+  margin-right:25px;
+  padding: 0px }
+
+#tablefee {
+  FONT-SIZE: 10pt;
+  text-align: left;
+  position:absolute;
+  left:5in;
+  top:8.5in;
+  height: 1.75in;
+  width: 3in;
+}
+#tablepayment {
+  FONT-SIZE: 10pt;
+  text-align: left;
+  position:absolute;
+  left:.25in;
+  top:8.5in;
+  height: 1.75in;
+  min-height: 2in;
+  min-width: 5in;      
+}
+#tablebottom {
+  FONT-SIZE: 8pt;
+  text-align: center;
+  position:absolute;
+  left:.25in;
+  top:10.25in;
+  height: .5in;
+  width: 8in;
+   table-layout: fixed;
+        border-collapse: collapse;
+      border: 2px solid black;
+}
+#table1 {
+  FONT-SIZE: 10pt;
+  text-align: right;
+  position:absolute;
+  left:5in;
+  top:1.25in;
+  height: 1in;
+  width: 4in;
+}
+#tableheadpest {
+  FONT-SIZE: 14pt;
+  position:absolute;
+  left:.25in;
+  top:3.25in;
+  height: 1.5in;
+  min-width: 8in;
+  border: 2px solid black;
+  border-collapse: collapse;
+
+}
+
+#tableheadschedule {
+  FONT-SIZE: 14pt;
+  position:absolute;
+  left:.25in;
+  top:4.875in;
+  height: .75in;
+  min-width: 8in;
+  border: 2px solid black;
+  border-collapse: collapse;
+
+}
+#tableheadarea {
+  FONT-SIZE: 14pt;
+  position:absolute;
+  left:.25in;
+  top:5.75in;
+  height: 1in;
+  min-width: 8in;
+  border: 2px solid black;
+  border-collapse: collapse;
+
+}
+
+ table.wc {
+    table-layout: fixed;
+    width: 5in;
+    border-collapse: collapse;
+      border: 3px solid black;
+   
+
+
+
+
+}
+
+
+td { border: solid 2px black; font-weight: bold;  }
+th { text-align: center; font-weight: bold; background: black; color: white;  }
+
+
+  h5{
+    FONT-SIZE: 10pt;
+    COLOR: black;
+    FONT-FAMILY: Arial;
+    padding: 0px;
+      margin: 0px
+}
+    body, p {
+    FONT-SIZE: 7pt;
+    COLOR: black;
+    FONT-FAMILY: Arial;
+   }
+
+#cdisclaimer{
+  FONT-SIZE: 7pt;
+  width: 8.5in;
+  text-align: center;
+  position:absolute;
+  left:.25in;
+  top:6.875in;
+  border: 2px solid black;
+}
+
+
+#cagreement {
+  FONT-SIZE: 18pt;
+  font-weight: bold;
+  text-align: center;
+  position:absolute;
+  left:4in;
+  top:.25in;
+  
+}
+#cseradd {
+  FONT-SIZE: 10pt;
+   position:absolute;
+  left: .25in;
+  top: 2in;
+ width: 3in;
+}
+
+#cbilladd {
+  FONT-SIZE: 10pt;
+   position:absolute;
+  left: 3.5in;
+  top: 2in;
+   width: 3in;
+}
+
+
+#cinstructions {
+  FONT-SIZE: 8pt;
+  position:absolute;
+  left:.5in;
+  top:6.25in;
+  width: 7.5in;
+}
+
+#freq {
+  FONT-SIZE: 14pt;
+  position:absolute;
+  left:3.5in;
+  top:5.25in;
+  width:7.5in;
+}
+#pet {
+  FONT-SIZE: 10pt;
+  position:absolute;
+  left:.5in;
+  top:4in;
+  width: 5.5in;
+}
+
+
+#cbarcode {
+ font: bold 12px/30px IDAutomationHC39M;
+ position:absolute;
+ left:6.5in;
+ top:3.75in;
+ width: 2in;
+  
+
+}
+#cinit {
+  FONT-SIZE: 12pt;
+  text-align: center;
+  position:absolute;
+  left:585px;
+  top:75px;
+  height: 40px;
+  width: 150px;
+}
+#cbal {
+  FONT-SIZE: 12pt;
+  text-align: center;
+  position:absolute;
+  left:585px;
+  top:75px;
+  height: 40px;
+  width: 150px;
+}
+#creccuring {
+  FONT-SIZE: 12pt;
+  text-align: center;
+  position:absolute;
+  left:585px;
+  top:75px;
+  height: 40px;
+  width: 150px;
+}
+
+  </style>
+
+
+
+<%@kim.each do |x| %>
+<div id = cagreement> PEST CONTROL AGREEMENT </div>
+<div id = tableheadpest> <table> <th width="800px"> PESTNOW WILL PROVIDE CONTROL OF THE FOLLOWING PESTS </th> <tr></tr></table></div>
+<div id = tableheadschedule> <table> <th width="800px"> SCHEDULE OF REGULAR INSPECTIONS AND TREATMENTS</th> <tr></tr></table></div>
+<div id = tableheadarea> <table> <th width="800px"> AREAS TO BE TREATED AND SPECIAL INSTRUCTIONS </th> <tr></tr></table></div>
+
+<div id = cdisclaimer> <p>PestNow agrees to provide all required labor and materials for inspection and treatment deemed necessary for the control of the above named pests. It is understood that other pests are not covered by this agreement. This agreement does not provide for the control of any wood destroying insects or organisms, unless otherwise noted in this agreement. This agreement does not guarantee against present or future damage to the structure or its contents, nor does it provide for the repair or compensation thereof. The Purchaser agrees to cooperate and to make the premise available for service as often as necessary to control existing problems.
+  PestNow L.L.C. is not responsible for insect or rodent damage to products or building, building’s contents and/or personal possessions.
+These services will be rendered by thoroughly trained, uniformed technicians under the supervision of certified personnel with years of experience. We confine our methods and materials to those recommended and approved by the Environmental Protection Agency for safety and effectiveness.
+This contract is for an initial twelve (12) month agreement, unless otherwise noted. Thereinafter it will continue on a month to month basis unless a (30) day written notice is given by either party. PestNow reserves the right to revise the service charge after the initial (12) month period. All accounts shall be COD unless otherwise specified in writing.
+Acceptance of Agreement- The prices, specifications, and terms and conditions are satisfactory and are hereby accepted. You are authorized to do the work as specified. Payment will be made as outlined below. PestNow reserves the right to alter or amend this agreement if it is not accepted within 30 days. You the buyer, may cancel this transaction at any time prior to midnight of the third business day after the date of this transaction. </p></div>
+
+
+<div id = cbarcode><img src="http://www.bcgen.com/demo/linear-dbgs.aspx?D=<%=x.Order.OrderId%>"/></div>
+<div id = cinstructions><%=  x.InitialComments %></div>
+
+
+<div id="table1">
+<table class="wc">
+   <thead>
+
+  <th>Contract Date</th>
+  <th>Service Date</th>
+  <th>Account</th>
+  <th>Inspector</th>
+
+   </thead>
+   <td><%=  x.DateEntered.strftime("%m/%d/%y") %></td>
+   <td> <%=h x.Order.Schedule.StartTime.strftime("%m/%d/%y")%></td>
+   <td> <%=  x.Order.PropertyId %></td>
+   <td><%=  x.User.FirstName %> <%=  x.User.LastName %></td>
+  </table>
+
+  </div>
+
+<div id="tablefee">
+<table>
+  <thead> <th  colspan="2">Schedule of Fees</th>   </thead>
+     <tr> <td width="300px">One time or Initial Service</td>
+       <td width="75px"><%=  number_to_currency(x.OneTimePrice) %></td>
+     </tr>
+      <tr> <td>Monthly or Quarterly Service</td>
+       <td><%=  number_to_currency(x.RecurringPrice) %></td>
+     </tr>
+     <tr> <td>Less Deposit</td>
+       <td><% $0 %></td>
+     </tr>
+     <tr> <td>Balance Due</td>
+       <td><%=  number_to_currency(x.OneTimePrice) %></td>
+     </tr>
+  
+  </table>
+  </div>
+
+<div id="tablepayment">
+<table>
+  <thead> <th  colspan="2" >Method of Payment</th>   </thead>
+     <tr height ="25"> <td colspan="2">  <center>[      ]Cash            [      ]Check            [      ]MasterCard            [      ]Visa</center> </td>
+          </tr>
+          <tr> <td>Credit Card No.</td>
+       <td></td>
+     </tr>
+      <tr> <td>Expire</td>
+       <td></td>
+     </tr>
+     <tr> <td>Cardholders Signature</td>
+        <td width="220px"></td>
+     </tr>
+
+  </table>
+  </div>
+
+<div id="tablebottom">
+<table>
+   <thead>
+
+  <th width ="450">Customer Signature</th>
+  <th  width ="175">Inspector</th>
+  <th  width ="175">Date</th>
+
+
+   </thead>
+   <td height ="25"></td>
+   <td><%=  x.User.FirstName %> <%=  x.User.LastName %></td>
+   <td> <%=h x.Order.Schedule.StartTime.strftime("%m/%d/%y")%></td>
+   
+   
+  </table>
+
+  </div>
+<div id="freq"><%= x.Frequency.Name %></div>
+<div id="pet"><%x.Pests.each do |p|%>
+(X)<%=p.Name%>
+<%end%></div>
+
+
+<div id = cseradd>
+  <h3>Service</h3>
+<%= render :partial => 'propaddress', :locals => { :propaddress => x.Order }, :as => :o%> </div>
+
+ <div id = cbilladd>
+<h3>Bill</h3>
+  <% if x.Order.BillBillingCustomer == true %>
+<%= render :partial => 'propbilladdress', :locals => { :propbilladdress => x.Order }, :as => :ba%>
+<%elsif x.Order.BillSettlementCompany == true%>
+<%= render :partial => 'propsettleaddress',  :locals => { :propsettleaddress => x.Order },:as => :set%>
+<%elsif x.Order.BillAgent == true%>
+<%= render :partial => 'propagentaddress', :locals => { :propagentaddress => x.Order }, :as => :agn%>
+<%else%>
+<%= render :partial => 'propaddress', :locals => { :propaddress => x.Order }, :as => :o%>
+<% end %></div>
+
+
+
+<div style="page-break-after: always" > </div>
+
+<%end%>

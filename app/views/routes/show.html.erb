@@ -1,0 +1,20 @@
+<%= stylesheet_link_tag "application", :media => 'all' %>
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>RouteName:</b>
+  <%=h @route.RouteName %>
+</p>
+
+<p>
+  <b>RouteId:</b>
+  <%=h @route.RouteId %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_route_path(@route) %> |
+<%= link_to 'Back', routes_path %>

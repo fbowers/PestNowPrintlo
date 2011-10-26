@@ -1,0 +1,41 @@
+//alert('Works!');
+ 
+//var ap = $('#AutoPay').is(':checked');
+
+//var gg = $('#green').is(':checked');
+var gg = "true"
+var em = $('#email').val();
+
+  // alert ("ap is = " + ap);
+  //  alert ("em is = " + em);
+  //  alert ("gg is = " + gg);
+   
+// $('#gogreen').toggle('slow');
+
+if (em == false){
+
+alert('email is empty! Please Enter an Email Address');
+
+   }
+
+else{
+$('#gogreen').toggle('slow');
+$("#yourgreen").toggle('slow');
+jQuery.ajax({
+    type: "post",
+         
+ url: '/printing/cc/'+ <%= @order.OrderId%> ,
+
+
+
+      //      data: {'t1': lat, 't2':long},
+          data: {'gg': gg, 'em': em},
+           
+            DataType: 'script',
+
+
+
+            });
+
+           }
+

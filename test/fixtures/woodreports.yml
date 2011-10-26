@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  WDIId: 1
+  StructureType: MyString
+  NoVisible: MyString
+
+two:
+  WDIId: 1
+  StructureType: MyString
+  NoVisible: MyString

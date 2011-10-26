@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>iPhone 3.0 geolocation demo</title>
+<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport"/>
+
+
+
+
+<script>
+
+
+
+function handler(location) {
+var message = document.getElementById("message");
+message.innerHTML ="<img src='http://maps.google.com/staticmap?center=" + location.coords.latitude + "," + location.coords.longitude + "&size=300x300&maptype=hybrid&zoom=16&key=ABQIAAAArEY8Snz_XI0In9WomM5B5BRgvgAZna9PSW0IAgWHhbpply-ubxQZnD46LJWIDUtip_dtPeh242UxjA' />";
+message.innerHTML+="<p>Longitude: " + location.coords.longitude + "</p>";
+message.innerHTML+="<p>Latitude: " + location.coords.latitude + "</p>";
+message.innerHTML+="<p>Accuracy: " + location.coords.accuracy + "</p>";
+}
+navigator.geolocation.getCurrentPosition(handler);
+</script>
+</head>
+<body>
+<div id="message">Location unknown</div>
+
+
+</body>
+</html

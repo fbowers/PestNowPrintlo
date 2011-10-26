@@ -1,0 +1,2 @@
+module RusersHelper
+end

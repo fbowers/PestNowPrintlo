@@ -1,0 +1,129 @@
+
+<div id="invtophead"> Invoice</div>
+
+<div id="invpaybox">
+  <table>
+    <tr>  <th colspan="6">Enter Total Amount Paid</th></tr>
+  <tr height="30"><td width="30"> </td><td width="30"> </td><td width="30"> </td><td width="30"> </td><td width="30"> </td><td width="30"> </td></tr>
+
+
+  </table>
+
+
+</div>
+
+<div id = invtoplogo><img src="http://www.agentorder.com/images/raillogo.png" width="210" /></div>
+<div id = invbottomlogo><img src="http://www.agentorder.com/images/raillogo.png" width="210"/></div>
+
+<div id=invtopinfo>
+<table>
+  <tr><td>Date</td><td><%= @inv.Schedule.StartTime.strftime("%m/%d/%y") %></td></tr>
+  <tr><td>Account Number</td><td><%= @inv.PropertyId %></td></tr>
+   <tr><td>Invoice Number</td><td><%= @inv.OrderId %></td></tr>
+    <tr><td>Amount Due</td><td><%= number_to_currency(@balance)%></td></tr>
+  
+</table>
+</div>
+
+
+<div id=invtoplogo></div>
+
+<div id=invbottomlogo></div>
+<div id=invaccountinformation>
+  <table>
+    <th colspan="2" width="400">Account Information</th>
+    <tr><td width="150"> Account Number </td><td><%= @inv.PropertyId %> </td></tr>
+    <tr><td> Service Property </td><td><b><%= render :partial => 'propaddress', :locals => { :propaddress => @inv }, :as => :o%></b> </td></tr>
+    <tr><td> Customer Service </td><td>877.284.2466 </td></tr>
+    <tr><td> Hours of Operation </td><td>M-F 7:30-6 Sat 8-2 </td></tr>
+    <tr><td> Website Address </td><td>www.pestnow.com </td></tr>
+    
+    
+  </table>
+</div>
+
+<div id="invdottedline"> </div>
+<div id="invpleasedetach"> Please Detach Here</div>
+
+
+
+<div id=invtransactions>
+  <table>
+    <tr><th colspan="4" width="400">Transactions</th></tr>
+    <tr><td width="65"> Date </td><td width="65"> Invoice </td><td width="145"> Description </td><td width="125"> amount </td></tr>
+   
+   <% @sub.each do |x| %>
+     <tr> <td> <%= x.Order.Schedule.StartTime.strftime("%m/%d/%y") %>   </td>
+       <td> <%= x.Order.OrderId %>   </td>
+       <td> <%= x.Order.Servicecode.Description %>   </td>
+       <td> <%= number_to_currency(x.Charge)%>   pd<%= number_to_currency(x.Deposit)%> </td></tr>
+  
+  <%end%>
+  </table>
+</div>
+<div id=invamountdue>
+  <table>
+    <th colspan="2" width="400">Amount(s) Due</th>
+    <tr><td width="150"> Date </td><td><%= @inv.Schedule.StartTime.strftime("%m/%d/%y") %> </td></tr>
+    <tr><td> Account Number </td><td><%= @inv.PropertyId %> </td></tr>
+    <tr><td> Invoice Number </td><td><%= @inv.OrderId %> </td></tr>
+    <tr><td> Tax </td><td><%= number_to_currency(@taxsum) %> </td></tr>
+    <tr><td> Amount Due </td><td><%=number_to_currency(@balance)%> </td></tr>
+    <tr> <td colspan="2" class="questions">Questions?/Comments?/Concerns?</td></tr>
+    <tr> <td colspan="2" class="questions">preeves@pestnow.com</td></tr>
+
+      </table>
+</div>
+
+
+<div id="invcheckpolicy"> Check policy-For your convenience if your check is dishonored or returned for any reason, we will electronically debit your account for the amount of the check plus a processing fee of $50</div>
+
+
+
+
+<div id=invcreditcardinfo>
+  <table>
+    <tr><th width="200" colspan="2">Visa Mastercard</th></tr>
+    <tr><td width="150">Cardholders Name</td><td width="250" style="border-bottom: solid black 1px"></td></tr>
+    <tr><td>Card Number</td><td  style="border-bottom: solid black 1px"></td></tr>
+    <tr><td>Expiration Date</td><td  style="border-bottom: solid black 1px"></td></tr>
+
+
+
+  </table>
+    
+
+</div>
+<div id=invpaymentaddress>
+  Send Payments to: <br />
+  PestNow<br />
+  Superior Pest Management<br />
+  PO Box 2210<br />
+  Ashburn, VA 20146
+</div>
+
+
+<div id=invad1></div>
+<div id=invad2></div>
+
+
+
+
+
+
+
+<div id=invbilladd>
+  <% if @inv.BillBillingCustomer == true %>
+<%= render :partial => 'propbilladdress', :locals => { :propbilladdress => @inv }, :as => :ba%>
+<%elsif @inv.BillSettlementCompany == true%>
+<%= render :partial => 'propsettleaddress',  :locals => { :propsettleaddress => @inv },:as => :set%>
+<%elsif @inv.BillAgent == true%>
+<%= render :partial => 'propagentaddress', :locals => { :propagentaddress => @inv }, :as => :agn%>
+<%else%>
+<%= render :partial => 'propaddress', :locals => { :propaddress => @inv }, :as => :o%>
+<% end %></div>
+
+
+
+
+

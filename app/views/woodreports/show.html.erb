@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Wdiid:</b>
+  <%= @woodreport.WDIId %>
+</p>
+
+<p>
+  <b>Structuretype:</b>
+  <%= @woodreport.StructureType %>
+</p>
+
+<p>
+  <b>Novisible:</b>
+  <%= @woodreport.NoVisible %>
+</p>
+
+
+<%= link_to 'Edit', edit_woodreport_path(@woodreport) %> |
+<%= link_to 'Back', woodreports_path %>

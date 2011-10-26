@@ -1,0 +1,6 @@
+<table>
+  <%= render(:partial => "store/cart_item", :collection => cart.items) %>
+  
+</table>
+
+<%= button_to "Empty cart", :action => :empty_cart %>

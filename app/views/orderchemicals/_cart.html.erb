@@ -1,0 +1,55 @@
+<style type="text/css">
+#cart_table {
+  width: 400px;     
+  FONT-SIZE: 10pt;
+       color: black;
+  text-align: center;
+
+  }
+</style>
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('a.remote-delete').click(function() {
+   // $('a.remote-delete').live('click', function(event) {
+    // we just need to add the key/value pair for the DELETE method
+    // as the second argument to the JQuery $.post() call
+    $.post(this.href, { _method: 'delete' }, null, "script");
+   // $('a.remote-delete').closest("#pl").hide(this.href);
+   // $.hide(this.href);
+    var row = $(this).closest("tr").get(0);  
+    $(row).hide();
+
+    return false;
+    
+  });
+
+});
+
+</script>
+<div class="fields">
+
+<h2>Your Chemicals</h2>
+<table id="cart_table">
+   <thead>
+    <tr>
+       <th>Qty</th><th>Meas</th><th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<% for item in Orderchemical.where(:OrderId => @oid)  %>
+ <div id="pl">
+    <tr>
+        <td><%= item.Quantity %></td>   
+<td><%= item.Chemical.Measurement %> </td>
+<td>  <%= item.Chemical.name %></td>
+    <div id="del"><td><%= link_to 'Delete', item, :class => 'remote-delete' %></td></div>
+
+  </tr>
+  </div>
+
+    <% end %>
+  </tbody>
+</table>
+  </div>
+

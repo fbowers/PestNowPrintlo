@@ -1,0 +1,16 @@
+<h1>Editing mover</h1>
+
+<% form_for(@mover) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :MoverId %><br />
+    <%= f.text_field :MoverId %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @mover %> |
+<%= link_to 'Back', movers_path %>

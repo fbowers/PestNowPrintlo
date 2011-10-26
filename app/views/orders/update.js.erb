@@ -1,0 +1,43 @@
+
+
+
+
+//alert('UPDATEEEEE');
+
+<%#*$('#slide').slideUp();%>
+<%#*$("#spinner2").show();%>
+ <%#*var AP = $('#AP').text();%>
+ <%#*var AP = $('#Pri').text();%>
+$('.delete_post').bind('ajax:success', function() {
+		$(this).closest('tr').fadeOut();
+	});
+ 
+
+   <%#*var CustId = $('#CustId').text();%>
+  <%#*if(AP == 'true ')||(Pri >= 0){%>
+//alert('YES AutoPay');
+<%#*alert(AP +CustId);%>
+
+<%#*alert(AP +CustId);%>
+   <%#*jQuery.ajax({%>
+    <%#*type: "post",%>
+
+ <%#*data: {'Custid':CustId},%>
+// success: $("#spinner2").hide(),
+ <%#*DataType: 'script'%>
+//.success(function() { alert("second success"); })
+           <%#*});%>
+
+   <%#*}%>
+<%#*else{%>
+  <%#*alert('No AutoPay');%>
+<%#*}%>
+
+
+
+success:   window.location.href = "/coversheet";
+
+
+
+
+<%#*});%>

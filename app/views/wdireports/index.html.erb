@@ -1,0 +1,24 @@
+<h1>Wdi Reports</h1>
+
+<table>
+  <tr>
+    <th>Property Id</th>
+    <th>Wdi Report Id</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @wdireport.each do |wdin| %>
+  <tr>
+ <td><%= wdin.PropertyId %></td>
+ <td><%= wdin.WDIId %></td>
+  
+ <td><%= link_to 'Edit', edit_wdireport_path(wdin) %></td>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Wdireport', new_wdireport_path %>
