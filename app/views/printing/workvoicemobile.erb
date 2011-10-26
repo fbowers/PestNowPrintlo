@@ -1,0 +1,319 @@
+<style type="text/css">
+   @page {size: 4in 10in;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left:5px;
+  margin-right:5px;
+  padding: 0px;
+  
+  }
+
+  #invtophead{
+    FONT-SIZE: 24pt;
+    font-weight: bold;
+  text-align: right;
+  position:absolute;
+  left:0in;
+  top:0in;
+  
+}
+
+
+#invaccountinformation{
+
+  FONT-SIZE: 11pt;
+  table-layout: fixed;
+  text-align: left;
+  position:absolute;
+  left:0in;
+  height: 2.75in;
+  top: .5in;
+    width: 4in;
+     border-collapse: collapse;
+     
+}
+#invaccountinformation th {
+  text-align: left;
+    border-collapse: collapse;
+   font-weight: bold;
+   background: black;
+   color: white;
+
+}
+
+
+
+#invtransactions{FONT-SIZE: 11pt;
+  table-layout: fixed;
+  text-align: left;
+  position:absolute;
+  left:0in;
+  height: .75in;
+  top: 3.25in;
+    width: 4in;
+     border-collapse: collapse;}
+
+#invtransactions th {
+  text-align: left;
+    border-collapse: collapse;
+   font-weight: bold;
+   background: black;
+   color: white;
+
+}
+
+
+
+#workdetails {
+  position:absolute;
+  left:0in;
+  top:6.25in;
+
+}
+ 
+
+
+#woheading{
+  FONT-SIZE: 11pt;
+  FONT-weight: bold;
+    position:absolute;
+    text-align: left;
+  left:0in;
+  top:4in;
+   width: 4in;
+   font-weight: bold;
+   background: black;
+   color: white;
+}
+
+
+
+#at{
+  FONT-SIZE: 11pt;
+   position:absolute;
+  left:0in;
+  top:4.2in;
+   width:4in;
+}
+
+#temperature{
+  FONT-SIZE: 11pt;
+   position:absolute;
+   left:0in;
+  top:4.4in;
+  width:4in;
+}
+#timein{
+  FONT-SIZE: 11pt;
+   position:absolute;
+  left:0in;
+  top:4.6in;
+  width:4in;
+}
+#weather{
+ FONT-SIZE: 11pt;
+   position:absolute;
+   left:0in;
+  top:4.8in;
+ width:4in;
+}
+
+#wind{
+  FONT-SIZE: 11pt;
+   position:absolute;
+  left:0in;
+  top:5in;
+ width:4in;
+}
+
+#windspeed{
+ FONT-SIZE: 11pt;
+   position:absolute;
+   left:0in;
+  top:5.2in;
+  width:4in;
+}
+#equipment{
+  FONT-SIZE: 11pt;
+   position:absolute;
+  left:0in;
+  top:5.4in;
+  width:4in;
+}
+#targetpest{
+  FONT-SIZE: 11pt;
+   position:absolute;
+  left:0in;
+  top:5.85in;
+   width:4in;
+}
+
+
+#worknote{
+ FONT-SIZE: 11pt;
+   position:absolute;
+  left:0in;
+   text-align: left;
+  top:6.4in;
+   width:4in;
+
+}
+#chemheading{
+  FONT-SIZE: 11pt;
+  FONT-weight: bold;
+    position:absolute;
+  left:0in;
+  top:6.7in;
+     text-align: left;
+   width: 4in;
+   font-weight: bold;
+   background: black;
+   color: white;
+}
+#chem {
+  position:absolute;
+  left:0in;
+  top:7in;
+  table-layout: fixed;
+  FONT-SIZE: 10pt;
+  width:4in;
+
+}
+
+#closingcomments{
+  FONT-SIZE: 11pt;
+  font-style: italic;
+  FONT-weight: bold;
+    position:absolute;
+    text-align: center;
+  left:0in;
+  top:8.25in;
+   width:4in;
+}
+
+#invpaymentaddress{
+  FONT-SIZE: 12pt;
+    font-weight: bold;
+  text-align: center;
+  position:absolute;
+  left:0in;
+  top:9.25in;
+  width:4in;
+}
+
+
+</style>
+
+
+<div id="invtophead"> PestNow</div>
+
+
+
+
+
+
+<div id=invtoplogo></div>
+
+<div id=invbottomlogo></div>
+<div id=invaccountinformation>
+  <table>
+    <th colspan="2" width="400">Account Information</th>
+     <tr><td>Date</td><td><%= @inv.Schedule.StartTime.strftime("%m/%d/%y") %></td></tr>
+    <tr><td width="150"> Account Number </td><td><%= @inv.PropertyId %> </td></tr>
+     <tr><td>Invoice Number</td><td><%= @inv.OrderId %></td></tr>
+    <tr><td> Service Property </td><td><b><%= render :partial => 'orders/propaddress', :object => @inv, :as => :o%></b> </td></tr>
+    <tr><td> Customer Service </td><td>877.284.2466 </td></tr>
+    <tr><td> Hours of Operation </td><td>M-F 7:30-6 Sat 8-2 </td></tr>
+    <tr><td> Website Address </td><td>www.pestnow.com </td></tr>
+    <tr><td> Tax </td><td><%= number_to_currency(@taxsum) %> </td></tr>
+     <tr><td>Amount Due</td><td><%=number_to_currency(@balance)%></td></tr>
+     <tr> <td colspan="2" class="questions">Questions?/Comments?/Concerns? preeves@pestnow.com</td></tr>
+    
+    
+    
+  </table>
+</div>
+
+<div id=invtransactions>
+  <table>
+    <th colspan="4" width="400">Transactions</th>
+    <tr><td width="70"> Date </td><td width="70"> Invoice </td><td width="175"> Description </td><td width="125"> amount </td></tr>
+   
+   <% @sub.each do |x| %>
+     <tr> <td> <%= x.Order.Schedule.StartTime.strftime("%m/%d/%y") %>   </td>
+       <td> <%= x.Order.OrderId %>   </td>
+       <td> <%= x.Order.Servicecode.Description %>   </td>
+       <td> <%= number_to_currency(x.Charge)%>   pd<%= number_to_currency(x.Deposit)%> </td></tr>
+  
+  <%end%>
+  </table>
+</div>
+
+<div id=invpaymentaddress>
+  Send Payments to <br />
+  PestNow PO Box 2210 Ashburn, VA 20146
+</div>
+
+
+<div id=invad1></div>
+<div id=invad2></div>
+
+<div id="woheading" >Work Order Details</div>
+<div id="at"> <span style="color:green">Area Treated:</span>
+<% @inv.Areatreateds.each do |at| %>
+  <%=  at.name %>,
+  <%end%>
+      </div>
+ <div id="temperature"><span style="color:green"> Temperature:</span> <%= @inv.Temperature.name %></div>
+ <div id="timein"><span style="color:green"> Time In:</span> <%= @inv.TimeIn.strftime("%I:%M %p") %> </div>
+ <div id="weather"><span style="color:green">Weather:</span> <%= @inv.Weather.name %> </div>
+ <div id="wind"><span style="color:green">Wind:</span> <%= @inv.Wind.name %> </div>
+ <div id="windspeed"><span style="color:green">Wind Speed:</span> <%= @inv.Windspeed.name %> </div>
+ 
+
+ <div id="equipment"><span style="color:green">Application Equipment:</span>
+  <% @inv.Equipments.each do |e| %>
+  <%=  e.name %>,
+  <%end%> </div>
+  <div id="targetpest"><span style="color:green">Target Pests:</span>
+  <% @inv.Pests.each do |p| %>
+  <%=  p.name %>,
+  <%end%></div>
+
+
+
+
+<div id="chemheading" >Chemicals Used</div>
+<div id="chem">
+<table class="wc">
+
+   <thead>
+     <tr> <td width="150">Product Name</td>
+  <td width="50">%</td>
+  <td width="75">EPA #</td>
+  <td width="100">Qty</td></tr>
+
+   </thead>
+   <% @inv.Orderchemicals.each do |c| %>
+   <tr><td> <%=  c.Chemical.name %> </td>
+  <td><%=  c.Chemical.Percentage%></td>
+ <td><%=  c.Chemical.EPANumber%></td>
+<td><%= c.Quantity%> <%= c.Chemical.Measurement%></td></tr>
+  <%end%>
+
+  </table>
+
+
+</div>
+<div id="worknote"><span style="color:green">Work Order Note:</span> <%= @inv.WorkOrderNote%> </div>
+  
+
+    <div id="closingcomments"> Thanks for your business. It was a pleasure servicing you.
+      <% @inv.Checkcomments.each do |cc| %>
+     <%=  cc.name %>.
+     <%end%>
+      <% @inv.Userledgers.each do |u| %>
+      <%=  u.User.FirstName%>
+       <%=  u.User.CertificationNumber%>
+<%end%>
+    </div>
