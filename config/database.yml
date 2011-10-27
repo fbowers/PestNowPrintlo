@@ -1,42 +1,33 @@
 development:
-#    adapter: sqlserver
-#    host: sql2009
-#    database: swtest
-#    username: fbowers
-#    password: 3769
-  adapter: sqlserver
-  dsn: Hope1
-  mode: odbc
-  database: swtest
-  username:
-  password:
+    adapter: sqlserver
+    host: '192.168.20.18'
+    database: 'swtest'
+    username: 'fbowers'
+    password: '3769'
 
-# database: SuperiorWebWarning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-#    adapter: sqlserver
-#    host: sql2009
-#    database: swtest
-#    username: fbowers
-#    password: 3769
-  adapter: sqlserver
-  dsn: Hope1
-  mode: odbc
-  database: swtest
-  username:
-  password:
+    test:
+    adapter: sqlserver
+    host: '192.168.20.18'
+    database: 'swtest'
+    username: 'fbowers'
+    password: '3769'
+#  adapter: sqlserver
+#  dsn: Hope1
+#  mode: odbc
+#  database: swtest
+#  username:
+#  password:
 
 production:
-#    adapter: sqlserver
-#    host: sql2009
-#    database: swtest
-#    username: fbowers
-#    password: 3769
-  adapter: sqlserver
-  dsn: Hope1
-  mode: odbc
-  database: swtest
-  username:
-  password:
+    adapter: sqlserver
+    host: '205.232.183.148'
+    database: 'swtest'
+    username: 'fbowers'
+    password: '3769'
+#  adapter: sqlserver
+#  dsn: Hope1
+#  mode: odbc
+#  database: swtest
+#  username:
+#  password:
 #database: swtest

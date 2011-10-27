@@ -3,5 +3,5 @@ class HorizontalRadioInput < Formtastic::Inputs::RadioInput
     super.merge("data-type" => "horizontal")
   end
 end
-d
+
  
