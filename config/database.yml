@@ -20,7 +20,7 @@ development:
 
 production:
     adapter: sqlserver
-    host: '205.232.183.148'
+    host: 'http://205.232.183.148'
     database: 'swtest'
     username: 'fbowers'
     password: '3769'
