@@ -36,14 +36,42 @@ def workvoice_email(order)
       :subject => "Your WorkOrder")
 end
 
-def new_project(project, followers)
-#   @followers = ["fbowers@pestnow.com" "frank.bowers@gmail.com" "fbowers@pestnow.com" "info@pestnow.com"]
-  #@project.owner.followers.all
+  def workvoicebulk_email(f)
+@chem = Orderchemical.where(:OrderId => f.OrderId)
+@order = Order.find(f.OrderId)
+#@oid = order.find(params[:id])
+#@inv = f
 
-    @u = User.find(f.follower)
-    mail(:to => @u.email,
-         :from => '"frank the tank" <fbowers@pestnow.com>',
-         :subject => "#{project.owner.name} created a new project")
+@balance = @order.Customerledgerorders.sum("Charge")+@order.Customerledgerorders.sum("TaxCharge")- @order.Customerledgerorders.sum("Deposit")
+@taxsum = @order.Customerledgerorders.sum("TaxCharge")
+    @sub = @order.Customerledgerorders.includes(:Order => [:Servicecode, :Schedule]).limit(10)
+#@sub = f.includes(:Order => [:Servicecode, :Schedule]).limit(10)
+ @url = "http://localhost:3000/printing/workvoice/1320504"
+ @url2 = "http://localhost:3000/printing/workvoice/"
+  mail(  :to => f.Email,
+            :from => 'info@pestnow.com',
+            :subject => "this is a test email. you can delete" )
+end
+
+def big(f)
+ # @order = order
+ # @followers = ['fbowers@pestnow.com', 'tbowers@pestnow.com']
+ #  @followers = f
+     #"fbowers@pestnow.com"
+  #@project.owner.followers.all
+  @Email = f.Email
+  @PropertyId =f.PropertyId
+   # @u = User.find(f.follower)
+ #   mail(:to => @followers,
+  #       :from => '"frank bowers" <fbowers@pestnow.com>',
+   #      :subject => "this is a test email. you can delete")
+
+ #  @followers.each do |f|
+       # @u = User.find(f.follower)
+        mail(  :to => f.Email,
+            :from => 'info@pestnow.com',
+            :subject => "this is a test email. you can delete" )
+   #    end
 end
 
 

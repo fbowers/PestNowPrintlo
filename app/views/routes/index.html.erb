@@ -1,26 +1,64 @@
+
+<script type="text/javascript">
+$(document).ready(function (){
+    $(function () {
+  $(window.applicationCache).bind('error', function () {
+    alert('There was an error when loading the cache manifest.');
+  });
+
+   //  $("#flash_notice").hide();
+ //  $.retrieveJSON("/routes.json", function(data) {
+ //      alert('nopayment');
+ //      $("#routes").html($("#route_template").tmpl(data));
+ //   });
+  //  jQuery.retrieveJSON("/routes.json", {data: "toSend"}, function(json, status, data) {
+  // json will be the same whether or not the cache was hit
+  // status will be either "success" or "cached"
+//})
+
+//location.reload();
+//alert('YourStarted!');
+
+
+
+});
+
+    </script>
+
 <h1>Listing routes</h1>
 
-<table>
-  <tr>
-    <th>Routeid</th>
-    <th>RouteName</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<script type="text/html" id="route_template">
+  <li>${route.RouteId}
+     ${route.RouteName}
+     </li>
 
-<% @route.each do |route| %>
-  <tr>
-    <td><%= route.RouteId %></td>
-    <td><%= route.RouteName %></td>
-    <td><%= link_to 'Show', route %></td>
-    <td><%= link_to 'Edit', edit_route_path(route) %></td>
-    <td><%= link_to 'Destroy', route, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-  
-<% end %>
-</table>
+</script>
+<ol id="routes">
+  <li><em>Loading items...</em></li>
+</ol>
+ </script>
 
-<br />
+<!--<table>-->
+  <!--<tr>-->
+    <!--<th>Routeid</th>-->
+    <!--<th>RouteName</th>-->
+    <!--<th></th>-->
+    <!--<th></th>-->
+    <!--<th></th>-->
+  <!--</tr>-->
 
-<%= link_to 'New Route', new_route_path %>
+<!--<% @route.each do |route| %>-->
+  <!--<tr>-->
+    <!--<td><%= route.RouteId %></td>-->
+    <!--<td><%= route.RouteName %></td>-->
+    <!--<td><%= link_to 'Show', route %></td>-->
+    <!--<td><%= link_to 'Edit', edit_route_path(route) %></td>-->
+    <!--<td><%= link_to 'Destroy', route, :confirm => 'Are you sure?', :method => :delete %></td>-->
+  <!--</tr>-->
+  <!---->
+<!--<% end %>-->
+<!--</table>-->
+
+<!--<br />-->
+
+<!--<%= link_to 'New Route', new_route_path %>-->

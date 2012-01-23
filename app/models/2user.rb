@@ -8,11 +8,11 @@ class User < ActiveRecord::Base
   has_many :Contracts, :foreign_key => :SoldBy
 
  
-acts_as_authentic do |c|
-    c.login_field = Username
-    c.crypted_password_field = Pass
-   # config.crypto_provider = YourCryptoProvider
-     end
+#acts_as_authentic do |c|
+#    c.login_field = Username
+#    c.crypted_password_field = Pass
+#
+#     end
 
     #
     #

@@ -1,6 +1,6 @@
 class Pest < ActiveRecord::Base
      set_table_name "railspest"
-  set_primary_key "PestId"
+  #set_primary_key "PestId"
 
   #has_one :Contractpest,  :foreign_key => :PestId
   #has_one :Contract, :through => :Contractpest

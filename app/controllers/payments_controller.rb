@@ -86,7 +86,7 @@ def autopay
   end
   def payment_process
 amount_to_charge = 10 #ten US dollars
-ActiveMerchant::Billing::Base.mode = :test
+ActiveMerchant::Billing::Base.mode = :testbulkemail
 #ActiveMerchant::Billing::CreditCard.require_verification_value = :false
 
 creditcard = ActiveMerchant::Billing::CreditCard.new(

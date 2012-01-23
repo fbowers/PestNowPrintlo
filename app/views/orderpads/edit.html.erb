@@ -3,9 +3,12 @@
 <style type="text/css">
  
 
+td, th
+{
+text-align:center;
+}
   #the_table {
-       FONT-SIZE: 10pt;
-       color: black;
+        color: black;
   text-align: center;
   
   }
@@ -21,7 +24,7 @@
   }
   #orderinfo {
        FONT-SIZE: 10pt;
-        top:15%;
+        top:10%;
          position:absolute;
      left:75%;
   
@@ -31,8 +34,8 @@
 #hans {
 
         position: absolute;
-        left: 650px;
-        top: 200px;
+        left: 50%;
+        top: 5%;
         width: 300px;
         padding: 0;
 }
@@ -40,10 +43,11 @@
 #spinner {
   display:none;
   position: absolute;
-        left: 50%;
+        left: 40%;
         top: 520px;
         padding: 0;
 }
+
 
 #hide {
   display:none;
@@ -65,6 +69,13 @@ color: red;
 background:yellow;
 }
 
+ #op{
+     display:none;
+}
+
+ #continuetime{
+     display:none;
+}
 
  </style>
 
@@ -76,20 +87,39 @@ background:yellow;
 $(document).ready(function(){
   
 var rangeDemoConv = new AnyTime.Converter();
- $('#tin').AnyTime_picker();
+ $('#tin').AnyTime_picker(
+         { labelTitle: "Hour",
+      labelHour: "Hour", labelMinute: "Minute" }
+          );
+
+
 
 $("#rangeDemoToday").click( function(e) {
-      $("#tin").val(rangeDemoConv.format(new Date())).change(); } );
+      $("#tin").val(rangeDemoConv.format(new Date())).change();
 
+} );
+   $('#tin').click(function(){
+ $('#timehide').hide();
+ $('#P').hide();
+ $('#continuetime').show();
+   })
+
+     $('#continuetime').click(function(){
+ $('#timehide').show();
+      $('#P').show();
+          $('#continuetime').hide();
+   })
 
  $("#dpaytype").change(function () {
          var type = $("#paytype").val();
+      $('#op').show();
             if (type== 'CreditCard'){
   //    alert(type);
        //$('#dcc').hide();
       $('#dcheck').hide();
       $('#dcc').slideDown("slow");
         $('#slide').hide();
+
 
 }
   else if
@@ -115,6 +145,7 @@ $("#rangeDemoToday").click( function(e) {
   $('#dcc').hide();
   $('#dcheck').hide();
    $('#slide').slideDown("slow");
+                $('#op').hide();
 
     <%#*$('#dcc').hide();%>
       <%#*$('#dcheck').slideDown("slow");%>
@@ -142,40 +173,15 @@ $('#autopay').click(function(){
     type: "post",
             url: '/orderpads/apcard/'+ <%= @orderpad.OrderId%> ,
  data: {'custid':custid,'amount':amount,'cardtype':cardtype,'ccnumber':ccnumber,'expmonth':expmonth, 'expyear':expyear},
- DataType: 'script'
+ DataType: 'script',
+       success: $('#dautopay').slideUp()
 
-           })
+           });
+           $("#spinner2").show();
 
-           <%#*$('#spinner')%>
-   <%#*.hide()  // hide it initially%>
-   <%#*.ajaxStart(function() {%>
-     <%#*$(this).show();    })%>
-   <%#*.ajaxStop(function() {%>
-     <%#*$(this).hide();%>
-           $('#bautopay').hide();
-           <%#*disablePopup2();%>
-<%#*centerPopup();%>
-   <%#*loadPopup();%>
-$('#slide').slideDown("slow");
-  
-   //$("#spinner2").show(1200);
- //disablePopup2();
- //    centerPopup();
- //  loadPopup();
+   });
 
 
-//else{
- // alert('No AutoPay');
-//}
- });
-
-<%#*$("#continue").click(function(){%>
-<%#*disablePopup2();%>
-<%#*centerPopup();%>
-   <%#*loadPopup();%>
-
-
-<%#*});%>
 
 $('#ccpayment').click(function(){
 
@@ -214,12 +220,10 @@ else
               url: '/orderpads/apcard/'+ <%= @orderpad.OrderId%> ,
  data: {'custid':custid,'amount':amount,'cardtype':cardtype,'ccnumber':ccnumber,'expmonth':expmonth, 'expyear':expyear},
  DataType: 'script'
-//complete: alert('Success')
+
            });
              $("#spinner2").show();
-   //      disablePopup2();
-   //  centerPopup();
-  // loadPopup();
+
          
    });
 
@@ -248,11 +252,7 @@ else
 
            });
            $("#spinner2").show();
- //        disablePopup2();
- //  centerPopup();
- //  loadPopup();
-   
-  //    $('#dcheck').slideUp();
+
    });
 
  $("#continue").click(function(){
@@ -268,26 +268,6 @@ $("#sub2").click(function(){
 $("#spinner2").show();
 
 
- <%#*var AP = $('#AP').text();%>
-   <%#*var CustId = $('#CustId').text();%>
-  <%#*if(AP == 'true '){%>
-
-<%#*alert(AP +CustId);%>
-
-   <%#*jQuery.ajax({%>
-    <%#*type: "post",%>
-              
- <%#*data: {'Custid':CustId},%>
- <%#*success: $("#spinner2").hide(),%>
- <%#*DataType: 'script'%>
-<%#*//.success(function() { alert("second success"); })%>
-           <%#*});%>
-
-   <%#*}%>
-<%#*else{%>
-  <%#*alert('No AutoPay');%>
-<%#*}%>
-      <%#*window.location.href = "/coversheet";%>
  });
 
 
@@ -406,9 +386,10 @@ loadPopup();
 //loadPopup();
 
 var AP = $('#AP').text();
+var Price =  $("input#orderprice").val();
 
-  if(AP == 'true '){
-  //  alert('true')
+  if(AP == 'true ' && Price != 0.0){
+//    alert('true'+ Price)
 
  $('#notautopay').hide();
  $('#dautopay').show();
@@ -423,87 +404,6 @@ var AP = $('#AP').text();
  
 });
 
-
- <%#*function openpop() {%>
-       <%#*var $fields3 = $('input[name="checkstatus"]:checked');%>
-    <%#*if%>
-<%#*(!$fields3.length) {%>
-<%#*alert('You must select a status!');%>
-  <%#*return false;%>
-   <%#*}%>
-<%#*var $fields9 = $('input[name="order[WeatherId]"]:checked');%>
-<%#*var $fields6 = $('input[name="order[WindId]"]:checked');%>
-<%#*var $fields7 = $('input[name="order[WindSpeedId]"]:checked');%>
-<%#*var $fields1 = $('input[name="order[Checkcomment_ids][]"]:checked');%>
-<%#*var $fields2 = $('input[name="order[Equipment_ids][]"]:checked');%>
-<%#*var $fields8 = $('input[name="order[Pest_ids][]"]:checked');%>
-<%#*var $fields4 = $('input[name="order[TemperatureId]"]:checked');%>
-<%#*var $fields5 = $('input[name="order[Areatreated_ids][]"]:checked');%>
-
-   <%#*if ($('input[name="checkstatus"]:checked').val()== 2 || $('input[name="checkstatus"]:checked').val()== 3 || $('input[name="checkstatus"]:checked').val()== 4){%>
- <%#*$( 'html, body' ).animate( { scrollTop: 0 }, 0 );%>
- <%#*centerPopup();%>
-
-<%#*loadPopup();%>
-  <%#*return false; // The form will *not* submit%>
-         <%#*}%>
-<%#*else if%>
-<%#*(!$fields5.length) {%>
-<%#*alert('You must fill area treated!');%>
-<%#*return false; // The form will *not* submit%>
-         <%#*}%>
-  <%#*else if%>
-<%#*(!$fields1.length) {%>
-<%#*alert('You must fill comments!');%>
-<%#*return false; // The form will *not* submit%>
-         <%#*}%>
-         <%#*else if%>
-<%#*(!$fields4.length) {%>
-<%#*alert('You must fill area temperature!');%>
-<%#*return false; // The form will *not* submit%>
-         <%#*}%>
-<%#*else if (!$fields9.length ) {%>
-<%#*alert('You must check Weather!');%>
-
-<%#*return false; // The form will *not* submit%>
-   <%#*}%>
-
- <%#*else if (!$fields6.length ) {%>
-<%#*alert('You must check Wind Direction!');%>
-
-<%#*return false; // The form will *not* submit%>
-   <%#*}%>
-
-   <%#*else if (!$fields7.length ) {%>
-<%#*alert('You must check Wind Speed!');%>
-
-<%#*return false; // The form will *not* submit%>
-   <%#*}%>
-<%#*else if%>
-<%#*(!$fields2.length) {%>
-<%#*alert('You must check Equipmet!');%>
-
-<%#*return false; // The form will *not* submit%>
-         <%#*}%>
-         <%#*else if%>
-<%#*(!$fields8.length) {%>
-<%#*alert('You must check Target Pests!');%>
-<%#*return false; // The form will *not* submit%>
-       <%#*}%>
-<%#*else if%>
-<%#*($('#hans tr').length <= 0) {%>
-<%#*alert('You need to select chemical!');%>
-<%#*return false; // The form will *not* submit%>
-         <%#*}%>
-  <%#*else%>
-    <%#*$( 'html, body' ).animate( { scrollTop: 0 }, 0 );%>
-          <%#*centerPopup();%>
-<%#*loadPopup();%>
-     <%#*}%>
-    
-
-       //CLOSING POPUP
-//Click the x event!
 
 $("#popupContactClose2").click(function(){
 disablePopup2();
@@ -551,12 +451,7 @@ $(".remote-delete").css({
       var status = $('input[name="checkstatus"]:checked +label').text();
       var TimeIn = $('#tin').val();
       
-//var comments = $('#order_Checkcomment_ids option:selected').text();
-//var pests = $('#order_Pest_ids option:selected').text();
-//var $fields1 = $('input[name="order[Checkcomment_ids]"]:checked');
-//var comments = [];
-    // $('#order_Checkcomment_ids[]:selected').each(function(i, selected){
-      //  $('#order_Checkcomment_ids option:selected').each(function(i, selected){
+
 
       var comments =  [];
       $('input[name="order[Checkcomment_ids][]"]:checked +label').each(function(i, selected){
@@ -636,48 +531,81 @@ $("#sub1").click(displayVals);
   $("#Push").click(displayVals);
   displayVals();
 
- // window.location.reload()
- //$(self).checkboxradio('refresh', true);
- // $("input[type='radio']").checkboxradio("refresh", true);
- // });
- 
-   $('.test_email').live('click', function() {
-      var quanfield = $(this).closest("tr").find(".quanclass");
-      var chemidfield =  $(this).closest("tr").find(".chemidclass");
 
-   
-   var ordidfield = $(this).closest("tr").find(".ordidclass");
-   
-   
-       data = "quan=" + quanfield.val() + "&oid=" + ordidfield.val();
-    
-      $.ajax({
-       type: 'post',
-    
-       url: '/orderpads/addchem/' + chemidfield.val() ,
-       dataType: 'script',
-       data: data
-     });
-     return false;});
-
-   $('#spinner')
-   .hide()  // hide it initially
-   .ajaxStart(function() {
-     $(this).show();    })
-   .ajaxStop(function() {
-     $(this).hide();
+  //  $("#Push").click(function()
 
 
-   });
+
+
+//     $('#new_item').submit(function (e) {
+//  var pendingItems = $.parseJSON(localStorage["pendingItems"]);
+//  var item = {"data":$(this).serialize(), "oc":{"orderchemical":$("#Quantity").val()}};
+//  $("#oc_template").tmpl(item).appendTo("#oc");
+//  pendingItems.push(item);
+//  localStorage["pendingItems"] = JSON.stringify(pendingItems);
+//  $("#Quantity").val("");
+//  e.preventDefault();
+//});
+
+
+
+
+
+//   $('.test_email').live('click', function() {
+//      var quanfield = $(this).closest("tr").find(".quanclass");
+//      var chemidfield =  $(this).closest("tr").find(".chemidclass");
+//
+//
+//   var ordidfield = $(this).closest("tr").find(".ordidclass");
+//
+//
+//
+//
+//
+//
+//
+//       data = "quan=" + quanfield.val() + "&oid=" + ordidfield.val();
+//
+//      $.ajax({
+//       type: 'post',
+//
+//       url: '/orderpads/addchem/' + chemidfield.val() ,
+//       dataType: 'script',
+//       data: data
+//     });
+//     return false;});
+//
+//   $('#spinner')
+//   .hide()  // hide it initially
+//   .ajaxStart(function() {
+//     $(this).show();    })
+//   .ajaxStop(function() {
+//     $(this).hide();
+//
+//
+//   });
+
+
+//    $("#del").live('click', function()
+//    {
+//    //    alert('I am clicked');
+//         $.post(this.href, { _method: 'delete' }, null, "script");
+//
+//    var row = $(this).closest("tr").get(0);
+//    $(row).hide();
+//
+//    return false;
+//    });
+
+
 
 
 
 });
 
-
 </script>
 
-
+<input id="oid" name="oid" type="text"  value= <%= @orderpad.OrderId%> />
 <td><img alt="spinner" id="spinner" src="/images/busy.gif"  /></td>
 
 
@@ -696,7 +624,30 @@ $("#sub1").click(displayVals);
   <% end %>
 <% end %>
 
-   
+ <button id="showBtn2">Send Data</button>
+<button id="Po">Send Order Info</button>
+  <button type="button" id="clearLog">Clear Chemicals</button>
+ <script type="text/html" id="oc_template">
+   <table>
+  <tr>
+    <th>Qty</td>
+    <th>Meas</td>
+    <th>Name</td>
+    <th>%</td>
+    <th>add</td>
+  </tr>
+
+  <tr>
+    <td>${orderchemical.Quantity}</td>
+    <td> ${orderchemical.ChemId}</td>
+    <td> ${orderchemical.ChemId}</td>
+    </tr>
+</table>
+
+</script>
+<ol id="oc">
+   <li><em>Loading items...</em></li>
+</ol>
 
 
 
@@ -704,7 +655,7 @@ $("#sub1").click(displayVals);
 
 
 <div id="orderinfo">
- OrderId-<%=@orderpad.OrderId%>  PropertyId-<%=@orderpad.PropertyId%> <div id ="Pri"> Price<%=  number_to_currency(@orderpad.Price)%> </div>
+ OrderId-<%=@orderpad.OrderId%>  PropertyId-<%=@orderpad.PropertyId%> <div id ="Pri"> Price<%=  number_to_currency(@orderpad.Price)%> Tax Rate<%=  number_to_percentage(@taxrate)%></div>
  Street-<%=@orderpad.Property.Address.Street%> <div id ="AP" style="display: none" ><%=@orderpad.Property.Customer.AutoPay%> </div>
 <div id ="CustId" style="display: none"   ><%= @orderpad.Property.CustomerId %></div>
 <div id ="anumber" style="display: none" ><%= @orderpad.Property.Customer.CCNumber %></div>
@@ -739,7 +690,7 @@ $("#sub1").click(displayVals);
 
   <thead>
     <tr>
-<th>QTY</th><th>Meas</th><th>Name</th><th>%</th>
+<th>QTY</th><th>Meas</th><th>Name</th><th>%</th> <th>add</th>
     </tr>
   </thead>
   <tbody>
@@ -749,6 +700,8 @@ $("#sub1").click(displayVals);
 <td><%= ch.Measurement      %></td>
 <td><%= ch.name %></td>
  <td ><%= ch.Percentage %></td>
+          <!--<td> <div><%= button_to "Pending", :class => "test_pending"  %> </div></td>-->
+    <td>     <div id = 'Pe'>  <input type="button" id="Pes" value="Add" />    </div>  </td>
          <td> <div><%= button_to "Add", {:action => :addchem, :id => ch}, :remote => true, :class => "test_email"  %> </div></td>
    <td> <%= hidden_field_tag 'chemidfield', ch.id, :style => "width: 150px;", :class => "chemidclass" %></td>
    <td><%= hidden_field_tag 'ordidfield', @orderpad.OrderId, :class => "ordidclass"%></td>
@@ -760,13 +713,13 @@ $("#sub1").click(displayVals);
 
 
   <%= semantic_form_for @orderpad, :id=> 'form', :remote => true, :class=>:form, :html => {:id => 'main_input' } do |form| %>
-<legend>Time In:</legend>
-<%= text_field_tag 'tin' %> <input type="button" id="rangeDemoToday" value="Time In Now" />
+     <div id="continuetime" ><input type="button" id="continuetime" value="Continue" ></div>
+        <div id=range><legend>Time In:</legend>  <%= text_field_tag 'tin' %> <input type="button" id="rangeDemoToday" value="Time In Now" />  </div>
  <%#= form.inputs :Email, :for => :Customer, :name => "Customer" %>
 <%#= form.inputs :Chemicals %>
  <%#= form.inputs :name => "Author", :for => :OrderChemical do |af| %>
       <%#= af.input :Quantity %>
-      
+<div id='timehide' >
     <%# end %>
 <div data-role="fieldcontain">
     <fieldset data-role="controlgroup" data-type="horizontal" >
@@ -787,7 +740,7 @@ $("#sub1").click(displayVals);
          	<label for="radio-choice-5">Could Not Complete</label>
      </fieldset>
 </div>
-  
+
 <div data-role="fieldcontain">
     <fieldset data-role="controlgroup" data-type="horizontal">
     	<legend>Area Treated:</legend>
@@ -862,7 +815,7 @@ $("#sub1").click(displayVals);
 </div>
 <div data-role="fieldcontain">
     <fieldset data-role="controlgroup" data-type="horizontal">
-    	<legend>Weather:</legend>
+    	<legend>Wind Speed:</legend>
                 <input type="radio" name="order[WindSpeedId]" id="radio-choice-1" value="1"  />
          	<label for="radio-choice-1">Speed 0-5</label>
 
@@ -933,8 +886,8 @@ $("#sub1").click(displayVals);
 
     <%= form.input :WorkOrderNote, :label => "Work Order Note (Public)" %>
   <%= form.input :CheckInNote, :label => "Check In Note (Private)" %>
-    <%= form.inputs :Email, :for => :Customer, :name => "Customer" %>
- 
+ <%#   <%= form.inputs :Email, :for => :Customer, :name => "Customer" %>
+  </div>
 <div class=Override>
 <div id="popupContact2" style="display: none">
   <div id="flash_notice" >  </div>
@@ -968,7 +921,7 @@ $("#sub1").click(displayVals);
   
 
 
- <input type="button" id="Push" value="Payment/Continue" />
+<div id = 'P'>  <input type="button" id="Push" value="Payment/Continue" />    </div>
 <div id ="after" class="starthidden">
 
 
@@ -991,6 +944,7 @@ $("#sub1").click(displayVals);
 <div id="details"> </div>
 
 <div id="continue"><input type="button" id="continue" value="Payment/Check-In" /></div>
+
 <td><img alt="spinner2" id="spinner2" src="/images/busy.gif" style="display: none"  /></td>
 
 </div>

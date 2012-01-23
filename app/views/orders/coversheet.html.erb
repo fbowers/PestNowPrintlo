@@ -1,5 +1,5 @@
 <style type="text/css">
- 
+
   h5{
     FONT-SIZE: 10pt;
     COLOR: black;
@@ -14,11 +14,9 @@
 
        }
      table {
-          
+
   width:100%;
     border-collapse: collapse
-
-
 
 }
 
@@ -29,7 +27,12 @@ td.solid { border: solid 1px black }
 
 
  <script type="text/javascript">
-$(document).ready(function (){
+
+   $(document).ready(function (){
+
+
+
+
   $("tr:contains('not check')").css('background', 'yellow');
     $("tr:contains('Could Not Complete')").css('background', 'yellow');
 
@@ -41,19 +44,22 @@ $("#send").click(function () {
     });
 
 
-//location.reload();
-//alert('YourStarted!');
-
-
 });
 
 
 
 </script>
-<button id="send">choose other date</button>
 
 
-<div id="otherdate" style="display: none"">
+<!--<button id="send">choose other date</button>-->
+
+
+      <%=  button_to 'Test Label', :controller => "printing", :action => "stest" %>
+
+<button id="showBtn2">Send Data</button>
+
+
+<div id="otherdate" style="display: none">
 <%= form_tag("/coversheet", :method => "get") do %>
   <%= label_tag(:startdate, "New Date:") %>
   <%= text_field_tag(:startdate) %>
@@ -64,23 +70,27 @@ $("#send").click(function () {
   <table>
 
 
- Logged In User: <%=current_user.login%> <%= link_to 'Map', :controller => "orderpads", :action => "map" %> 
+ Logged In User: <%=current_user.login%>
+ <!--<%= link_to 'Map', :controller => "orderpads", :action => "map" %><br/>-->
 
     <tr> <td COLSPAN=13 ALIGN=right> <h5>Schedule Cover Sheet </h5></td></tr>
 
-    <tr> <td  COLSPAN=4  ALIGN=left> <h5><%= h @hope.RouteName%> </h5></td> </tr>
-  
+       <tr> <td  COLSPAN=4  ALIGN=left> <h5><%= h @hope.RouteName%> </h5></td> </tr>
+
 <tr> <td  COLSPAN=7 ALIGN=left> <h5><%= @count %> Orders Today for <%= number_to_currency(@sum) %> <br />
-    
+
     </h5> </td></tr>
 
-   
- 
+
+
+
+
+
+
+
  <tr>
    <td >P-ID</td>
     <td>O-ID</td>
-    <td>AT</td>
-    <td>EX</td>
     <td>In Time</td>
     <td>Out Time</td>
     <td>Address</td>
@@ -89,51 +99,40 @@ $("#send").click(function () {
     <td>Notes</td>
     <td>Status</td>
     <td>Result</td>
-    
-    
+
+
  </tr>
 
 
 		 <%  @sched.each do |b| %>
    <tr>
-  
+
 
   <td class ="solid"><%=h b.PropertyId %></td>
  <td class ="solid"><%=link_to b.OrderId, order_path(b) %></td>
- <td class ="solid"><%= "AT"  if b.Schedule.Anytime == true %></td>
- <td class ="solid"><%= "Exact" if b.Schedule.Exact == true %></td>
- <td class ="solid"><%=h b.Schedule.StartTime.strftime("%I:%M %p") if b.Schedule.Anytime == false %></td>
- <td class ="solid"><%=h b.Schedule.EndTime.strftime("%I:%M %p") if b.Schedule.Anytime == false %></td>
- <td class ="solid"><%=h b.Property.Address.StreetNumber%>
-    <%=h b.Property.Address.Direction %>
-    <%=h b.Property.Address.Street %>
-    <%=h b.Property.Address.UnitNumber %>
-    <%=h b.Property.Address.City %>,
-    <%=h b.Property.Address.StateId %>
-    <%=h b.Property.Address.ZipCodeId %></td>
- <td class ="solid"><%=h b.Servicecode.Code %></td>
- <td class ="solid"><%= number_to_currency(b.Price) %></td>  
+  <td class ="solid"> <%if b.Anytime == true%> <%="AT"%> <%else%> <%=h b.StartTime.strftime("%I:%M %p") %> <%end%></td>
+     <td class ="solid"> <%if b.Exact == true%> <%="EX"%> <%else if b.Anytime == true%> <%="AT"%> <%else%> <%=h b.EndTime.strftime("%I:%M %p") %> <%end%> <%end%></td>
+ <td class ="solid"><%=h b.StreetNumber%>
+    <%=h b.Direction %>
+    <%=h b.Street %>
+    <%=h b.UnitNumber %>
+    <%=h b.City %>,
+    <%=h b.StateId %>
+    <%=h b.ZipCodeId %></td>
+ <td class ="solid"><%=h b.Code %></td>
+ <td class ="solid"><%= number_to_currency(b.Price) %></td>
  <td class ="solid" WIDTH="10%"><%=h b.SpecialInstructions %></td>
- <td class ="solid"><%=h b.Orderstatus.Description %></td>
- <td class ="solid"> <%if b.CheckInResultId.nil? %> <%="not check"%> <%else%> <%=h b.Checkinresult.name %> <%end%></td>
-  <td class ="solid"><%if b.CheckInResultId.nil? %> <%= link_to 'checkin', edit_orderpad_path(b), "data-role" => "button" %> <%else%> <%=  button_to'WorkOrder', :controller => "printing", :action => "workvoice", :id =>b %><%end%></td>
- <td class ="solid"> <%if b.CheckInResultId != 1 and 5 %> <%="not check"%> <%else%> <%=  button_to'send', :controller => "printing", :action => "sendfile", :id =>b.OrderId %> <%end%></td>
-   <td class ="solid"><%=h b.Customer.AutoPay %></td>
+ <td class ="solid"><%=h b.Description %></td>
+ <td class ="solid"> <%if b.CheckInResultId.nil? %> <%="not check"%> <%else%> <%=h b.Result %> <%end%></td>
+  <td class ="solid"><%if b.CheckInResultId.nil? %> <%= link_to 'checkin', edit_orderpad_path(b), "data-role" => "button" %> <%else%> <%=  button_to'WorkOrder', :controller => "printing", :action => "workvoice", :id =>b, :pid => b.PropertyId %><%end%></td>
+     <td class ="solid"><%=  button_to'WorkOrder', :controller => "printing", :action => "workvoice", :id =>b, :pid => b.PropertyId %></td>
 
-
-
-
-
-
-
-
-
-
+     <td class ="solid"> <%if b.CheckInResultId != 1 and 5 %> <%="not check"%> <%else%> <%=  button_to'send', :controller => "printing", :action => "sendfile2", :id =>b.OrderId %> <%end%></td>
+      <td class ="solid"><%=h b.AutoPay %></td>
 
  </tr>
 
 <%end%>
-
 
      </table>
 

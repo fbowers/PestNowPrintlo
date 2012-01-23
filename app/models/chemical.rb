@@ -6,7 +6,7 @@ class Chemical< ActiveRecord::Base
  
   has_many :Orders, :foreign_key => :ChemicalId
    has_many :Orderchemicals, :foreign_key => :ChemId
-   accepts_nested_attributes_for :Orderchemicals
+#   accepts_nested_attributes_for :Orderchemicals
 
 
   

@@ -17,11 +17,13 @@ belongs_to :Owner, :foreign_key => :BillingCustomerId
 belongs_to :Orderstatus, :foreign_key => :OrderStatusId
  belongs_to :Rsettlement, :foreign_key => :SettlementCompanyId
  belongs_to :Ragent, :foreign_key => :AgentId
-has_many :Contracts, :foreign_key => :OriginatingOrderId
+#has_many :Contracts, :foreign_key => :OriginatingOrderId
+   has_one :Contract, :foreign_key => :OriginatingOrderId
 
 has_many :WDIs, :foreign_key => :OriginatingOrderId
   belongs_to :Warranty, :foreign_key => :WarrantyId
    has_many :Customerledgerorders, :foreign_key => :OrderId
+   has_many :Clos, :foreign_key => :OrderId
   has_many :Customerledgers,  :through => :Customerledgerorders
 has_many :Userledgers, :foreign_key => :OrderId
   has_many :Orderchecklistitems, :foreign_key => :OrderId
@@ -32,6 +34,7 @@ belongs_to :Usercommissionrate, :foreign_key => :ServiceCodeId
 belongs_to :Usercommissionrate, :foreign_key => :SoldBy
 
   has_many :Orderchemicals, :foreign_key => :OrderId
+   # accepts_nested_attributes_for :Orderchemicals
   has_many :Chemicals,  :through => :Orderchemicals
 
 

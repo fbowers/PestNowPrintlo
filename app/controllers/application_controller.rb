@@ -1,4 +1,20 @@
 class ApplicationController < ActionController::Base
+
+
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+   rescue_from ActiveRecord::StatementInvalid, :with => :record_not_found
+
+
+
+  private
+
+  def record_not_found
+   # render :text => "404 Not Found", :status => 404
+  #   flash[:error] = "You have entered the wrong information. Please make sure it is correct."
+     flash[:notice] ="You have entered the wrong information. Please make sure it is correct."
+
+    redirect_to :back
+  end
 #   protect_from_forgery
 #
 #  private

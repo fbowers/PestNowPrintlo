@@ -18,13 +18,13 @@
 </div>
   </div>
 
+ <div id=op>
 <input id="orderprice" name="orderprice" type="text" style="display: none" value= <%= @orderpad.Price%> />
 <div data-role="fieldcontain">
     <label for="amount">Amount:</label>
     <input type="text" name="amount" id="amount" value=""  />
 </div>
-
-
+   </div>
 <div id="dcheck" style="display: none">
 <div data-role="fieldcontain">
     <label for="check">Check Number:</label>
@@ -38,8 +38,8 @@
 	<label for="cardtype" class="select">Card Type:</label>
 	<select name="cardtype" id="cardtype">
           <option data-placeholder="true">Select Card</option>
-		<option value="VISA" >Visa</option>
-	        <option value="MASTERCARD" >MasterCard</option>
+		<option value="Visa" >Visa</option>
+	        <option value="mastercard" >MasterCard</option>
 
 	</select>
 </div>

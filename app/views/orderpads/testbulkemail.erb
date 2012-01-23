@@ -1,0 +1,42 @@
+<h1> Test </h1>test
+
+<%=  button_to'send', :controller => "orderpads", :action => "testemail" %>
+<%= @followers2%>
+  <%= @t %>
+
+  balance2<%= @balance2 %>
+
+ <table>
+
+
+ <tr>
+   <td >P-ID</td>
+    <td>O-ID</td>
+    <td>Email</td>
+    <td>Green</td>
+    <td>Charge</td>
+   <td>Deposit</td>
+   <td>Balance</td>
+
+
+
+ </tr>
+
+
+		 <%  @followers.each do |b| %>
+   <tr>
+
+
+  <td class ="solid"><%=h b.PropertyId %></td>
+  <td class ="solid"><%=h b.OrderId %></td>
+  <td class ="solid"><%=h b.Balance %></td>
+   <td class ="solid"><%=h b.GoGreen %></td>
+       <td class ="solid"><%=h b.Email %></td>
+
+
+   <%end%>
+
+ </tr>
+
+     </table>
+

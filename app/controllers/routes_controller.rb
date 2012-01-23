@@ -2,14 +2,15 @@ class RoutesController < ApplicationController
   # GET /routes
   # GET /routes.xml
   #layout 'Main'
+   respond_to :html, :json
   def index
     @route = Route.all
     #(    :conditions => ["Active = 1 AND Branchid = 1"])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @routes }
-    end
+   respond_with(@route)
+  #  respond_to do |format|
+  #    format.html # index.html.erb
+  #    format.xml  { render :xml => @routes }
+  #  end
   end
 
   # GET /routes/1

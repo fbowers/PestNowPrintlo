@@ -131,7 +131,7 @@ module Rack
       if session = env['rack.session']
         ##                         store(key, value)         (aliased as []=);
         assert("session #{session.inspect} must respond to store and []=") {
-          session.respond_to?(:store) && session.respond_to?(:[]=)
+          session.respond_to?(:z_store) && session.respond_to?(:[]=)
         }
 
         ##                         fetch(key, default = nil) (aliased as []);

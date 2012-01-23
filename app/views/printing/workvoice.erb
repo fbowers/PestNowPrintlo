@@ -1,14 +1,4 @@
-<head>
 
-
-	 <%= javascript_include_tag "jquery.js", "jquery.validate.js", "rails.js"  %>
-<%= stylesheet_link_tag 'pnstyle' %>
-
-        
-
-          <%= csrf_meta_tag %>
-
-</head>
 
 <style type="text/css">
 #wrapall {
@@ -150,7 +140,7 @@ top:35%;
     position:absolute;
     text-align: left;
   left:55%;
-  top:20%;
+  top:8%;
 
 }
 
@@ -158,7 +148,7 @@ top:35%;
       position:absolute;
        text-align: left;
   left:55%;
-  top:15%;
+  top:2%;
 }
 #ccsection{
   display:none;
@@ -173,11 +163,31 @@ top:35%;
 }
 
 #explaingreen{
-   display:none;
+     FONT-SIZE: 10pt;
+    font-weight: bold;
+
      position:absolute;
     text-align: left;
-  left:55%;
-  top:42%;
+  left:30%;
+  top:6%;
+ }
+    #explainonline{
+     FONT-SIZE: 10pt;
+    font-weight: bold;
+
+     position:absolute;
+    text-align: left;
+  left:30%;
+  top:9%;
+}
+        #explainpdf{
+     FONT-SIZE: 10pt;
+    font-weight: bold;
+
+     position:absolute;
+    text-align: left;
+  left:30%;
+  top:3%;
 
 }
 #gree{
@@ -187,7 +197,7 @@ top:35%;
     position:absolute;
     text-align: left;
   left:55%;
-  top:45%;
+  top:5%;
 
 }
 #gogreen{
@@ -197,7 +207,7 @@ top:35%;
     position:absolute;
     text-align: left;
   left:55%;
-  top:50%;
+  top:25%;
 
 }
 #yourgreen{
@@ -205,8 +215,8 @@ top:35%;
     FONT-weight: bold;
     position:absolute;
     text-align: center;
-  left:50%;
-  top:8%;
+  left:53%;
+  top:12%;
 
 }
 #yourap{
@@ -214,8 +224,8 @@ top:35%;
     FONT-weight: bold;
     position:absolute;
     text-align: center;
-  left:50%;
-  top:6%;
+  left:53%;
+  top:14%;
 
 }
 #zero{
@@ -223,8 +233,8 @@ top:35%;
     FONT-weight: bold;
     position:absolute;
     text-align: center;
-left:50%;
-  top:4%;
+left:53%;
+  top:16%;
 
 }
 
@@ -237,15 +247,19 @@ p.ex {color:red;}
 
 $("#showr").click(function () {
     $("#ccsection").show("slow");
-     $("#pay").hide();
-     $("#flash_notice").hide();
+  //   $("#pay").hide();
+  //   $("#flash_notice").hide();
+  //   $("#gree").hide("slow");
+     $("#gogreen").hide("slow");
 
     });
 
 $("#showg").click(function () {
+     $("#ccsection").hide("slow");
     $("#gogreen").show("slow");
-    $("#gree").hide("slow");
-    $("#explaingreen").hide("slow");
+
+  //  $("#gree").hide("slow");
+ //   $("#explaingreen").hide("slow");
 
 
     });
@@ -259,6 +273,8 @@ $("#showg").click(function () {
    var ccnumber = $('#ccnumber').val();
    var expmonth = $('#expmonth').val();
    var expyear = $('#expyear').val();
+  var cvv = $('#cvv').val();
+
 var amount = $('#amount').val();
 var aut = $('#aut').val();
 if (amount == ""){
@@ -281,19 +297,27 @@ else if (expyear == 'Select Expire Year'){
    alert('You need expire year' );
 return false;
 }
+    else if (aut == 'Select Yes/No'){
+   alert('Please select yes/no for autopay' );
+return false;
+}
 else
 
  jQuery.ajax({
     type: "post",
               url: '/orderpads/apcard/'+ <%= @id%> ,
- data: {'custid':custid,'amount':amount,'cardtype':cardtype,'ccnumber':ccnumber,'expmonth':expmonth, 'expyear':expyear, 'aut':aut},
+ data: {'custid':custid,'amount':amount,'cardtype':cardtype,'ccnumber':ccnumber,'expmonth':expmonth, 'expyear':expyear, 'aut':aut, 'cvv':cvv},
  DataType: 'script'
 //complete: alert('Success')
            });
              $("#spinner2").show();
              $('#ccsection').slideUp();
               $("#pay").show();
-              $("#flash_notice").show(300);
+       $('#flash_notice').delay(500).fadeIn('normal', function() {
+      $('#flash_notice').delay(2500).fadeOut();
+   });
+           //   $("#flash_notice").show();
+       //$("#flash_notice").hide(slow);
               //$('#invtransactions').html(newContent);
              
 
@@ -363,6 +387,9 @@ return false; // The form will *not* submit
   }
  else if ( ig.innerHTML == 'true' ) {
 $("#yourgreen").show();
+    $("#gree").hide();
+//$("#gogreen").show();
+$("#explaingreen").hide();
 
 return false; // The form will *not* submit
 
@@ -372,25 +399,38 @@ return false; // The form will *not* submit
     });
 
   </script>
-<%=  button_to 'test', :controller => "orderpads", :action => "test" %>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="3EPVFX73G8ANC">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+
+
 <div id="wrapall">
 <div id = invtoplogo><img src="http://www.agentorder.com/images/raillogo.png" width="210" /></div>
- <div id="pdflink"><%=  button_to 'Print your workorder', :controller => "printing", :action => "workvoice",  :id =>params[:id], :format => :pdf %></div>
+ <div id="pdflink"><%=  button_to 'Print your workorder', :controller => "printing", :action => "workvoice", :id =>params[:id], :pid =>params[:pid], :format => :pdf %></div>
 <div id="invtophead"> Workorder/Invoice</div>
 <div id=invpaymentaddress>
   Send Payments to: <br />
   PestNow/Superior Pest Management<br />
   PO Box 2210 Ashburn, VA 20146</div>
 
-<div id="isgreen" ><%= @inv.Property.GoGreen %></div>
+<div id="isgreen" style="display: none" ><%= @inv.Property.GoGreen %></div>
 <div id="CustId" style="display: none"><%= @inv.Property.CustomerId %></div>
-<div id="isap" > <%= @inv.Customer.AutoPay %></div>
+<div id="isap" style="display: none" > <%= @inv.Customer.AutoPay %></div>
 
-<div id="explaingreen"> <h7> Receive your documents by email. Just enter your email address.</h7></div>
+<div id="explaingreen">  Receive your documents by email.</div>
+<div id="explainpdf"> Print a pdf copy of your workorder.</div>
+<div id="explainonline">  pay this bill with a credit/debit card.</div>
+
 <div id="gree"> <button id="showg">Click here to go green!</button>
 </div>
 <div id="gogreen" style="display: none">
- <%= label_tag 'Go Green! Enter Your Email Address'%>
+ <%= label_tag 'Go Green! Enter Your Email'%>
     <%= text_field_tag 'email' %>
 <div id="clicker"  ><%= button_to "Click to Go Green", { :controller => 'printing', :action => :cc, :id => @order.id }, :remote => true %></div>
 </div>
@@ -402,7 +442,7 @@ return false; // The form will *not* submit
 <div id="yourgreen" style="display: none"> <h3>Thanks for being Green! </h3></div>
 <div id="yourap" style="display: none"> <h3>Thanks for being Autopay! </h3></div>
 
-<div id="pay"> <button id="showr">Pay this bill online</button>
+<div id="pay"> <button id="showr">Click here to pay this bill</button>
 </div>
 <div id="flash_notice" style="display:none" >  </div>
 <td><img alt="spinner2" id="spinner2" src="/images/busy.gif" style="display: none" /></td>
@@ -418,7 +458,7 @@ return false; // The form will *not* submit
 	<select name="cardtype" id="cardtype">
           <option>Select Card</option>
 		<option value="VISA" >Visa</option>
-	        <option value="MASTERCARD" >MasterCard</option>
+	        <option value="mastercard" >Mastercard</option>
 
 	</select>
 
@@ -465,12 +505,21 @@ return false; // The form will *not* submit
 	        <option value="2021" >2021</option>
 	        <option value="2022" >2022</option>
 	</select>
+  <h7> Card Verification Value (CVV:) </h7>
+    <input type="text" name="cvv" id="cvv" value= "" size="8" />
+<br/>
 
  <br/>
   <br/>
  <div id="autopay">
+
+
+   <div id=apexplain>  <h3>Save Time with automatic payments. As a company that wants to make your life easier Pestnow is now offering a convenient way to pay for your service. Autopay saves you time by allowing you to pay for
+     each service automatically from your credit card. Just choose yes on autopay.  </h3>  </div>
+
+
    <h3> Enroll me in auto pay for future payments also:
-   
+
  <select name="aut" id="aut">
           <option>Select Yes/No</option>
 		<option value="1" >Yes</option>
@@ -478,12 +527,14 @@ return false; // The form will *not* submit
 
 	</select>
      </h3>
-   </div>
-
+    </div>
 
  
 <button id="ccpayment">Charge Card</button>
 </div>
+
+
+
 
   <div id=invtopinfo>
 <table>

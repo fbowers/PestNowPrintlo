@@ -1,5 +1,16 @@
-<%= stylesheet_link_tag 'pnstyle' %>
+
 <style type="text/css">
+
+ #flash_notice{
+font-size:20px;
+color: black;
+background:yellow;
+FONT-weight: bold;
+position:absolute;
+text-align: center;
+left:55%;
+top:35%;
+}
 #wrapall {
 background: white;
 text-align: left;
@@ -21,7 +32,21 @@ border-width: 0 1px;
     left: 50%;
     FONT-SIZE: 28pt;
 }
+ .notice {
+     font-size:20px;
+color: black;
+background:yellow;
+FONT-weight: bold;
+text-align: center;
 
+ }
+.error {
+    font-size: 15pt;
+
+    color: red;
+    text-align: center;
+
+ }
 #frank{
  
  text-align: center;
@@ -35,21 +60,54 @@ border-width: 0 1px;
 
 
  </style>
+
+ <script type="text/javascript">
+         $(document).ready(function(){
+
+       //       $('.notice').delay(500).fadeIn('normal', function() {
+      $('.notice').delay(2500).fadeOut();
+   //})
+
+             $('#sub').click(function(){
+var oid = $('#id').val();
+var pid = $('#pid').val();
+if (oid == ""){
+   alert('Please enter your invoice number' );
+   return false;
+  }
+else if (pid == ""){
+   alert('Please enter your property id' );
+   return false;
+}
+
+             });
+  });
+
+
+
+          </script>
+    <div id="flash_notice" >  </div>
+   <div id="notice">
+ <% if flash[:notice] %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:error] %>
+      <p class="error"><%= flash[:error] %></p>
+    <% end %>
+     </div>
+    <!-- more content -->
 <div id="wrapall">
 <div id = invtoplogo><img src="http://www.agentorder.com/images/raillogo.png" width="210" /></div>
 
 <div id="frank">
-<h1> Please Enter Your Id <br/>
-to view your work order</h1>
- <%= form_tag :action => 'workvoice',  :id =>params[:search], :method => 'get' do  %>
+<h1><br/><br/> Our site is down. We are working very hard on this.  <br/>
+     If you would like to pay by credit/debit card<br/>
+please call us and we will gladly take<br/> your card over the phone.<br/>
+  Thanks again. <br/>
+1.877.284.2466</h1>
 
 
-  <%= text_field_tag :id, params[:id], :class=> "btn"%>
 
-  <h2> <br/><%= submit_tag "Go", :class=> "btn", :name => nil%> </h2>
-
-
-<%end%>
 
 </div>
 </div>

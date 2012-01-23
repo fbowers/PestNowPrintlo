@@ -1,33 +1,17 @@
 development:
     adapter: sqlserver
     host: '192.168.20.18'
+   # database: 'superiorweb'
     database: 'swtest'
     username: 'fbowers'
     password: '3769'
 
-    test:
-    adapter: sqlserver
-    host: '192.168.20.18'
-    database: 'swtest'
-    username: 'fbowers'
-    password: '3769'
-#  adapter: sqlserver
-#  dsn: Hope1
-#  mode: odbc
-#  database: swtest
-#  username:
-#  password:
+
 
 production:
     adapter: sqlserver
-    host: '205.232.183.148'
-    database: 'swtest'
+    host: '192.168.20.18'
+    database: 'superiorweb'
+   # database: 'swtest'
     username: 'fbowers'
     password: '3769'
-#  adapter: sqlserver
-#  dsn: Hope1
-#  mode: odbc
-#  database: swtest
-#  username:
-#  password:
-#database: swtest

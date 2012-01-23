@@ -1,0 +1,74 @@
+
+<script type="text/javascript">
+$(document).ready(function(){
+   $("#click").click(function(event){
+     alert("Thanks for visiting!");
+   });
+ });
+        $('.test_email').live('click', function() {
+      var quanfield = $(this).closest("tr").find(".quanclass");
+      var chemidfield =  $(this).closest("tr").find(".chemidclass");
+
+
+   var ordidfield = $(this).closest("tr").find(".ordidclass");
+
+
+       data = "quan=" + quanfield.val() + "&oid=" + ordidfield.val();
+
+      $.ajax({
+       type: 'post',
+
+       url: '/orderpads/addchem/' + chemidfield.val() ,
+       dataType: 'script',
+       data: data
+     });
+     return false;});
+</script>
+
+
+
+
+
+<%= semantic_form_for @ord, :id=> 'form' , :html => {:id => 'main_input' } do |form| %>
+
+
+
+
+    <div data-role="fieldcontain">
+    <fieldset data-role="controlgroup" data-type="horizontal">
+      <legend>Select Equipment:</legend>
+ <%# for equip in Equipment.find(@equip) %>
+       <%  @chemicals.each do |equip| %>
+
+         <%= check_box_tag "order[Chemical_ids][]", equip.id, false, :id => equip.id  %>
+
+
+
+      <label for="<%= equip.id %>"><%= equip.name %></label>
+
+
+
+<% end %>
+    </fieldset>
+</div>
+
+
+
+ <%= form.commit_button "Check-In"%>
+     <%end %>
+
+
+      <%=   form_tag(:controller => "orderpads", :action => "testinsert") do |form|      %>
+            <%  @chemicals.each do |equip| %>
+
+
+          <label for="<%= equip.id %>"><%= equip.name %></label>
+         <%= check_box_tag :ChemId, equip.id, false, :id => equip.id  %>
+
+<%end%>
+     <div id="pdflink"><%=  button_to 'test insert', :controller => "orderpads", :action => "testinsert" %></div>
+<%end%>
+
+
+
+

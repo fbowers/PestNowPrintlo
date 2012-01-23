@@ -1,0 +1,125 @@
+	 	<head>
+
+         	<%= stylesheet_link_tag 'datatable'%>
+	  <%= javascript_include_tag "jquery.js", "rails.js", "dt.js" %>
+            </head>
+
+
+ <script type="text/javascript">
+$(document).ready(function (){
+  $("tr:contains('Completed')").css('background', 'yellow');
+//    $("tr:contains('Could Not Complete')").css('background', 'yellow');
+
+$("#send").click(function () {
+    $("#otherdate").show("slow");
+    // $("#pay").hide();
+   //  $("#flash_notice").hide();
+
+    });
+    jQuery('#the_table').dataTable( {
+      "iDisplayLength": 100,
+      "aLengthMenu": [[50, 60, 70, 100, -1], [50, 60, 70, 100, "All"]],
+        "bAutoWidth": false,
+       "aaSorting": [[ 4, "desc" ]]
+    });
+
+     //   $('#the_table').dataTable();
+//	$('#example').dataTable();
+
+
+
+
+//location.reload();
+//alert('YourStarted!');
+
+
+});
+
+
+
+</script>
+<!--<button id="send">choose other date</button>-->
+
+         <!--<%= form_tag("/coversheet", :method => "get") do %>-->
+  <!--<%= label_tag(:startdate, "New Date:") %>-->
+  <!--<%= text_field_tag(:startdate) %>-->
+  <!--<%= submit_tag("Search") %>-->
+<!--<% end %>-->
+
+ <div id=branch>
+  <%= form_tag("/look", :method => "get") do %>
+ <h3>"branch"</h3>
+ <%=radio_button_tag :branch, params[:branch]= 1%> Sterling
+ <%=radio_button_tag :branch, params[:branch]= 3%> Ijamsville
+ <%=radio_button_tag :branch, params[:branch]= 5%> Clinton
+ <%=radio_button_tag :branch, params[:branch]= 6%> Prince William
+ <%=radio_button_tag :branch, params[:branch]= 7%> Home Inspection
+ <%=radio_button_tag :branch, params[:branch]= 9%> Lawn
+
+  <%= submit_tag "Search", :name => nil%>
+<% end %>
+                </div>
+
+
+
+  <div id=tab>
+  <table id='the_table' >
+
+ <thead>
+ <tr>
+   <td style="width: 4%" >P-ID</td>
+    <td style="width: 4%">O-ID</td>
+    <td style="width: 4%"> In Time</td>
+     <td style="width: 4%"> Out Time</td>
+    <td style="width: 10%">CheckIn</td>
+    <td style="width: 30%">Address</td>
+    <td style="width: 3%">Code</td>
+    <td style="width: 4%">Price</td>
+    <td style="width: 5%">RouteName</td>
+    <td style="width: 5%">Status</td>
+    <td style="width: 5%">Result</td>
+   <td style="width: 10%">Email</td>
+   <td style="width: 5%">Email</td>
+   <td style="width: 5%">WorkOrder</td>
+    
+     </tr>
+ </thead>
+    <tbody>
+
+
+		 <%  @sched.each do |b| %>
+   <tr>
+  
+
+<td><%=h b.PropertyId %></td>
+<td> <%=link_to b.OrderId, order_path(b) %></td>
+ <td> <%if b.Anytime == true%> <%="AT"%> <%else%> <%=h b.StartTime.strftime("%I:%M %p") %> <%end%></td>
+ <td>   <%if b.Exact == true%> <%="EX"%> <%else if b.Anytime == true%> <%="AT"%> <%else%> <%=h b.EndTime.strftime("%I:%M %p") %> <%end%> <%end%></td>
+
+<td><%=h b.TimeIn %></td>
+ <td><%=h b.StreetNumber%>
+    <%=h b.Direction %>
+    <%=h b.Street %>
+    <%=h b.UnitNumber %>
+    <%=h b.City %>,
+    <%=h b.StateId %>
+    <%=h b.ZipCodeId %></td>
+<td> <%=h b.Code %></td>
+<td> <%= number_to_currency(b.Price) %></td>
+ <td><%=h b.RouteName %></td>
+ <td><%=h b.Description %></td>
+ <td><%if b.CheckInResultId.nil? %> <%="not check"%> <%else%> <%=h b.Result %> <%end%></td>
+ <td> <%=h b.Email%></td>
+
+  <td><%if b.CheckInResultId.nil? %> <% "NA" %> <%else%> <%=  link_to'email', :controller => "orders", :action => "emailcoversheetchecked", :id =>b  %><%end%></td>
+    <td> <%if b.CheckInResultId.nil? %> <%"NA" %> <%else%> <%=  link_to'WorkOrder', :controller => "printing", :action => "workvoice", :id =>b, :pid => b.PropertyId %><%end%></td>
+
+
+ </tr>
+
+<%end%>
+        </tbody>
+     </table>
+
+              </div>
+

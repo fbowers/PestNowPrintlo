@@ -13,6 +13,8 @@ gem  'authorize-net'
 gem  'nokogiri'
 gem  'activemerchant'
 gem 'tiny_tds'
+gem "rack-offline"
+
 
 
 

@@ -1,0 +1,642 @@
+<head>
+
+
+	 <%= javascript_include_tag "jquery.js", "jquery.validate.js", "rails.js"  %>
+<%= stylesheet_link_tag 'pnstyle' %>
+
+        
+
+          <%= csrf_meta_tag %>
+
+</head>
+
+<style type="text/css">
+#wrapall {
+background: white;
+text-align: left;
+margin: 0 auto;
+float: none;
+padding: 10px;
+width: 960px;
+position: relative;
+z-index: 1;
+border: 1px solid #999;
+border-width: 0 1px;
+}
+
+  #flash_notice{
+font-size:20px;
+color: black;
+background:yellow;
+FONT-weight: bold;
+position:absolute;
+text-align: center;
+left:55%;
+top:35%;
+}
+
+#spinner2 {
+   position:absolute;
+ left: 65%;
+ top: 30%;
+    
+    
+}
+
+  #invtophead{
+    FONT-SIZE: 18pt;
+    font-weight: bold;
+    text-align: right;
+
+     top:1%;
+         position:absolute;
+     left:75%;
+
+
+
+}
+#invtoplogo{
+
+    text-align: left;
+
+}
+#invpaymentaddress{
+  FONT-SIZE: 10pt;
+    font-weight: bold;
+
+}
+
+  #invtopinfo{
+ text-align: right;
+    top:7%;
+    position:absolute;
+    left:75%;
+
+}
+
+
+#invaccountinformation{
+
+  
+  table-layout: fixed;
+  text-align: left;
+  border: 1px solid #999;
+  width: 50%;
+
+
+}
+
+
+#invtransactions{
+  table-layout: fixed;
+  text-align: left;
+  border: 1px solid #999;
+  width: 50%;
+
+   }
+
+#at{
+ 
+  table-layout: fixed;
+  text-align: left;
+  border: 1px solid #999;
+  width: 50%;
+
+   }
+
+
+
+#chem {
+  border: 1px solid #999;
+  width: 50%;
+
+  }
+
+#woheading{
+  FONT-SIZE: 18pt;
+  FONT-weight: bold;
+
+}
+
+
+
+
+#wohead{
+  color: red;
+
+}
+
+#worknote{
+ FONT-SIZE: 12pt;
+
+
+
+}
+
+#closingcomments{
+  FONT-SIZE: 12pt;
+  font-style: italic;
+  FONT-weight: bold;
+  border: 1px solid #999;
+  width: 50%;
+
+}
+
+
+
+#pay{
+   FONT-SIZE: 12pt;
+    FONT-weight: bold;
+    position:absolute;
+    text-align: left;
+  left:55%;
+  top:8%;
+
+}
+
+#pdflink{
+      position:absolute;
+       text-align: left;
+  left:55%;
+  top:2%;
+}
+#ccsection{
+  display:none;
+   FONT-SIZE: 12pt;
+    FONT-weight: bold;
+    position:absolute;
+    text-align: left;
+  left:55%;
+  top:20%;
+   width: 30%;
+
+}
+
+#explaingreen{
+     FONT-SIZE: 10pt;
+    font-weight: bold;
+
+     position:absolute;
+    text-align: left;
+  left:30%;
+  top:6%;
+ }
+    #explainonline{
+     FONT-SIZE: 10pt;
+    font-weight: bold;
+
+     position:absolute;
+    text-align: left;
+  left:30%;
+  top:9%;
+}
+        #explainpdf{
+     FONT-SIZE: 10pt;
+    font-weight: bold;
+
+     position:absolute;
+    text-align: left;
+  left:30%;
+  top:3%;
+
+}
+#gree{
+   display:none;
+   FONT-SIZE: 12pt;
+    FONT-weight: bold;
+    position:absolute;
+    text-align: left;
+  left:55%;
+  top:5%;
+
+}
+#gogreen{
+   display:none;
+   FONT-SIZE: 12pt;
+    FONT-weight: bold;
+    position:absolute;
+    text-align: left;
+  left:55%;
+  top:25%;
+
+}
+#yourgreen{
+   color: green;
+    FONT-weight: bold;
+    position:absolute;
+    text-align: center;
+  left:53%;
+  top:12%;
+
+}
+#yourap{
+   color: green;
+    FONT-weight: bold;
+    position:absolute;
+    text-align: center;
+  left:53%;
+  top:14%;
+
+}
+#zero{
+  
+    FONT-weight: bold;
+    position:absolute;
+    text-align: center;
+left:53%;
+  top:16%;
+
+}
+
+p.ex {color:red;}
+
+</style>
+<script type="text/javascript">
+
+  $(document).ready(function (){
+
+$("#showr").click(function () {
+    $("#ccsection").show("slow");
+  //   $("#pay").hide();
+  //   $("#flash_notice").hide();
+  //   $("#gree").hide("slow");
+     $("#gogreen").hide("slow");
+
+    });
+
+$("#showg").click(function () {
+     $("#ccsection").hide("slow");
+    $("#gogreen").show("slow");
+
+  //  $("#gree").hide("slow");
+ //   $("#explaingreen").hide("slow");
+
+
+    });
+
+
+   $('#ccpayment').click(function(){
+
+
+   var custid = $('#CustId').text();
+   var cardtype = $('#cardtype').val();
+   var ccnumber = $('#ccnumber').val();
+   var expmonth = $('#expmonth').val();
+   var expyear = $('#expyear').val();
+  var cvv = $('#cvv').val();
+
+var amount = $('#amount').val();
+var aut = $('#aut').val();
+if (amount == ""){
+   alert('You need an amount paid' );
+   return false;
+}
+else if (ccnumber == ""){
+   alert('You need a card number' );
+return false;
+}
+else if (cardtype == 'Select Card'){
+   alert('You need a card type' );
+return false;
+}
+else if (expmonth == 'Select Expire Month'){
+   alert('You need expire month' );
+return false;
+}
+else if (expyear == 'Select Expire Year'){
+   alert('You need expire year' );
+return false;
+}
+    else if (aut == 'Select Yes/No'){
+   alert('Please select yes/no for autopay' );
+return false;
+}
+else
+
+ jQuery.ajax({
+    type: "post",
+              url: '/orderpads/apcard/'+ <%= @id%> ,
+ data: {'custid':custid,'amount':amount,'cardtype':cardtype,'ccnumber':ccnumber,'expmonth':expmonth, 'expyear':expyear, 'aut':aut, 'cvv':cvv},
+ DataType: 'script'
+//complete: alert('Success')
+           });
+             $("#spinner2").show();
+             $('#ccsection').slideUp();
+              $("#pay").show();
+       $('#flash_notice').delay(500).fadeIn('normal', function() {
+      $('#flash_notice').delay(2500).fadeOut();
+   });
+           //   $("#flash_notice").show();
+       //$("#flash_notice").hide(slow);
+              //$('#invtransactions').html(newContent);
+             
+
+   //success: alert('Success')
+   //$('#spinner2').hide()
+
+   });
+
+   $('#spinner2')
+   .hide()  // hide it initially
+   .ajaxStart(function() {
+     $(this).show();    })
+   .ajaxStop(function() {
+     $(this).hide();
+    
+    // $('#invtransactions').html(newContent);
+      
+
+
+   });
+
+   // $("#ccform").validate({
+
+ //debug: true,
+//rules: {
+//"cardnumb": {required: true, creditcard: true},
+//"expdate": {required: true, minlength: 4}
+
+
+//"email": {required: true, email: true}
+//"user[password]": {required: true, minlength: 6}
+//"user[password_confirmation]": {required: true, equalTo: "#user_password"}
+//},
+
+//success: function(){
+                //        $('#x_card_num').hide('slow');
+  //                      $('#autopay').show('slow');
+    //                    $("#spinner2").hide('slow');
+  //                                              }
+
+//});
+//});
+
+ig = document.getElementById("isgreen");
+ b = document.getElementById("b");
+ x = document.getElementById("isap");
+if ( x.innerHTML == ' true' ) {
+$("#yourap").show();
+$("#autopay").hide();
+}
+if ( b.innerHTML <= '0.0' ) {
+//if ($('#b').val()== 0.0){
+//alert('You must fill comments!');
+$("#pay").hide();
+$("#ccsection").hide();
+$("#zero").show();
+//return false; // The form will *not* submit
+   }
+
+if ( ig.innerHTML == 'false' ) {
+//$("#showg").show();
+$("#gree").show();
+//$("#gogreen").show();
+$("#explaingreen").show();
+//$("#clicker").show();
+return false; // The form will *not* submit
+  }
+ else if ( ig.innerHTML == 'true' ) {
+$("#yourgreen").show();
+    $("#gree").hide();
+//$("#gogreen").show();
+$("#explaingreen").hide();
+
+return false; // The form will *not* submit
+
+ };
+
+
+    });
+
+  </script>
+
+<div id="wrapall">
+<div id = invtoplogo><img src="http://www.agentorder.com/images/raillogo.png" width="210" /></div>
+ <div id="pdflink"><%=  button_to 'Print your workorder', :controller => "printing", :action => "workvoice", :id =>params[:id], :pid =>params[:pid], :format => :pdf %></div>
+<div id="invtophead"> Workorder/Invoice</div>
+<div id=invpaymentaddress>
+  Send Payments to: <br />
+  PestNow/Superior Pest Management<br />
+  PO Box 2210 Ashburn, VA 20146</div>
+
+<div id="isgreen" style="display: none" ><%= @inv.Property.GoGreen %></div>
+<div id="CustId" style="display: none"><%= @inv.Property.CustomerId %></div>
+<div id="isap" style="display: none" > <%= @inv.Customer.AutoPay %></div>
+
+<div id="explaingreen">  Receive your documents by email.</div>
+<div id="explainpdf"> Print a pdf copy of your workorder.</div>
+<div id="explainonline">  pay this bill with a credit/debit card.</div>
+
+<div id="gree"> <button id="showg">Click here to go green!</button>
+</div>
+<div id="gogreen" style="display: none">
+ <%= label_tag 'Go Green! Enter Your Email'%>
+    <%= text_field_tag 'email' %>
+<div id="clicker"  ><%= button_to "Click to Go Green", { :controller => 'printing', :action => :cc, :id => @order.id }, :remote => true %></div>
+</div>
+
+
+
+<div id="b" style="display: none"><%=@balance%></div>
+<div id="zero" style="display: none" > <h3>Balance = $0 </h3> </div>
+<div id="yourgreen" style="display: none"> <h3>Thanks for being Green! </h3></div>
+<div id="yourap" style="display: none"> <h3>Thanks for being Autopay! </h3></div>
+
+<div id="pay"> <button id="showr">Click here to pay this bill</button>
+</div>
+<div id="flash_notice" style="display:none" >  </div>
+<td><img alt="spinner2" id="spinner2" src="/images/busy.gif" style="display: none" /></td>
+<div id="ccsection">
+  
+  
+
+
+  <h7> Amount to pay: </h7>
+    <input type="text" name="amount" id="amount" value= <%= @balance%>  />
+<br/>
+ <h7> Card Type: </h7>
+	<select name="cardtype" id="cardtype">
+          <option>Select Card</option>
+		<option value="VISA" >Visa</option>
+	        <option value="mastercard" >Mastercard</option>
+
+	</select>
+
+
+
+<br/>
+ <h7> Card Number: </h7>
+    <input type="text" name="ccnumber" id="ccnumber" value=""  />
+
+
+<br/>
+
+	 <h7> Expire Month: </h7>
+	<select name="expmonth" id="expmonth">
+          <option data-placeholder="true">Select Expire Month</option>
+		<option value="1" >Jan</option>
+	        <option value="2" >Feb</option>
+	        <option value="3" >Mar</option>
+                <option value="4" >Apr</option>
+	        <option value="5" >May</option>
+	        <option value="6" >Jun</option>
+                <option value="7" >Jul</option>
+	        <option value="8" >Aug</option>
+	        <option value="9" >Sep</option>
+                <option value="10" >Oct</option>
+	        <option value="11" >Nov</option>
+	        <option value="12" >Dec</option>
+	</select>
+
+ <br/>
+	 <h7> Expire Year: </h7>
+	<select name="expyear" id="expyear">
+          <option>Select Expire Year</option>
+		<option value="2011" >2011</option>
+	        <option value="2012" >2012</option>
+	        <option value="2013" >2013</option>
+                <option value="2014" >2014</option>
+	        <option value="2015" >2015</option>
+	        <option value="2016" >2016</option>
+                <option value="2017" >2017</option>
+	        <option value="2018" >2018</option>
+	        <option value="2019" >2019</option>
+                <option value="2020" >2020</option>
+	        <option value="2021" >2021</option>
+	        <option value="2022" >2022</option>
+	</select>
+  <h7> Card Verification Value (CVV:) </h7>
+    <input type="text" name="cvv" id="cvv" value= "" size="8" />
+<br/>
+
+ <br/>
+  <br/>
+ <div id="autopay">
+
+
+   <div id=apexplain>  <h3>Save Time with automatic payments. As a company that wants to make your life easier Pestnow is now offering a convenient way to pay for your service. Autopay saves you time by allowing you to pay for
+     each service automatically from your credit card. Just choose yes on autopay.  </h3>  </div>
+
+
+   <h3> Enroll me in auto pay for future payments also:
+
+ <select name="aut" id="aut">
+          <option>Select Yes/No</option>
+		<option value="1" >Yes</option>
+	        <option value="0" >No</option>
+
+	</select>
+     </h3>
+    </div>
+
+ 
+<button id="ccpayment">Charge Card</button>
+</div>
+
+  <div id=invtopinfo>
+<table>
+  <tr><td>Date</td><td><%= @inv.Schedule.StartTime.strftime("%m/%d/%y") %></td></tr>
+  <tr><td>Account Number</td><td><%= @inv.PropertyId %></td></tr>
+   <tr><td>Invoice Number</td><td><%= @inv.OrderId %></td></tr>
+    <tr><td>Amount Due</td><td><%=number_to_currency(@balance)%></td></tr>
+
+</table>
+</div>
+
+
+
+<div id=invaccountinformation>
+  <table width="100%">
+    <th align=left>Account Information</th>
+    <tr><td width="200"> Account Number </td><td><%= @inv.PropertyId %> </td></tr>
+    <tr><td> Service Property </td><td><b><%= render :partial => 'orders/propaddress', :object => @inv, :as => :o%></b> </td></tr>
+    <tr><td> Customer Service </td><td>877.284.2466 </td></tr>
+    <tr><td> Hours of Operation </td><td>M-F 7:30-6 Sat 8-2 </td></tr>
+    <tr><td> Website Address </td><td>www.pestnow.com </td></tr>
+
+
+  </table>
+
+  
+
+</div>
+
+
+
+
+
+<div id=invtransactions>
+  <table width="100%">
+    <th align=left>Transactions</th>
+    <tr><td> Date </td><td> Invoice </td><td> Description </td><td> amount </td></tr>
+
+   <% @sub.each do |x| %>
+     <tr> <td> <%= x.Order.Schedule.StartTime.strftime("%m/%d/%y") %>   </td>
+       <td> <%= x.Order.OrderId %>   </td>
+       <td> <%= x.Order.Servicecode.Description %>   </td>
+       <td> <%= number_to_currency(x.Charge)%>   pd<%= number_to_currency(x.Deposit)%> </td></tr>
+
+  <%end%>
+  </table>
+</div>
+
+
+
+<div id="at">
+  <h7>  Work Order Details <br/>
+  <h7 style="color:green">Area Treated: </h7>
+<% @inv.Areatreateds.each do |at| %>
+  <%=  at.name %>,
+  <%end%>
+    
+
+
+ <div id="temperature"><h7 style="color:green"> Temperature:</h7> <%if @inv.TemperatureId.nil? %> <%="NA"%> <%else%><%= @inv.Temperature.name %> <%end%></div>
+ <div id="timein"><span style="color:green"> Time In:</span> <%if @inv.TimeIn.nil? %> <%="NA"%> <%else%><%= @inv.TimeIn.strftime("%I:%M %p") %> <%end%></div>
+ <div id="weather"><span style="color:green">Weather:</span> <%if @inv.WeatherId.nil? %> <%="NA"%><%else%><%= @inv.Weather.name %> <%end%></div>
+ <div id="wind"><span style="color:green">Wind:</span> <%if @inv.WindId.nil? %> <%="NA"%><%else%><%= @inv.Wind.name %> <%end%></div>
+ <div id="windspeed"><span style="color:green">Wind Speed:</span> <%if @inv.WindId.nil? %> <%="NA"%><%else%><%= @inv.Windspeed.name %> <%end%></div>
+
+ <div id="equipment"><span style="color:green">Application Equipment:</span>
+  <% @inv.Equipments.each do |e| %>
+  <%=  e.name %>,
+  <%end%> </div>
+   <div id="targetpest"><span style="color:green">Target Pests:</span>
+  <% @inv.Pests.each do |p| %>
+  <%=  p.name %>,
+  <%end%></div>
+ </h7>
+   </div>
+
+
+
+
+<div id="chem">
+<table width="100%">
+  <th align=left>Chemicals Used</th>
+  <tr> <td>Product Name</td> <td>%</td> <td>EPA #</td><td>Qty</td></tr>
+   <% @inv.Orderchemicals.each do |c| %>
+   <tr><td> <%=  c.Chemical.name %> </td>
+  <td><%=  c.Chemical.Percentage%></td>
+ <td><%=  c.Chemical.EPANumber%></td>
+<td><%= c.Quantity%> <%= c.Chemical.Measurement%></td></tr>
+  <%end%>
+  </table>
+</div>
+
+
+
+    <div id="closingcomments">
+      <h7 style="color:green">Work Order Note: </h7><br/>
+<%= @inv.WorkOrderNote%> 
+      Thanks for your business. It was a pleasure servicing you.
+      <% @inv.Checkcomments.each do |cc| %>
+     <%=  cc.name %>.
+     <%end%> <br/>
+      <% @noteby.each do |u| %>
+      <%=  u.User.FirstName%>
+       <%=  u.User.CertificationNumber%>
+<%end%>
+    </div>
+
+</div>

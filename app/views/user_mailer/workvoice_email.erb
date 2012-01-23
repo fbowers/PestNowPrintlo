@@ -86,7 +86,7 @@ p.ex {color:red;}
 <%=  link_to 'print this workorder', :controller => "printing", :action => "workvoice", :host => "205.232.183.148:443", :id => @order,  :format => :pdf %>
 
 
-<div id="paylink"><%=  link_to'Pay This Bill', :controller => "payments", :action => "payment", :host => "205.232.183.148:443", :amount => @balance, :id =>@order%></div>
+<div id="paylink"><%=  link_to'Pay This Bill', :controller => "printing", :action => "workvoice", :host => "205.232.183.148:443", :id =>@order, :pid =>@order.PropertyId %></div>
 
 <div id="invtophead"> Workorder/Invoice</div>
 

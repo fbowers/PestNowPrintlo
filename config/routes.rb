@@ -1,15 +1,14 @@
 PestNowPrint::Application.routes.draw do
-
-#  match '/payments/thank_you', :to => 'payments#thank_you', :as => 'payments_thank_you', :via => [:get]
-
-#  match '/payments/payment', :to => 'payments#payment', :as => 'paymentspayment', :via => [:get]
-
-#  match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
-
-#  match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
-
+  match "/application.manifest" => Rails::Offline
+  resources :purchases
+  resources :ordercheckcomments
   resources :orderchemicals
-
+  resources :orderpests
+  resources :orderequipments
+  resources :schedules
+  resources :areatreateds
+  resources :orders
+  resources :orderareas
   resources :carts
 
   resources :warranties
@@ -40,45 +39,45 @@ resources :histories
 
   resources :routes
 
-  resources :store
+   resources :printing
+
 
 #match ':controller(/:action(/:id))'
 
   #resources :scheduleroutes
-     resources :servicecodes
+  #   resources :servicecodes
 
     
 #  #resources :orders, :workorder
 match "profile" => "orders#workorder"
 
+#match "spike" => "orders#update"
+
  # match "frank" => "orders#fworkorder"
 #resources "orderpads#service"
   match "service" => "orderpads#service"
-
-  match "test" => "payments#test"
+ #  match "oc/:oid" => "orderpads#oc"
+   match "oc" => "orderpads#oc"
+  match "test" => "orderpads#test"
 #match "/orderpads/details/:id" => "orderpads#details"
 
   match "invoice" => "orders#invoice"
 
    match "bulk" => "orders#index"
+   match "stest" => "printing#stest"
 
  #  match "workvoice" => "printing#workvoice"
-
+   match "look" => "orders#coversheetchecked"
    match "coversheet" => "orders#coversheet", :as => :coversheet
     match "map" => "orderpads#map"#, :as => :coversheet
 
-  match "covertest" => "orders#covertest"
+
 
 match "workorder" => "orders#workorder"
    match "contractdetails" => "orders#contract"
 #  match "wdi" => "orders#wdireport"
  # match "wdi" => ""
 #resources :wdi, :controller => :wdireports
-
-  resources :schedules
-  
-  resources :orders
-
 
 
 #  resources :properties do
@@ -100,6 +99,7 @@ match "workorder" => "orders#workorder"
   match 'logout' => 'user_sessions#destroy', :as => :logout
 
 match '/:controller(/:action(/:id))'
+    match ':controller/:action/:id/:pid'
 
  
  #  match '/select_size', :controller => 'payments', :action => 'select_size', :conditions => {:method => :get}

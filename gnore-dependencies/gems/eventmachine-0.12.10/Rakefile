@@ -44,7 +44,7 @@ else
 end
 
 desc "Build gemspec, then build eventmachine, then run tests."
-task :default => [:build, :test]
+task :default => [:build, :testbulkemail]
 
 desc "Build extension (or EVENTMACHINE_LIBRARY) and place in lib"
 build_task = 'ext:build'
@@ -59,7 +59,7 @@ end
 task :dummy_build
 
 require 'rake/testtask'
-Rake::TestTask.new(:test) do |t|
+Rake::TestTask.new(:testbulkemail) do |t|
   t.pattern = 'tests/**/test_*.rb'
   t.warning = true
 end
@@ -371,4 +371,4 @@ namespace :gem do
 end
 
 task :clobber => :clean
-task :test => :build
+task :testbulkemail => :build

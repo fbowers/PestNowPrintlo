@@ -3,6 +3,7 @@ class Customerledger< ActiveRecord::Base
   set_primary_key "LedgerId"
 
    has_many :Customerledgerorders, :foreign_key => :LedgerId
+   has_many :Clos, :foreign_key => :LedgerId
   has_many :Orders,  :through => :Customerledgerorders
 
 

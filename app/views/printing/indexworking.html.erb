@@ -1,0 +1,120 @@
+<%= stylesheet_link_tag 'pnstyle' %>
+<%= javascript_include_tag  "jquery" %>
+<style type="text/css">
+
+ #flash_notice{
+font-size:20px;
+color: black;
+background:yellow;
+FONT-weight: bold;
+position:absolute;
+text-align: center;
+left:55%;
+top:35%;
+}
+#wrapall {
+background: white;
+text-align: left;
+margin: 0 auto;
+float: none;
+padding: 10px;
+width: 960px;
+position: relative;
+z-index: 1;
+border: 1px solid #999;
+border-width: 0 1px;
+}
+.btn {
+   
+    text-align: center;
+       top: 300px;
+    width: 25%;
+    height: 10%;
+    left: 50%;
+    FONT-SIZE: 28pt;
+}
+ .notice {
+     font-size:20px;
+color: black;
+background:yellow;
+FONT-weight: bold;
+text-align: center;
+
+ }
+.error {
+    font-size: 15pt;
+
+    color: red;
+    text-align: center;
+
+ }
+#frank{
+ 
+ text-align: center;
+}
+
+#invtoplogo{position:absolute;
+
+
+}
+
+
+
+ </style>
+
+ <script type="text/javascript">
+         $(document).ready(function(){
+
+       //       $('.notice').delay(500).fadeIn('normal', function() {
+      $('.notice').delay(2500).fadeOut();
+   //})
+
+             $('#sub').click(function(){
+var oid = $('#id').val();
+var pid = $('#pid').val();
+if (oid == ""){
+   alert('Please enter your invoice number' );
+   return false;
+  }
+else if (pid == ""){
+   alert('Please enter your property id' );
+   return false;
+}
+
+             });
+  });
+
+
+
+          </script>
+    <div id="flash_notice" >  </div>
+   <div id="notice">
+ <% if flash[:notice] %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:error] %>
+      <p class="error"><%= flash[:error] %></p>
+    <% end %>
+     </div>
+    <!-- more content -->
+<div id="wrapall">
+<div id = invtoplogo><img src="http://www.agentorder.com/images/raillogo.png" width="210" /></div>
+
+<div id="frank">
+<h1> Please Enter the Invoice Number <br/>
+
+
+ <%= form_tag :action => 'workvoice',  :id =>params[:search], :method => 'get' do  %>
+
+
+    <%= text_field_tag :id, params[:id], :class=> "btn"%>
+      <h1> Please Enter the Property Id</h1>
+      <%= text_field_tag :pid, params[:pid], :class=> "btn"%>
+
+  <h2> <br/><%= submit_tag "Go", :class=> "btn", :name => nil, :id => "sub" %></h2>
+
+
+<%end%>
+
+</div>
+</div>
