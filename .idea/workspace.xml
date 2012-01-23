@@ -2,171 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ae01760-d2fc-4472-9df5-1f0de246994d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/datatables/back_disabled.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/datatables/back_enabled.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/datatables/favicon.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/datatables/forward_disabled.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/datatables/forward_enabled.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/datatables/sort_asc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/datatables/sort_asc_disabled.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/datatables/sort_both.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/datatables/sort_desc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/datatables/sort_desc_disabled.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/download.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/media/downloadify.swf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/all.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/anytimec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/custom-scripting.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/date.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/downloadify.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/dt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/jQuery.twFile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/jquery-1.7.1.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/jquery.offline.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/jquery.tmpl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/jquery.validate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/jquerymobilemin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/json.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/popup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/rails.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/checkcomments_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/chemicals_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/railscoversheets_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/clo.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/railscoversheet.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/orderpads/editwork.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/orderpads/test.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/orderpads/test3.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/orderpads/testbulkemail.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/orderpads/testlocal.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/orderpads/today.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/orders/coversheetchecked.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/orders/coversheetold.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/printing/indexworking.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/printing/sendfile3.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/printing/sendfile3.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/printing/stest.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/printing/zworkingworkvoice.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/purchases/complete.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/purchases/index.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/user_mailer/big.text.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/user_mailer/workvoicebulk_email.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/downloadify.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/dt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jQuery.twFile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery-1.7.1.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery.offline.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery.tmpl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquerymobilemin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/maps.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/swfobject.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/jquery.mobile-1.0.min.css" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\addresses.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\authorize_net.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\movers.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\orderpads.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\orders.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\orders.pdf.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\properties.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\props.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\public.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\schedules.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\service_codes.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\store.rhtml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\zMain.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\z_Mainold.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\layouts\z_application.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\orderpads\test.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\orderpads\test_1.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\orders\z_coversheet.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\orders\z_coversheet.html_1.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\orders\z_coversheet.html_2.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\orders\z_details.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\orders\z_details_1.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\orders\z_detailsform.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\orders\zshow.html_1.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\app\views\orders\zwdireport.pdf.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\images\PestNowRails.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\images\pccontract.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\images\pccontractbw.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\demo_page.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\demo_table.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\demo_table_jui.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\depot.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\formtastic.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\formtastic_changes.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\jniceit.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\jquery-ui-1.7.1.custom.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\jquery-ui-1.8.5.custom.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\jquery.treeview.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\login.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\main.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\pnstyle.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\scaffold.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\style.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Sites\PestNowPrintlo\public\stylesheets\ui.jqgrid.css" afterPath="" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\app\models\checkcomments.rb" afterPath="$PROJECT_DIR$/app/models/xcheckcomments.rb" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\app\views\printing\sendfile.txt.erb" afterPath="$PROJECT_DIR$/app/views/printing/sendfile3.txt.erb" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\app\views\store\_cart.html.erb" afterPath="$PROJECT_DIR$/app/views/z_store/_cart.html.erb" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\app\views\store\_cart_item.rhtml" afterPath="$PROJECT_DIR$/app/views/z_store/_cart_item.rhtml" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\app\views\store\add_to_cart.rjs" afterPath="$PROJECT_DIR$/app/views/z_store/add_to_cart.rjs" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\app\views\store\checkout.rhtml" afterPath="$PROJECT_DIR$/app/views/z_store/checkout.rhtml" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\app\views\store\index.rhtml" afterPath="$PROJECT_DIR$/app/views/z_store/index.rhtml" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\app\views\store\sub_to_cart.rjs" afterPath="$PROJECT_DIR$/app/views/z_store/sub_to_cart.rjs" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\app\views\store\z_cart.rhtml" afterPath="$PROJECT_DIR$/app/views/z_store/z_cart.rhtml" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\public\404.html" afterPath="$PROJECT_DIR$/public/z404.html" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\public\images\ajax-loader.gif" afterPath="$PROJECT_DIR$/public/stylesheets/images/ajax-loader.gif" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\public\images\ajax-loader.png" afterPath="$PROJECT_DIR$/public/stylesheets/images/ajax-loader.png" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\public\images\icon-search-black.png" afterPath="$PROJECT_DIR$/public/stylesheets/images/icon-search-black.png" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\public\images\icons-18-black.png" afterPath="$PROJECT_DIR$/public/stylesheets/images/icons-18-black.png" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\public\images\icons-18-white.png" afterPath="$PROJECT_DIR$/public/stylesheets/images/icons-18-white.png" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\public\images\icons-36-black.png" afterPath="$PROJECT_DIR$/public/stylesheets/images/icons-36-black.png" />
-      <change type="MOVED" beforePath="C:\Sites\PestNowPrintlo\public\images\icons-36-white.png" afterPath="$PROJECT_DIR$/public/stylesheets/images/icons-36-white.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/PestNowPrintlo.iml" afterPath="$PROJECT_DIR$/.idea/PestNowPrintlo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/orderchemicals_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/orderchemicals_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/orderpads_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/orderpads_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/payments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/payments_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/printing_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/printing_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/routes_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/routes_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/user_sessions_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/user_sessions_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/mailers/user_mailer.rb" afterPath="$PROJECT_DIR$/app/mailers/user_mailer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/2user.rb" afterPath="$PROJECT_DIR$/app/models/2user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/chemical.rb" afterPath="$PROJECT_DIR$/app/models/chemical.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/customerledger.rb" afterPath="$PROJECT_DIR$/app/models/customerledger.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/order.rb" afterPath="$PROJECT_DIR$/app/models/order.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/orderchemical.rb" afterPath="$PROJECT_DIR$/app/models/orderchemical.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/orderpest.rb" afterPath="$PROJECT_DIR$/app/models/orderpest.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/pest.rb" afterPath="$PROJECT_DIR$/app/models/pest.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/orderchemicals/_cart.html.erb" afterPath="$PROJECT_DIR$/app/views/orderchemicals/_cart.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/orderpads/_orderpayment.erb" afterPath="$PROJECT_DIR$/app/views/orderpads/_orderpayment.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/orderpads/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/orderpads/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/orders/coversheet.html.erb" afterPath="$PROJECT_DIR$/app/views/orders/coversheet.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/printing/index.html.erb" afterPath="$PROJECT_DIR$/app/views/printing/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/printing/workvoice.erb" afterPath="$PROJECT_DIR$/app/views/printing/workvoice.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/routes/index.html.erb" afterPath="$PROJECT_DIR$/app/views/routes/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/user_mailer/workvoice_email.erb" afterPath="$PROJECT_DIR$/app/views/user_mailer/workvoice_email.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/user_sessions/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/user_sessions/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/user_sessions/new.html.erb" afterPath="$PROJECT_DIR$/app/views/user_sessions/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environment.rb" afterPath="$PROJECT_DIR$/config/environment.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/development.rb" afterPath="$PROJECT_DIR$/config/environments/development.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/production.rb" afterPath="$PROJECT_DIR$/config/environments/production.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/test.rb" afterPath="$PROJECT_DIR$/config/environments/test.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gnore-dependencies/gems/eventmachine-0.12.10/Rakefile" afterPath="$PROJECT_DIR$/gnore-dependencies/gems/eventmachine-0.12.10/Rakefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gnore-dependencies/gems/rack-1.3.0/Rakefile" afterPath="$PROJECT_DIR$/gnore-dependencies/gems/rack-1.3.0/Rakefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gnore-dependencies/gems/rack-1.3.0/lib/rack/lint.rb" afterPath="$PROJECT_DIR$/gnore-dependencies/gems/rack-1.3.0/lib/rack/lint.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/application.js" afterPath="$PROJECT_DIR$/public/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/custom-scripting.js" afterPath="$PROJECT_DIR$/public/javascripts/custom-scripting.js" />
     </list>
     <ignored path="PestNowPrintlo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -827,6 +663,7 @@
     <frame x="23" y="3" width="1873" height="1056" extended-state="0" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18018967" sideWeight="0.19309601" order="1" side_tool="true" content_ui="tabs" />
@@ -840,7 +677,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32901832" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="11" y="367" width="1898" height="305" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
